@@ -1,0 +1,177 @@
+---
+layout: default
+title: Kavram Virdi
+permalink: /kavramlar/
+---
+
+<section class="kavram-page">
+
+  <header class="kavram-header">
+    <h1 class="kavram-page-title">vird'ûl-mefhum</h1>
+    <p class="kavram-page-subtitle">kelimelere yüklenen anlamlar zamanla değişir.<br>bu defter o değişimi de taşır.</p>
+  </header>
+
+  <!-- ═══ ZİHİN HARİTASI ═══ -->
+  <div class="kavram-map-wrap">
+    <h3 class="kavram-section-title">kelime soy ağacı</h3>
+    <div class="kavram-map" id="kavram-map">
+      <svg id="kavram-map-svg" class="kavram-map-svg"></svg>
+      {% for kavram in site.data.kavramlar %}
+      {% if kavram.id %}
+      <a href="#{{ kavram.id }}" class="kavram-node" data-id="{{ kavram.id }}">
+        <span class="kavram-node-arabic">{{ kavram.arabic }}</span>
+        <span class="kavram-node-word">{{ kavram.word }}</span>
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- ═══ KAVRAM GİRİŞLERİ ═══ -->
+  {% for kavram in site.data.kavramlar %}
+  {% if kavram.id %}
+  <article class="kavram-entry" id="{{ kavram.id }}">
+
+    <div class="kavram-arabic">{{ kavram.arabic }}</div>
+    <h2 class="kavram-word">{{ kavram.word }}</h2>
+    <p class="kavram-essence">{{ kavram.essence }}</p>
+
+    <div class="kavram-layers">
+      {% for layer in kavram.layers %}
+      <div class="kavram-layer">
+        <span class="layer-date">{{ layer.date }}</span>
+        <p class="layer-text">{{ layer.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if kavram.post_slug %}
+    <div class="kavram-related">
+      {% for post in site.posts %}
+        {% if post.url contains kavram.post_slug %}
+        <a href="{{ post.url | relative_url }}" class="kavram-post-link">ilgili mektup: {{ post.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </article>
+  {% endif %}
+  {% endfor %}
+
+  <!-- ═══ OKUYUCUNUN VİRDİ ═══ -->
+  <div class="reader-vird-section">
+    <h3 class="kavram-section-title">senin virdin ne?</h3>
+    <p class="reader-vird-subtitle">seni tanımlayan bir kelime ve onun sana ne ifade ettiği.</p>
+
+    {% if site.data.reader_vird %}
+    <div class="reader-vird-list">
+      {% for entry in site.data.reader_vird %}
+      <div class="reader-vird-entry">
+        <span class="reader-vird-word">{{ entry.word }}</span>
+        <span class="reader-vird-meaning">{{ entry.meaning }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <form class="reader-vird-form" id="reader-vird-form"
+          action="https://formspree.io/f/{{ site.formspree_id }}" method="POST">
+      <input type="hidden" name="_subject" value="kavram virdi önerisi">
+      <div class="reader-vird-inputs">
+        <input type="text" name="word" placeholder="kelimen" maxlength="30" required>
+        <input type="text" name="meaning" placeholder="sana ne ifade ediyor?" maxlength="120" required>
+      </div>
+      <button type="submit">virdime ekle</button>
+    </form>
+  </div>
+
+</section>
+
+<!-- ═══ ZİHİN HARİTASI JS ═══ -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var map = document.getElementById('kavram-map');
+  var svg = document.getElementById('kavram-map-svg');
+  if (!map || !svg) return;
+
+  var nodes = map.querySelectorAll('.kavram-node');
+  var nodeMap = {};
+  var count = nodes.length;
+  var w = map.offsetWidth;
+  var h = Math.max(300, count * 35);
+  map.style.height = h + 'px';
+  svg.setAttribute('width', w);
+  svg.setAttribute('height', h);
+  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+
+  var cx = w / 2;
+  var cy = h / 2;
+  var radius = Math.min(cx - 60, cy - 40);
+
+  for (var i = 0; i < count; i++) {
+    var angle = (Math.PI * 2 / count) * i - Math.PI / 2;
+    var x = cx + Math.cos(angle) * radius;
+    var y = cy + Math.sin(angle) * radius;
+    nodes[i].style.left = x + 'px';
+    nodes[i].style.top = y + 'px';
+    nodeMap[nodes[i].getAttribute('data-id')] = { x: x, y: y };
+  }
+
+  var connections = [
+    {% for c in site.data.kavram_connections %}
+    { from: "{{ c.from }}", to: "{{ c.to }}", label: "{{ c.label }}" },
+    {% endfor %}
+  ];
+
+  connections.forEach(function(c) {
+    var a = nodeMap[c.from];
+    var b = nodeMap[c.to];
+    if (!a || !b) return;
+
+    var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', a.x);
+    line.setAttribute('y1', a.y);
+    line.setAttribute('x2', b.x);
+    line.setAttribute('y2', b.y);
+    line.setAttribute('stroke', 'currentColor');
+    line.setAttribute('stroke-width', '0.8');
+    line.setAttribute('opacity', '0.12');
+    line.setAttribute('stroke-dasharray', '4 3');
+    svg.appendChild(line);
+
+    var tx = (a.x + b.x) / 2;
+    var ty = (a.y + b.y) / 2;
+    var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', tx);
+    text.setAttribute('y', ty - 4);
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('fill', 'currentColor');
+    text.setAttribute('opacity', '0.08');
+    text.setAttribute('font-size', '9');
+    text.setAttribute('font-family', 'EB Garamond, serif');
+    text.textContent = c.label;
+    svg.appendChild(text);
+  });
+
+  // okuyucu virdi formu
+  var form = document.getElementById('reader-vird-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST', body: data,
+        headers: { 'Accept': 'application/json' }
+      }).catch(function(){});
+      var btn = form.querySelector('button');
+      if (btn) btn.textContent = 'gönderildi ✓';
+      form.querySelectorAll('input[type="text"]').forEach(function(i) { i.value = ''; i.disabled = true; });
+      setTimeout(function() {
+        if (btn) btn.textContent = 'virdime ekle';
+        form.querySelectorAll('input[type="text"]').forEach(function(i) { i.disabled = false; });
+      }, 3000);
+    });
+  }
+});
+</script>

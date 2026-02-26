@@ -1,0 +1,64 @@
+---
+layout: default
+title: Rüya
+permalink: /ruya/
+---
+
+<section class="ruya-page" id="ruya-page">
+  <p class="ruya-title">bir münzevinin rüyası</p>
+
+  <div class="ruya-locked" id="ruya-locked" style="display:none">
+    <p>bu sayfa sadece gece yarısından sonra okunabilir.</p>
+    <p style="margin-top:1rem;opacity:0.6">rüyalar gündüz kaybolur… gece gel.</p>
+  </div>
+
+  <div id="ruya-content"></div>
+</section>
+
+<script>
+(function() {
+  var hour = new Date().getHours();
+  var isNight = (hour >= 0 && hour < 5);
+  var locked = document.getElementById('ruya-locked');
+  var content = document.getElementById('ruya-content');
+  if (!content) return;
+
+  if (!isNight) {
+    if (locked) locked.style.display = '';
+    return;
+  }
+
+  var fragments = [
+    {% for post in site.posts %}"{{ post.content | strip_html | truncate: 120, '' | replace: '"', '\"' | replace: '
+', ' ' | strip_newlines }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+  }
+
+  var picked = shuffle(fragments.filter(function(f) { return f.trim().length > 30; })).slice(0, 7);
+
+  picked.forEach(function(text, i) {
+    var p = document.createElement('p');
+    p.className = 'ruya-fragment';
+    p.textContent = text.trim();
+    p.style.animationDelay = (i * 1.2) + 's';
+    p.style.animation = 'ruyaFloat 2s ' + (i * 1.2) + 's ease forwards';
+    content.appendChild(p);
+
+    if (i < picked.length - 1) {
+      var div = document.createElement('div');
+      div.className = 'ruya-divider';
+      div.style.opacity = '0';
+      div.style.animation = 'ruyaFloat 2s ' + (i * 1.2 + 0.6) + 's ease forwards';
+      content.appendChild(div);
+    }
+  });
+})();
+</script>

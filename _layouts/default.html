@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="manuscript">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-url" content="{{ site.baseurl | default: '' }}">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+
+  <!-- ═══ SVG FİLTRELER ═══ -->
+  <svg xmlns="http://www.w3.org/2000/svg"
+       style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none">
+    <defs>
+      <filter id="paper-distortion">
+        <feTurbulence type="turbulence"
+                      baseFrequency="0.018 0.028"
+                      numOctaves="3"
+                      seed="5"
+                      result="warp"/>
+        <feDisplacementMap in="SourceGraphic"
+                           in2="warp"
+                           scale="4.5"
+                           xChannelSelector="R"
+                           yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ═══ Mevsim Tonu ═══ -->
+  <div class="season-tint" aria-hidden="true"></div>
+
+  <!-- ═══ Yıldızlı Gece (void mode) ═══ -->
+  <div class="void-stars" aria-hidden="true"></div>
+
+  <!-- ═══ Ay Evresi (void mode) ═══ -->
+  <div class="moon-phase-float" id="moon-phase" aria-hidden="true"></div>
+
+  <!-- ═══ Hava Durumu Katmanı ═══ -->
+  <div class="weather-layer" aria-hidden="true"></div>
+
+  {% include header.html %}
+
+  <div class="candlelight-layer" id="candlelight-layer">
+    <main class="site-main" role="main">
+      {{ content }}
+    </main>
+
+    {% include footer.html %}
+
+    <!-- ═══ Gizli Dip Sayfa ═══ -->
+    <div class="abyss" aria-hidden="true">
+      <p class="abyss-text">buraya kadar indiysen, bir şey arıyorsun demektir. belki de cevap yukarıda, belki de hiç yok. ama aramak güzeldir.</p>
+      <a href="{{ '/halvet/' | relative_url }}" class="abyss-gate">halvethâne</a>
+    </div>
+  </div>
+
+  <!-- ═══ Mum Işığı Sıcak Parıltı ═══ -->
+  <div class="candlelight-glow" id="candlelight-glow" aria-hidden="true"></div>
+
+  <!-- ═══ Okuma İzi ═══ -->
+  <div class="reading-trace" id="reading-trace" aria-hidden="true"></div>
+
+  <!-- ═══ Sis Efekti (yazı sayfaları) ═══ -->
+  <div class="page-fog" id="page-fog" aria-hidden="true"></div>
+
+  <!-- ═══ Sayfa Geçiş Perdesi ═══ -->
+  <div class="page-transition" id="page-transition" aria-hidden="true"></div>
+
+  <!-- ═══ Defteri Kapat (çıkış perdesi) ═══ -->
+  <div class="closing-veil" id="closing-veil"></div>
+
+  <!-- ═══ Site Verileri (JS için) ═══ -->
+  <script>
+    window.MUNZEVI_POSTS = [{% for post in site.posts %}"{{ post.url | relative_url }}"{% unless forloop.last %},{% endunless %}{% endfor %}];
+    window.MUNZEVI_TOTAL_STAMPS = {{ site.posts | size }};
+    window.MUNZEVI_SECRET_MAP = { {% for w in site.data.secret_words.words %}"{{ w.slug }}":{{ w.idx }}{% unless forloop.last %},{% endunless %}{% endfor %} };
+    window.MUNZEVI_KAVRAMLAR = [{% for k in site.data.kavramlar %}{% if k.id %}{ id:"{{ k.id }}", word:"{{ k.word }}", essence:"{{ k.essence }}" }{% unless forloop.last %},{% endunless %}{% endif %}{% endfor %}];
+  </script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

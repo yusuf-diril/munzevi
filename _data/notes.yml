@@ -1,0 +1,9 @@
+# Onaylanmış ziyaretçi notları
+# Yeni not eklemek için:
+#   - text: "notun metni"
+#     page: "/yazinin-url-yolu/"
+#
+# Formspree'den gelen notları buraya ekle, site yeniden build edilince görünür.
+
+- text: "bu defter bir ruh gibi nefes alıyor"
+  page: "/liya/"

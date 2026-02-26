@@ -1,0 +1,55 @@
+---
+layout: default
+title: Dolunay
+permalink: /dolunay/
+---
+
+<section class="dolunay-page" id="dolunay-page">
+  <div class="dolunay-moon" id="dolunay-moon">🌕</div>
+
+  <div class="dolunay-locked" id="dolunay-locked">
+    <p>bu sayfa sadece dolunayda okunabilir.</p>
+    <p style="margin-top:1rem;opacity:0.5">ayın dolmasını bekle… bazı sırlar sadece o ışıkta görünür.</p>
+  </div>
+
+  <div class="dolunay-content" id="dolunay-content" style="display:none">
+    <div class="dolunay-poem">
+      ay dolduğunda bir kapı aralanır,<br>
+      gündüz söylenemeyenler<br>
+      gece yarısı fısıldar.<br><br>
+      her dolunay bir itiraf taşır —<br>
+      gökyüzü bile bazen<br>
+      sırlarını tutamaz.<br><br>
+      bu satırları okuyan sen,<br>
+      biliyorsun ki bazı şeyler<br>
+      sadece karanlıkta parlıyor.
+    </div>
+    <p class="dolunay-signature">— münzevî, dolunay defteri</p>
+  </div>
+</section>
+
+<script>
+(function() {
+  var phase = (function() {
+    var now = new Date(), y = now.getFullYear(), m = now.getMonth()+1, d = now.getDate();
+    var c, e;
+    if (m < 3) { c = y-1; e = m+12; } else { c = y; e = m; }
+    var jd = Math.floor(365.25*c) + Math.floor(30.6001*(e+1)) + d - 694039.09;
+    jd /= 29.5305882;
+    var b = parseInt(jd, 10);
+    jd -= b;
+    b = Math.round(jd * 8);
+    if (b >= 8) b = 0;
+    return b;
+  })();
+
+  var isFullMoon = (phase === 4);
+  var locked = document.getElementById('dolunay-locked');
+  var content = document.getElementById('dolunay-content');
+
+  if (isFullMoon && locked && content) {
+    locked.style.display = 'none';
+    content.style.display = '';
+  }
+})();
+</script>

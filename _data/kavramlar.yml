@@ -1,0 +1,94 @@
+# Vird'ûl-Mefhum — Kavram Virdi
+# Her kavram: Arapça yazılışı, münzevinin yüklediği anlam, ve zamanla değişen katmanlar
+
+- id: sekine
+  word: sekîne
+  arabic: سكينه
+  essence: "haz ve hız çağında durabilmek"
+  layers:
+    - date: "Mart 2023"
+      text: "inişli çıkışlı çizgiler sonrası yolunu bulma, karara varma ve son çizgisinde tutarlı olma halidir sekîne. bir 'lâ' demektir aslında — asıl önceliği dışındaki her şeye 'hayır' diyebilmek."
+    - date: "Bugün"
+      text: "durağanlık dikey düzlemde değil yatay düzlemde olmalı. yatay hareket sizi yüzeyde dolandırırken dikey hareket en-derine ulaştırır. pergel gibi — bir ayak sabit, diğer ayak döner."
+  post_slug: "seki-ne-haz-ve-hiz"
+
+- id: suveyda
+  word: sûveyda
+  arabic: سويدا
+  essence: "gönlün en karanlık, en derin noktası"
+  layers:
+    - date: "İlk yazılış"
+      text: "kalbin ortasındaki siyah nokta. sevginin, acının, özlemin hepsinin buluştuğu yer. oraya ulaşan geri dönemez."
+    - date: "Sonra"
+      text: "sûveyda bir yer değil, bir haldir. seven de sevilmeyen de orada yaşar. ulaşılmaz olanın adıdır belki de."
+  post_slug: "liya"
+
+- id: firkat
+  word: firkat
+  arabic: فرقت
+  essence: "ayrılığın acısını taşımak"
+  layers:
+    - date: "İlk yazılış"
+      text: "asli değerlerden kopuş. sadece birinden değil, kendinden de ayrı düşmek. firkat bazen dışarıda değil, içeride yaşanır."
+    - date: "Sonra"
+      text: "firkat vuslatın kardeşidir. biri olmadan diğeri anlamsız. ayrılığı yaşamayan kavuşmayı bilemez."
+  post_slug: "firkate-dair"
+
+- id: vuslat
+  word: vuslat
+  arabic: وصلت
+  essence: "kavuşmanın ötesinde bir hal"
+  layers:
+    - date: "İlk yazılış"
+      text: "sadece bir kavuşma değil, bir ömrün birbirine adanmışlıkla ilmek ilmek dokunması. asli değerlere dönüşün devası."
+    - date: "Sonra"
+      text: "vuslat bir son değil, bir başlangıç. kavuştuğunda yeni bir firkat başlar — bu sefer kaybetme korkusunun firkati."
+  post_slug: "vuslata-dair"
+
+- id: hicran
+  word: hicran
+  arabic: هجران
+  essence: "hasretin en ağır hali"
+  layers:
+    - date: "İlk yazılış"
+      text: "gözyaşının bile kifayet etmediği özlem. hicran dolu heybem dediğimde sırtımda taşıdığım her şeyi kastediyorum — geçmişi, pişmanlığı, ümidi."
+  post_slug: "hicran-dolu-heybem"
+
+- id: munzevi
+  word: münzevi
+  arabic: منزوی
+  essence: "inzivaya çekilmiş olan"
+  layers:
+    - date: "Başlangıç"
+      text: "dünyadan uzaklaşan değil, dünyaya daha derinden bakan. yalnızlık bir kaçış değil, bir tercih. münzevi susar — ama defterine yazar."
+    - date: "Şimdi"
+      text: "herkes kendi münzevisidir aslında. iç sesin duyulduğu an başlar inziva. kalabalıkta da olabilir, çölde de."
+
+- id: vird
+  word: vird
+  arabic: ورد
+  essence: "tekrarlanan, dönülen, bırakılmayan"
+  layers:
+    - date: "İlk anlam"
+      text: "bir kavramı zikretmek — onu tekrar tekrar söyleyerek içselleştirmek. her tekrarda biraz daha derinleşir, biraz daha sana ait olur."
+    - date: "Genişleme"
+      text: "vird'ûl-mefhum: kavram virdi. tek kelimelik sözcüklere yüklenen derin anlamlar. o kelimeyi zikrettiğinde aslında çok şey söylemiş oluyorsun."
+  post_slug: "seki-ne-haz-ve-hiz"
+
+- id: gariplik
+  word: garâbet
+  arabic: غرابت
+  essence: "tanıdık dünyada yabancı hissetmek"
+  layers:
+    - date: "İlk his"
+      text: "hayatın kendisi gariptir, gurbettir, garabettir. bu üç kelime aynı kökten gelir — hepsi 'uzaklık' der."
+  post_slug: "va-veyla"
+
+- id: tefekkur
+  word: tefekkür
+  arabic: تفکر
+  essence: "düşüncenin ötesinde bir iç yolculuk"
+  layers:
+    - date: "Okuma sonrası"
+      text: "tefekkür insanın zihnini değil kalbini uyandıran bir şimşek. tevekkül bu uyanışın ardından gelen sükûnet. niyet yürüyüşün yönünü belirleyen pusula."
+  post_slug: "tefekku-r-vakti"

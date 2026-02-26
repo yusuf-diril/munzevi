@@ -1,0 +1,11 @@
+---
+layout: post
+title: "bilmem, gitmek miydi kolay olan yoksa kalmak mı acaba..?"
+date: 2023-08-05
+stamp_image: "stamp-parchment"
+is_nocturnal: true
+---
+
+# bilmem, gitmek miydi kolay olan yoksa kalmak mı acaba..?
+
+<span class="drop-cap">G</span>ökyüzü bulutların yükünü, etrafında uçuşan martılar hüznünü taşıyor. Bense denizi besleyen gözyaşlarımı damıtıyorum usulca.. Bir kaçış mıydı bu yoksa kurtuluş mu? Bilmem, gitmek miydi kolay olan yoksa kalmak mı acaba? Ne kadar korkularla dolu olduğumu biliyorum sadece.. Kaçıyorum, soluksuz ve amansız bir şekilde. Ve ben bu kaçışı bir yerlerden hatırlıyor gibiyim.. Sadece aynı sızıyla aynı tekerrürü yaşıyorken, altında ezileceğim bu yükün bilincinde olmak yoruyor gibi geliyor. Bugün bitmeyecekmiş gibi görünen bir gidişin habercisi. Tüm geçmişimi ve geleceğimi sırtımdaki çantama zoraki sıkıştırmışlığımın acısı sızıldıyor sanki.. Yankılanan ağıdı mı bu hicran bu gidiş, kavuşmak mı yoksa muhtelif tereddütler gölgesinde ebedi nihayete..!

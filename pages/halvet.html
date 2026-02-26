@@ -1,0 +1,81 @@
+---
+layout: default
+title: Halvethâne
+permalink: /halvet/
+---
+
+<section class="halvet-page" id="halvet-page">
+  <div class="halvet-void">
+    <p class="halvet-text">burada hiçbir şey yok.</p>
+    <p class="halvet-text">sadece sen ve sessizlik.</p>
+  </div>
+
+  <p class="halvet-tier halvet-tier-1" id="halvet-t1">
+    sabır, sessizliğin en derin halidir.
+  </p>
+
+  <p class="halvet-tier halvet-tier-2" id="halvet-t2">
+    beklemek de bir ibadettir — ama sadece bekleyenler bilir bunu.
+    çoğu insan sessizliğe dayanamaz, çünkü sessizlikte kendi sesiyle yüzleşir.
+  </p>
+
+  <p class="halvet-tier halvet-tier-3" id="halvet-t3">
+    halvette olan kişi dünyayı terk etmez — dünya onu terk eder.
+    geriye kalan, saf bir farkındalıktır.
+  </p>
+  <a href="{{ '/ruya/' | relative_url }}" class="halvet-gate" id="halvet-gate">rüya defteri →</a>
+
+  <p class="halvet-tier halvet-tier-4" id="halvet-t4">
+    sen burada kaldın. bu kadar bekleyen çok az kişi var.
+    belki de bu defter senin için yazıldı.
+    belki de münzevi sensin.
+  </p>
+</section>
+
+<script>
+(function() {
+  var STORE_KEY = 'munzevi-halvet-time';
+  var saved = 0;
+  try { saved = parseInt(localStorage.getItem(STORE_KEY) || '0', 10); } catch(e) {}
+
+  var elapsed = saved;
+  var startTime = Date.now();
+  var paused = false;
+
+  var tiers = [
+    { el: document.getElementById('halvet-t1'), at: 30 },
+    { el: document.getElementById('halvet-t2'), at: 120 },
+    { el: document.getElementById('halvet-t3'), at: 300 },
+    { el: document.getElementById('halvet-gate'), at: 300 },
+    { el: document.getElementById('halvet-t4'), at: 600 }
+  ];
+
+  function checkTiers() {
+    for (var i = 0; i < tiers.length; i++) {
+      if (tiers[i].el && elapsed >= tiers[i].at) {
+        tiers[i].el.classList.add('revealed');
+      }
+    }
+  }
+
+  checkTiers();
+
+  var interval = setInterval(function() {
+    if (paused) return;
+    elapsed = saved + Math.floor((Date.now() - startTime) / 1000);
+    try { localStorage.setItem(STORE_KEY, String(elapsed)); } catch(e) {}
+    checkTiers();
+  }, 2000);
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      paused = true;
+      saved = elapsed;
+      startTime = Date.now();
+    } else {
+      paused = false;
+      startTime = Date.now();
+    }
+  });
+})();
+</script>

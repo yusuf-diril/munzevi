@@ -1,0 +1,376 @@
+<!-- ═══ TASARIM PANELİ (sadece geliştirme) ═══ -->
+<button class="dp-toggle" id="dp-toggle" title="Tasarım Paneli">⚙</button>
+
+<div class="dp-panel" id="dp-panel">
+  <div class="dp-header">
+    <span>tasarım paneli</span>
+    <button class="dp-close" id="dp-close">✕</button>
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">kenarlık</label>
+    <div class="dp-borders" id="dp-borders">
+      <button class="dp-border-btn dp-border-none" data-border="">yok</button>
+      {% for i in (1..11) %}
+      <button class="dp-border-btn" data-border="kenarlik-{{ i }}.png">
+        <img src="{{ '/assets/img/kenarliklar/kenarlik-' | relative_url }}{{ i }}.png" alt="{{ i }}">
+      </button>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">font — el yazısı</label>
+    <div class="dp-fonts" id="dp-fonts">
+      <button class="dp-font-btn" data-font="'Caveat', cursive">Caveat</button>
+      <button class="dp-font-btn" data-font="'Patrick Hand', cursive">Patrick Hand</button>
+      <button class="dp-font-btn" data-font="'Shadows Into Light', cursive">Shadows Into Light</button>
+      <button class="dp-font-btn" data-font="'Marck Script', cursive">Marck Script</button>
+    </div>
+  </div>
+  <div class="dp-section">
+    <label class="dp-label">font — kaligrafik</label>
+    <div class="dp-fonts" id="dp-fonts-cal">
+      <button class="dp-font-btn" data-font="'Great Vibes', cursive">Great Vibes</button>
+    </div>
+  </div>
+  <div class="dp-section">
+    <label class="dp-label">font — klasik serif</label>
+    <div class="dp-fonts" id="dp-fonts-serif">
+      <button class="dp-font-btn" data-font="'EB Garamond', serif">EB Garamond</button>
+      <button class="dp-font-btn" data-font="'Cormorant Garamond', serif">Cormorant Garamond</button>
+      <button class="dp-font-btn" data-font="'Playfair Display', serif">Playfair Display</button>
+      <button class="dp-font-btn" data-font="'Bodoni Moda', serif">Bodoni Moda</button>
+      <button class="dp-font-btn" data-font="'Lora', serif">Lora</button>
+      <button class="dp-font-btn" data-font="'Source Serif Pro', serif">Source Serif Pro</button>
+      <button class="dp-font-btn" data-font="'Merriweather', serif">Merriweather</button>
+      <button class="dp-font-btn" data-font="Georgia, serif">Georgia</button>
+    </div>
+  </div>
+  <div class="dp-section">
+    <label class="dp-label">font — doğu / arapça</label>
+    <div class="dp-fonts" id="dp-fonts-east">
+      <button class="dp-font-btn" data-font="'Amiri', serif">Amiri</button>
+      <button class="dp-font-btn" data-font="'Noto Naskh Arabic', serif">Noto Naskh Arabic</button>
+    </div>
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">font boyutu: <span id="dp-size-val">1.45</span>rem</label>
+    <input type="range" id="dp-size" min="0.9" max="2.2" step="0.05" value="1.45" class="dp-slider">
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">satır aralığı: <span id="dp-lh-val">1.75</span></label>
+    <input type="range" id="dp-lh" min="1.2" max="2.5" step="0.05" value="1.75" class="dp-slider">
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">kenarlık genişliği: <span id="dp-bw-val">50</span>px</label>
+    <input type="range" id="dp-bw" min="20" max="150" step="5" value="50" class="dp-slider">
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">kenarlık üstten: <span id="dp-bt-val">300</span>px</label>
+    <input type="range" id="dp-bt" min="0" max="800" step="20" value="300" class="dp-slider">
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">kenarlık sağdan: <span id="dp-br-val">30</span>px</label>
+    <input type="range" id="dp-br" min="0" max="200" step="5" value="30" class="dp-slider">
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">kenarlık opaklık: <span id="dp-bo-val">1</span></label>
+    <input type="range" id="dp-bo" min="0.1" max="1" step="0.05" value="1" class="dp-slider">
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">pul üstten (sticky): <span id="dp-pt-val">200</span>px</label>
+    <input type="range" id="dp-pt" min="50" max="500" step="10" value="200" class="dp-slider">
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">pul boyutu: <span id="dp-ps-val">100</span>px</label>
+    <input type="range" id="dp-ps" min="50" max="200" step="5" value="100" class="dp-slider">
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">metin genişliği: <span id="dp-mw-val">580</span>px</label>
+    <input type="range" id="dp-mw" min="400" max="900" step="10" value="580" class="dp-slider">
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">başlık font boyutu: <span id="dp-ts-val">2.5</span>rem</label>
+    <input type="range" id="dp-ts" min="1.5" max="4" step="0.1" value="2.5" class="dp-slider">
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">cüz gülü (serlevha)</label>
+    <div class="dp-fonts">
+      <button class="dp-font-btn dp-cuz-btn" data-target="serlevha" data-action="show">göster</button>
+      <button class="dp-font-btn dp-cuz-btn active" data-target="serlevha" data-action="hide">gizle</button>
+    </div>
+  </div>
+  <div class="dp-section">
+    <label class="dp-label">ara tezhip</label>
+    <div class="dp-fonts">
+      <button class="dp-font-btn dp-ara-btn active" data-target="ara" data-action="show">göster</button>
+      <button class="dp-font-btn dp-ara-btn" data-target="ara" data-action="hide">gizle</button>
+    </div>
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">daktilo efekti</label>
+    <div class="dp-fonts">
+      <button class="dp-font-btn dp-tw-btn" data-tw="on">açık</button>
+      <button class="dp-font-btn dp-tw-btn" data-tw="off">kapalı</button>
+    </div>
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">daktilo hızı: <span id="dp-tw-speed-val">35</span>ms</label>
+    <input type="range" id="dp-tw-speed" min="10" max="100" step="5" value="35" class="dp-slider">
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">efektler</label>
+    <div class="dp-fx-list" id="dp-fx-list"></div>
+  </div>
+
+  <div class="dp-section">
+    <label class="dp-label">arka plan</label>
+    <div class="dp-fonts" id="dp-bg">
+      <button class="dp-font-btn dp-bg-btn active" data-bg="#f4ede3" style="background:#f4ede3;color:#333">krem</button>
+      <button class="dp-font-btn dp-bg-btn" data-bg="#faf6ed" style="background:#faf6ed;color:#333">açık krem</button>
+      <button class="dp-font-btn dp-bg-btn" data-bg="#ffffff" style="background:#fff;color:#333">beyaz</button>
+      <button class="dp-font-btn dp-bg-btn" data-bg="#f5f0d0" style="background:#f5f0d0;color:#333">sarımsı</button>
+      <button class="dp-font-btn dp-bg-btn" data-bg="#e8e4dc" style="background:#e8e4dc;color:#333">gri krem</button>
+      <button class="dp-font-btn dp-bg-btn" data-bg="#ede7d9" style="background:#ede7d9;color:#333">parşömen</button>
+    </div>
+  </div>
+
+  <div class="dp-output" id="dp-output"></div>
+</div>
+
+<!-- Ek fontlar -->
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&family=Marck+Script&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;600&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Shadows+Into+Light&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+.dp-toggle{position:fixed;bottom:1.5rem;left:1.5rem;width:44px;height:44px;border-radius:50%;background:#1a2744;color:#c9a84c;border:2px solid #c9a84c;font-size:1.3rem;cursor:pointer;z-index:10000;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,0.3);transition:transform .3s}
+.dp-toggle:hover{transform:scale(1.1)}
+.dp-panel{position:fixed;bottom:0;left:0;width:320px;max-height:90vh;background:#1a1a1a;color:#ddd;z-index:10001;border-radius:0 12px 0 0;box-shadow:4px -2px 20px rgba(0,0,0,0.5);overflow-y:auto;display:none;font-family:system-ui,sans-serif;font-size:12px}
+.dp-panel.open{display:block}
+.dp-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid #333;font-size:13px;font-weight:600;color:#c9a84c}
+.dp-close{background:none;border:none;color:#888;font-size:16px;cursor:pointer}
+.dp-section{padding:10px 14px;border-bottom:1px solid #222}
+.dp-label{display:block;font-size:11px;color:#888;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.dp-borders{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.dp-border-btn{background:#222;border:2px solid transparent;border-radius:4px;padding:4px;cursor:pointer;transition:border-color .2s}
+.dp-border-btn:hover,.dp-border-btn.active{border-color:#c9a84c}
+.dp-border-btn img{width:100%;height:50px;object-fit:contain}
+.dp-border-none{font-size:10px;color:#666;display:flex;align-items:center;justify-content:center;height:58px}
+.dp-fonts{display:flex;flex-wrap:wrap;gap:4px}
+.dp-font-btn{background:#222;border:1px solid #333;color:#ccc;padding:4px 8px;border-radius:3px;cursor:pointer;font-size:11px;transition:border-color .2s,background .2s}
+.dp-font-btn:hover,.dp-font-btn.active{border-color:#c9a84c;background:#2a2520}
+.dp-slider{width:100%;accent-color:#c9a84c;height:4px;-webkit-appearance:none;background:#333;border-radius:2px;outline:none}
+.dp-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#c9a84c;cursor:pointer}
+.dp-output{padding:10px 14px;font-family:monospace;font-size:10px;color:#c9a84c;word-break:break-all;min-height:2em}
+.dp-fx-list{display:flex;flex-direction:column;gap:5px}
+.dp-fx-row{display:flex;justify-content:space-between;align-items:center}
+.dp-fx-name{font-size:11px;color:#aaa}
+.dp-fx-btns{display:flex;gap:3px}
+.dp-fx-btn{background:#222;border:1px solid #333;color:#777;padding:2px 7px;border-radius:3px;cursor:pointer;font-size:10px;transition:border-color .2s,background .2s,color .2s}
+.dp-fx-btn:hover{border-color:#c9a84c}
+.dp-fx-btn.active{border-color:#c9a84c;background:#2a2520;color:#c9a84c}
+</style>
+
+<script>
+(function(){
+  var toggle = document.getElementById('dp-toggle');
+  var panel = document.getElementById('dp-panel');
+  var close = document.getElementById('dp-close');
+  if(!toggle||!panel) return;
+
+  toggle.addEventListener('click',function(){panel.classList.toggle('open')});
+  close.addEventListener('click',function(){panel.classList.remove('open')});
+
+  var kenarlik = document.querySelector('.kenarlik');
+  var body = document.querySelector('.post-body');
+  var postInner = document.querySelector('.ms-page-inner, .post-manuscript .tezhip-frame');
+  var postTitle = document.querySelector('.post-title');
+  var tezhipEls = document.querySelectorAll('.tezhip-serlevha, .tezhip-ara');
+  var output = document.getElementById('dp-output');
+
+  var state = {border:'kenarlik-3.png',font:"'Caveat', cursive",size:1.45,lh:1.75,bw:50,bt:300,br:30,bo:1,mw:580,ts:2.5,tezhip:'show',bg:'#f4ede3'};
+
+  function updateOutput(){
+    output.textContent = 'kenarlik: "'+state.border+'" | font: '+state.font+' | size: '+state.size+'rem | lh: '+state.lh+' | bw: '+state.bw+'px | top: '+state.bt+'px | right: '+state.br+'px | opacity: '+state.bo+' | max-w: '+state.mw+'px | title: '+state.ts+'rem | bg: '+state.bg+' | cüz: '+state.cuz+' | ara: '+state.ara;
+  }
+
+  // kenarlık seçici
+  document.getElementById('dp-borders').addEventListener('click',function(e){
+    var btn = e.target.closest('.dp-border-btn');
+    if(!btn) return;
+    document.querySelectorAll('.dp-border-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    var val = btn.getAttribute('data-border');
+    state.border = val;
+    if(!kenarlik && val){
+      kenarlik = document.createElement('img');
+      kenarlik.className = 'kenarlik';
+      document.querySelector('.post-manuscript').prepend(kenarlik);
+    }
+    if(kenarlik){
+      if(val){kenarlik.src='/assets/img/kenarliklar/'+val;kenarlik.style.display=''}
+      else{kenarlik.style.display='none'}
+    }
+    updateOutput();
+  });
+
+  // font seçici (tüm kategoriler)
+  document.querySelectorAll('.dp-font-btn[data-font]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.dp-font-btn[data-font]').forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      var val = btn.getAttribute('data-font');
+      state.font = val;
+      if(body) body.style.fontFamily = val;
+      updateOutput();
+    });
+  });
+
+  // sliderlar
+  function bindSlider(id,valId,prop,apply){
+    var s=document.getElementById(id),v=document.getElementById(valId);
+    if(!s) return;
+    s.addEventListener('input',function(){
+      v.textContent=s.value;state[prop]=s.value;apply(s.value);updateOutput();
+    });
+  }
+
+  bindSlider('dp-size','dp-size-val','size',function(v){if(body)body.style.fontSize=v+'rem'});
+  bindSlider('dp-lh','dp-lh-val','lh',function(v){if(body)body.style.lineHeight=v});
+  bindSlider('dp-bw','dp-bw-val','bw',function(v){if(kenarlik)kenarlik.style.width=v+'px'});
+  bindSlider('dp-bt','dp-bt-val','bt',function(v){if(kenarlik)kenarlik.style.top=v+'px'});
+  bindSlider('dp-br','dp-br-val','br',function(v){if(kenarlik)kenarlik.style.left='calc(100% + '+v+'px)'});
+  bindSlider('dp-bo','dp-bo-val','bo',function(v){if(kenarlik)kenarlik.style.opacity=v});
+
+  var stampSticky = document.querySelector('.stamp-sticky');
+  var stampImg = document.querySelector('.stamp-frame img');
+  bindSlider('dp-pt','dp-pt-val','pt',function(v){if(stampSticky)stampSticky.style.top=v+'px'});
+  bindSlider('dp-ps','dp-ps-val','ps',function(v){if(stampImg){stampImg.style.width=v+'px';stampImg.style.height='auto'}});
+  bindSlider('dp-mw','dp-mw-val','mw',function(v){
+    if(postInner) postInner.style.maxWidth=v+'px';
+    var siteMain = document.querySelector('.site-main');
+    if(siteMain) siteMain.style.maxWidth = (parseInt(v)+100)+'px';
+  });
+  bindSlider('dp-ts','dp-ts-val','ts',function(v){if(postTitle)postTitle.style.fontSize=v+'rem'});
+
+  // cüz gülü göster/gizle
+  var cuzEls = document.querySelectorAll('.tezhip-serlevha');
+  var araEls = document.querySelectorAll('.tezhip-ara');
+  state.cuz = 'hide';
+  state.ara = 'show';
+
+  document.querySelectorAll('.dp-cuz-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.dp-cuz-btn').forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      var val = btn.getAttribute('data-action');
+      state.cuz = val;
+      cuzEls.forEach(function(el){el.style.display = val==='hide'?'none':''});
+      updateOutput();
+    });
+  });
+
+  document.querySelectorAll('.dp-ara-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.dp-ara-btn').forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      var val = btn.getAttribute('data-action');
+      state.ara = val;
+      araEls.forEach(function(el){el.style.display = val==='hide'?'none':''});
+      updateOutput();
+    });
+  });
+
+  // efektler paneli
+  var fxList = document.getElementById('dp-fx-list');
+  if(fxList){
+    var effects = [
+      {key:'fog',label:'sis efekti'},
+      {key:'trace',label:'okuma izi'},
+      {key:'stains',label:'kahve lekeleri'},
+      {key:'lastbreath',label:'son nefes'},
+      {key:'cursor',label:'yazarın eli'},
+      {key:'pageturn',label:'sayfa geçişi'},
+      {key:'signature',label:'imza döngüsü'},
+      {key:'wobble',label:'el yazısı titremesi'},
+      {key:'breathe',label:'nefes efekti'},
+      {key:'stars',label:'yıldızlı gece'}
+    ];
+    effects.forEach(function(fx){
+      var saved = localStorage.getItem('munzevi-fx-'+fx.key);
+      var isOn = saved !== 'off';
+      var row = document.createElement('div');
+      row.className = 'dp-fx-row';
+      row.innerHTML = '<span class="dp-fx-name">'+fx.label+'</span>'+
+        '<div class="dp-fx-btns">'+
+        '<button class="dp-fx-btn'+(isOn?' active':'')+'" data-fxkey="'+fx.key+'" data-fxval="on">açık</button>'+
+        '<button class="dp-fx-btn'+(!isOn?' active':'')+'" data-fxkey="'+fx.key+'" data-fxval="off">kapalı</button>'+
+        '</div>';
+      fxList.appendChild(row);
+    });
+    fxList.addEventListener('click',function(e){
+      var btn = e.target.closest('.dp-fx-btn');
+      if(!btn) return;
+      var key = btn.getAttribute('data-fxkey');
+      var val = btn.getAttribute('data-fxval');
+      var row = btn.closest('.dp-fx-row');
+      row.querySelectorAll('.dp-fx-btn').forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      if(val==='on') localStorage.removeItem('munzevi-fx-'+key);
+      else localStorage.setItem('munzevi-fx-'+key,'off');
+      location.reload();
+    });
+  }
+
+  // daktilo efekti
+  var twEnabled = localStorage.getItem('munzevi-typewriter') || 'on';
+  document.querySelectorAll('.dp-tw-btn').forEach(function(btn){
+    if(btn.getAttribute('data-tw')===twEnabled) btn.classList.add('active');
+    else btn.classList.remove('active');
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.dp-tw-btn').forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      localStorage.setItem('munzevi-typewriter',btn.getAttribute('data-tw'));
+      location.reload();
+    });
+  });
+  var twSpeedSlider=document.getElementById('dp-tw-speed');
+  var twSpeedVal=document.getElementById('dp-tw-speed-val');
+  if(twSpeedSlider){
+    var savedSpeed=localStorage.getItem('munzevi-typewriter-speed')||'35';
+    twSpeedSlider.value=savedSpeed;twSpeedVal.textContent=savedSpeed;
+    twSpeedSlider.addEventListener('input',function(){
+      twSpeedVal.textContent=twSpeedSlider.value;
+      localStorage.setItem('munzevi-typewriter-speed',twSpeedSlider.value);
+    });
+  }
+
+  // arka plan
+  document.getElementById('dp-bg').addEventListener('click',function(e){
+    var btn = e.target.closest('.dp-bg-btn');
+    if(!btn) return;
+    document.querySelectorAll('.dp-bg-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    var val = btn.getAttribute('data-bg');
+    state.bg = val;
+    document.body.style.background = val;
+    updateOutput();
+  });
+
+  updateOutput();
+})();
+</script>

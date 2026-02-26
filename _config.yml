@@ -1,0 +1,38 @@
+title: münzevi
+description: "bir münzevinin yaşayan el yazması"
+author: Münzevi
+
+url: "https://munzevi.com.tr"
+baseurl: ""
+permalink: /:title/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+excerpt_separator: "\n\n"
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - websitem
+  - "*.py"
+  - .github
+
+stamp_images_path: "/assets/img/mektup-pullari/"
+stamp_image_count: 4
+
+formspree_id: "YOUR_FORMSPREE_ID"

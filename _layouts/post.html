@@ -1,0 +1,98 @@
+---
+layout: default
+---
+
+<article class="post-manuscript"
+         data-stamp-id="{{ page.stamp_image | default: '' }}"
+         data-post-date="{{ page.date | date: '%Y-%m-%d' }}"
+         {% if page.is_nocturnal %}data-nocturnal="true"{% endif %}>
+
+  <!-- ═══ Gece Şiiri Perdesi ═══ -->
+  <div class="nocturnal-veil" id="nocturnal-veil" aria-hidden="true">
+    <div class="nocturnal-message">
+      <p class="nocturnal-warning">Bu şiir gün ışığında okunamaz.</p>
+      <p class="nocturnal-invite">Gece yarısından sonra gel.</p>
+    </div>
+  </div>
+
+  {% if page.sealed %}
+  <div class="sealed-overlay" id="sealed-overlay">
+    <div class="sealed-content">
+      <div class="wax-seal">🔏</div>
+      <p class="sealed-text">Bu mektup mühürlüdür.</p>
+      <p class="sealed-hint">Tüm mektupları oku, tüm pulları topla.<br>Ancak o zaman bu mühür kırılır.</p>
+      <p class="sealed-counter" id="sealed-counter"></p>
+    </div>
+  </div>
+  {% endif %}
+
+  {% assign ghost = page.previous %}
+  {% if ghost %}
+  <div class="palimpsest-layer" aria-hidden="true">{{ ghost.content | strip_html | truncate: 380 }}</div>
+  {% endif %}
+
+  <!-- ═══ İKİ SÜTUNLU LAYOUT: pul (sol) + yazı (sağ) ═══ -->
+  <div class="post-layout">
+
+    <!-- SOL: Pul pozisyon referansı -->
+    <div class="post-stamp-rail"></div>
+
+    <!-- SAĞ: Yazı içeriği -->
+    <div class="post-content-col">
+
+      {% if page.kenarlik %}
+      <img src="{{ '/assets/img/kenarliklar/' | relative_url }}{{ page.kenarlik }}" alt="" class="kenarlik">
+      {% endif %}
+
+      <div class="tezhip-frame">
+        <header class="post-header">
+          <h1 class="post-title">{{ page.title }}</h1>
+          <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
+            {% include tr-date.html date=page.date %}
+          </time>
+        </header>
+
+        {% include tezhip-gul.html %}
+
+        <div class="post-body wobble breathe">
+          {{ content }}
+        </div>
+      </div>
+
+      <p class="stamp-collected-note" id="stamp-collected-note" style="display:none">bu mektubu okudun — pulun koleksiyonuna eklendi.</p>
+
+      {% if page.next %}
+      <div class="letter-chain">
+        <a href="{{ page.next.url | relative_url }}" class="chain-link">
+          <span class="chain-arrow">→</span>
+          <span class="chain-preview">{{ page.next.content | strip_html | truncate: 80 }}</span>
+        </a>
+      </div>
+      {% endif %}
+
+      <div class="margin-notes-section" id="margin-notes-section">
+        <p class="margin-notes-title">defterin kenarına bırakılmış notlar</p>
+        <div class="margin-notes-list" id="margin-notes-list">
+          {% for note in site.data.notes %}
+            {% if note.page == page.url %}
+            <div class="margin-note" style="transform: rotate({{ forloop.index | modulo: 5 | minus: 2 }}deg)">
+              {{ note.text }}
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <form class="margin-notes-form" id="margin-notes-form"
+              action="https://formspree.io/f/{{ site.formspree_id }}" method="POST">
+          <input type="hidden" name="_subject" value="defter notu: {{ page.title }}">
+          <input type="hidden" name="page" value="{{ page.url }}">
+          <input type="text" name="note" id="margin-note-input"
+                 placeholder="bu satırlar sana ne fısıldadı?" maxlength="140" required>
+          <button type="submit">bırak</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+{% include design-panel.html %}
+</article>

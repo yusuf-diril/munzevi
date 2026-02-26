@@ -1,0 +1,147 @@
+---
+layout: default
+title: Ana Sayfa
+---
+
+<div class="awakening" id="awakening"></div>
+
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title" id="hero-title">
+      <span class="hero-letter">m</span><span class="hero-letter">ü</span><span class="hero-letter">n</span><span class="hero-letter">z</span><span class="hero-letter">e</span><span class="hero-letter">v</span><span class="hero-letter">i</span>
+    </h1>
+    <p class="hero-whisper" id="hero-whisper"></p>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span class="scroll-line"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Rüzgara Bırakılan Sayfa ═══ -->
+<section class="wind-page" id="wind-page">
+  <p class="wind-label">bugün rüzgâra bırakılan sayfa</p>
+  <blockquote class="wind-quote" id="wind-quote"></blockquote>
+  <a class="wind-link" id="wind-link" href="#">oku →</a>
+</section>
+
+<section class="slider-wrap" id="slider-wrap">
+  <div class="slider" id="manuscript-slider">
+
+    <!-- hoşgeldin sayfası (ilk ziyaretçi için) -->
+    <article class="ms-page ms-page-welcome" id="welcome-page" data-page="·" style="display:none">
+      <div class="ms-page-inner">
+        <p class="welcome-text">
+          Bu deftere rastladıysan, bir sebebi vardır.<br><br>
+          Her mektubun üzerinde bir mühür var.<br>
+          Kır ve oku.<br><br>
+          Bazıları gece okunur, bazıları gündüz.<br>
+          Bazıları sana yazıldı, bilmesen de.<br><br>
+          <em>— münzevi</em>
+        </p>
+      </div>
+    </article>
+
+    {% assign page_num = 0 %}
+    {% for post in site.posts %}
+    {% unless post.sealed %}
+    {% assign page_num = page_num | plus: 1 %}
+
+    {% comment %}muhatap tespiti{% endcomment %}
+    {% assign muhatap = "" %}
+    {% if post.content contains "Sûveyda" or post.content contains "sûveyda" %}{% assign muhatap = "sûveyda'ya" %}
+    {% elsif post.content contains "Hira" %}{% assign muhatap = "hira'ya" %}
+    {% elsif post.content contains "Cavidan" %}{% assign muhatap = "cavidan'a" %}
+    {% elsif post.content contains "Acize" %}{% assign muhatap = "acize'ye" %}
+    {% elsif post.content contains "Hemdem" %}{% assign muhatap = "hemdem'e" %}
+    {% elsif post.content contains "Papatya" %}{% assign muhatap = "papatya'ya" %}
+    {% endif %}
+
+    <article class="ms-page {% if post.arrives %}ms-page-enroute{% endif %}"
+             data-post-date="{{ post.date | date: '%Y-%m-%d' }}"
+             data-page="{{ page_num }}"
+             {% if post.arrives %}data-arrives="{{ post.arrives }}"{% endif %}>
+      <div class="ms-page-inner">
+
+        {% if muhatap != "" %}
+        <span class="ms-page-muhatap">{{ muhatap }}</span>
+        {% endif %}
+
+        <div class="ms-page-stamp">
+          <img src="" alt="" data-stamp-id="{{ post.stamp_image }}">
+        </div>
+        <img src="{{ '/assets/img/mektup-pullari/mektup-damgasi.png' | relative_url }}" alt="" class="ms-page-damga">
+
+        {% if post.arrives %}
+        <!-- ═══ YOLDA OLAN MEKTUP ═══ -->
+        <div class="enroute-face">
+          <h2 class="ms-page-title">{{ post.title }}</h2>
+          <div class="enroute-hourglass">⏳</div>
+          <p class="enroute-countdown"></p>
+          <p class="enroute-hint">bu mektup yolda.</p>
+        </div>
+        {% else %}
+        <!-- ═══ NORMAL MEKTUP ═══ -->
+        <div class="ms-envelope-face">
+          <h2 class="ms-page-title">{{ post.title }}</h2>
+          {% assign seal_symbols = "ﺍ,ﻭ,ﻥ,ﻡ,ﺏ,ﺩ,ﺭ,ﺱ,ﻉ,ﻕ" | split: "," %}
+          {% assign sym_idx = post.stamp_image | size | modulo: 10 %}
+          <div class="ms-wax-seal" role="button" tabindex="0" aria-label="mektubu aç" data-stamp-id="{{ post.stamp_image }}">
+            <span class="seal-half seal-left"></span>
+            <span class="seal-half seal-right"></span>
+            <span class="seal-letter">{{ seal_symbols[sym_idx] }}</span>
+          </div>
+          <p class="ms-seal-prompt">mektubu aç</p>
+        </div>
+
+        <div class="ms-letter-content">
+          <div class="ms-page-rule"></div>
+          <time class="ms-page-date">{% include tr-date.html date=post.date %}</time>
+          <p class="ms-page-ago" data-written="{{ post.date | date: '%Y-%m-%d' }}"></p>
+          <div class="ms-page-text wobble breathe">
+            {{ post.excerpt | strip_html | truncate: 400 }}
+          </div>
+          <a href="{{ post.url | relative_url }}" class="ms-page-link">devamını oku &rarr;</a>
+        </div>
+        {% endif %}
+
+      </div>
+    </article>
+    {% endunless %}
+    {% endfor %}
+
+    {% assign sealed_post = site.posts | where: "sealed", true | first %}
+    {% if sealed_post %}
+    <article class="ms-page ms-page-sealed" data-page="🔏">
+      <div class="ms-page-inner">
+        <div class="ms-envelope-face">
+          <div class="ms-wax-seal seal-locked">
+            <span class="seal-letter">?</span>
+          </div>
+          <h2 class="ms-page-title">mühürlü mektup</h2>
+          <p class="ms-sealed-hint">bu mektubu açabilmek için<br>daha çok okumalısın.</p>
+          <a href="{{ sealed_post.url | relative_url }}" class="ms-page-link">dene &rarr;</a>
+        </div>
+      </div>
+    </article>
+    {% endif %}
+
+  </div>
+
+  <nav class="slider-nav" id="slider-nav">
+    <button class="slider-btn slider-prev" id="slider-prev" aria-label="önceki">&lsaquo;</button>
+
+    <div class="flight-path" id="flight-path">
+      <div class="flight-track" id="flight-track">
+        <svg class="flight-line" id="flight-line-svg" aria-hidden="true"></svg>
+        <div class="flight-stops" id="flight-stops"></div>
+      </div>
+      <div class="flight-plane" id="flight-plane">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+          <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"/>
+        </svg>
+      </div>
+    </div>
+
+    <button class="slider-btn slider-next" id="slider-next" aria-label="sonraki">&rsaquo;</button>
+  </nav>
+</section>

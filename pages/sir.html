@@ -1,0 +1,48 @@
+---
+layout: default
+title: Defterin Sırrı
+permalink: /sir/
+---
+
+<section class="secret-page">
+  <h1 class="secret-title">defterin sırrı</h1>
+  <p class="secret-subtitle">her mektubun içinde gizlenmiş bir kelime var. hepsini bul.</p>
+
+  <div class="secret-sentence" id="secret-sentence">
+    {% for w in site.data.secret_words.words %}
+    <span class="secret-slot" data-index="{{ forloop.index0 }}">
+      <span class="slot-word" id="slot-{{ forloop.index0 }}">_____</span>
+    </span>
+    {% endfor %}
+  </div>
+
+  <p class="secret-progress" id="secret-progress"></p>
+  <p class="secret-hint">ipucu: mektuplarda gizli mürekkeple yazılmış kelimeleri ara. seç ve gör.</p>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var found = [];
+  try { found = JSON.parse(localStorage.getItem('munzevi-secret-words') || '[]'); } catch(e) {}
+
+  var slots = document.querySelectorAll('.slot-word');
+  var total = slots.length;
+  var count = 0;
+
+  for (var i = 0; i < found.length; i++) {
+    var idx = found[i].idx;
+    var word = found[i].word;
+    var el = document.getElementById('slot-' + idx);
+    if (el) {
+      el.textContent = word;
+      el.classList.add('slot-revealed');
+      count++;
+    }
+  }
+
+  var progress = document.getElementById('secret-progress');
+  if (progress) {
+    progress.textContent = count + ' / ' + total + ' kelime bulundu';
+  }
+});
+</script>

@@ -1,0 +1,36 @@
+- from: sekine
+  to: vird
+  label: "tekrarla derinleşir"
+- from: sekine
+  to: tefekkur
+  label: "durarak düşünmek"
+- from: suveyda
+  to: hicran
+  label: "ulaşılamayan acısı"
+- from: suveyda
+  to: vuslat
+  label: "kavuşma umudu"
+- from: firkat
+  to: hicran
+  label: "ayrılık hasrete dönüşür"
+- from: firkat
+  to: vuslat
+  label: "zıtların bütünlüğü"
+- from: firkat
+  to: gariplik
+  label: "kopuş yabancılık getirir"
+- from: munzevi
+  to: vird
+  label: "inzivada tekrar"
+- from: munzevi
+  to: gariplik
+  label: "yalnızlığın hali"
+- from: munzevi
+  to: tefekkur
+  label: "sessizlikte düşünce"
+- from: vuslat
+  to: sekine
+  label: "kavuşunca huzur"
+- from: hicran
+  to: gariplik
+  label: "hasret gurbete dönüşür"

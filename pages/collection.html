@@ -1,0 +1,80 @@
+---
+layout: default
+title: Koleksiyon
+permalink: /koleksiyon/
+---
+
+<section class="collection-page">
+
+  <h1 class="collection-title">mektup pulları</h1>
+  <p class="collection-subtitle">her okunan mektup bir pul bırakır ardında.</p>
+  <p class="stamp-counter" id="stamp-counter"></p>
+
+  <!-- ═══ Sekmeler ═══ -->
+  <div class="collection-tabs">
+    <button class="tab-btn active" data-tab="stamps">pullar</button>
+    <button class="tab-btn" data-tab="journey">ayak izleri</button>
+    <button class="tab-btn" data-tab="constellation">konstellasyon</button>
+  </div>
+
+  <!-- ═══ Pul Grid'i ═══ -->
+  <div class="tab-content active" id="tab-stamps">
+    <div class="stamp-grid" id="stamp-grid">
+      {% assign sorted = site.posts | sort: 'title' %}
+      {% for post in sorted %}
+      <div class="stamp-item" data-stamp-id="{{ post.stamp_image }}">
+        <a href="{{ post.url | relative_url }}">
+          <div class="stamp-frame">
+            <img src="" alt="{{ post.stamp_image }}" class="stamp-image">
+          </div>
+          <span class="stamp-label">{{ post.title | truncate: 35 }}</span>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- ═══ Ayak İzi Haritası ═══ -->
+  <div class="tab-content" id="tab-journey">
+    <p class="journey-count" id="journey-count"></p>
+    <div class="journey-timeline" id="journey-timeline">
+      {% for post in site.posts reversed %}
+      <div class="journey-step" data-stamp-id="{{ post.stamp_image }}">
+        <a href="{{ post.url | relative_url }}" class="journey-title">{{ post.title }}</a>
+        <span class="journey-time"></span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- ═══ Konstellasyon Haritası ═══ -->
+  <div class="tab-content" id="tab-constellation">
+    <div class="constellation-wrap" id="constellation-wrap">
+      <svg class="constellation-svg" id="constellation-svg"></svg>
+      <p class="constellation-info">senin takımyıldızın · <span id="const-count">0</span> yıldız bağlandı</p>
+    </div>
+  </div>
+
+</section>
+
+<script>
+window.MUNZEVI_STAR_DATA = [
+  {% for post in site.posts %}{ id:"{{ post.stamp_image }}", title:"{{ post.title | replace: '"', '\"' }}", url:"{{ post.url | relative_url }}", date:"{{ post.date | date: '%Y-%m-%d' }}" }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+  var tabs = document.querySelectorAll('.tab-btn');
+  tabs.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      tabs.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(function(c) {
+        c.classList.remove('active');
+      });
+      var target = document.getElementById('tab-' + btn.getAttribute('data-tab'));
+      if (target) target.classList.add('active');
+    });
+  });
+});
+</script>
