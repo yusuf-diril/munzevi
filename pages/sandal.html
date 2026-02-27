@@ -1,0 +1,99 @@
+---
+layout: default
+title: Sandal
+permalink: /sandal/
+---
+
+<section class="sandal-page" id="sandal-page">
+  <div class="sandal-stage" id="sandal-stage">
+    <svg class="sandal-svg" id="sandal-svg" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+      <g id="sandal-shape">
+        <rect id="s-paper" x="70" y="30" width="140" height="140" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+      </g>
+    </svg>
+    <div class="sandal-water" id="sandal-water"></div>
+  </div>
+
+  <p class="sandal-step-text" id="sandal-text"></p>
+
+  <div class="sandal-wish-form" id="sandal-wish">
+    <input type="text" id="sandal-wish-input" placeholder="bir dilek yaz ve sandalına bırak..." maxlength="80">
+  </div>
+
+  <p class="sandal-farewell" id="sandal-farewell">sandalın suya bırakıldı. dileğin dalgalarla gitti.</p>
+</section>
+
+<script>
+(function() {
+  var excerpts = [
+    {% for post in site.posts %}{% assign stripped = post.content | strip_html | truncate: 100, '' | replace: '"', '\"' | strip_newlines %}"{{ stripped }}",
+    {% endfor %}
+  ].filter(function(s) { return s.trim().length > 20; });
+
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  var picked = shuffle(excerpts).slice(0, 5);
+  var shape = document.getElementById('sandal-shape');
+  var textEl = document.getElementById('sandal-text');
+  var water = document.getElementById('sandal-water');
+  var wishForm = document.getElementById('sandal-wish');
+  var wishInput = document.getElementById('sandal-wish-input');
+  var farewell = document.getElementById('sandal-farewell');
+  var svg = document.getElementById('sandal-svg');
+  if (!shape || !textEl) return;
+
+  var steps = [
+    { path: 'M70,30 L210,30 L210,170 L70,170 Z', text: picked[0] || '' },
+    { path: 'M70,100 L140,30 L210,100 L210,170 L70,170 Z', text: picked[1] || '' },
+    { path: 'M90,120 L140,50 L190,120 L190,160 L90,160 Z', text: picked[2] || '' },
+    { path: 'M80,150 L140,70 L200,150 Q190,170 140,165 Q90,170 80,150 Z', text: picked[3] || '' },
+    { path: 'M60,155 L100,110 L140,85 L180,110 L220,155 Q190,175 140,170 Q90,175 60,155 Z', text: picked[4] || '' }
+  ];
+
+  var paper = document.getElementById('s-paper');
+  var currentStep = 0;
+
+  function showStep() {
+    if (currentStep >= steps.length) {
+      if (water) water.classList.add('visible');
+      if (wishForm) wishForm.classList.add('visible');
+      textEl.classList.remove('visible');
+
+      if (wishInput) {
+        wishInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' && wishInput.value.trim()) {
+            wishForm.style.display = 'none';
+            if (farewell) farewell.classList.add('visible');
+            svg.style.transition = 'transform 4s ease, opacity 3s ease';
+            svg.style.transform = 'translateY(30px) scale(0.7)';
+            svg.style.opacity = '0';
+          }
+        });
+      }
+      return;
+    }
+
+    var step = steps[currentStep];
+    textEl.classList.remove('visible');
+
+    setTimeout(function() {
+      if (paper) {
+        shape.innerHTML = '<path d="' + step.path + '" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.2"><animate attributeName="d" from="' + (currentStep > 0 ? steps[currentStep-1].path : 'M70,30 L210,30 L210,170 L70,170 Z') + '" to="' + step.path + '" dur="1.2s" fill="freeze"/></path>';
+      }
+      textEl.textContent = '\u201c' + step.text.trim() + '\u2026\u201d';
+      textEl.classList.add('visible');
+
+      currentStep++;
+      setTimeout(showStep, 3500);
+    }, 500);
+  }
+
+  setTimeout(showStep, 1500);
+})();
+</script>

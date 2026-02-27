@@ -2758,6 +2758,35 @@
 
 
   // ═══════════════════════════════════════════════════════
+  //  KUM SAATİ
+  // ═══════════════════════════════════════════════════════
+
+  function initHourglass() {
+    var top = document.getElementById('hg-top');
+    var bottom = document.getElementById('hg-bottom');
+    var tooltip = document.getElementById('hourglass-tooltip');
+    if (!top || !bottom) return;
+
+    var journey = getJourney();
+    var total = window.MUNZEVI_TOTAL_STAMPS || 37;
+    var read = Math.min(journey.length, total);
+    var pct = read / total;
+
+    var topH = Math.max(0, Math.round(12 * (1 - pct)));
+    var bottomH = Math.round(12 * pct);
+
+    top.setAttribute('height', String(topH));
+    top.setAttribute('y', String(8 + (12 - topH)));
+    bottom.setAttribute('height', String(bottomH));
+    bottom.setAttribute('y', String(30 + (12 - bottomH)));
+
+    if (tooltip) {
+      tooltip.textContent = read + ' / ' + total + ' kum tanesi düştü';
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════
   //  BAŞLAT
   // ═══════════════════════════════════════════════════════
 
@@ -2822,6 +2851,7 @@
     initTreeTooltip();
     initHokka();
     initHuzunKusu();
+    initHourglass();
   });
 
 })();
