@@ -50,6 +50,7 @@ layout: default
           <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
             {% include tr-date.html date=page.date %}
           </time>
+          <span class="post-date-hijri" data-date="{{ page.date | date: '%Y-%m-%d' }}"></span>
         </header>
 
         {% include tezhip-gul.html %}
