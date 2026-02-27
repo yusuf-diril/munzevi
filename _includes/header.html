@@ -2,12 +2,14 @@
   <nav class="site-nav">
     <a href="{{ '/' | relative_url }}" class="site-brand" id="site-brand"
        data-signature-variations='["münzevî","hiçten, kimseye..","yusuf diril"]'>münzevî</a>
-    <div class="nav-links">
-      <a href="{{ '/kavramlar' | relative_url }}" class="nav-item">kavram virdi</a>
-      <a href="{{ '/sual' | relative_url }}" class="nav-item">sual defteri</a>
-      <a href="{{ '/muhataplar' | relative_url }}" class="nav-item">muhataplar</a>
-      <a href="{{ '/koleksiyon' | relative_url }}" class="nav-item">koleksiyon</a>
-      <a href="{{ '/sir' | relative_url }}" class="nav-item">sır</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menü">☰</button>
+    <div class="nav-links" id="nav-links">
+      <button class="nav-close" id="nav-close" aria-label="Kapat">✕</button>
+      <a href="{{ '/kavramlar' | relative_url }}" class="nav-item" data-path="/kavramlar">kavram virdi</a>
+      <a href="{{ '/sual' | relative_url }}" class="nav-item" data-path="/sual">sual defteri</a>
+      <a href="{{ '/muhataplar' | relative_url }}" class="nav-item" data-path="/muhataplar">muhataplar</a>
+      <a href="{{ '/koleksiyon' | relative_url }}" class="nav-item" data-path="/koleksiyon">koleksiyon</a>
+      <a href="{{ '/sir' | relative_url }}" class="nav-item" data-path="/sir">sır</a>
       <button class="kismet-btn" id="kismet-btn" aria-label="Kısmet — rastgele bir mektup" title="kısmet">✦</button>
       <button class="theme-toggle" id="theme-toggle" aria-label="Tema değiştir">
         <span class="toggle-icon toggle-manuscript">&#9788;</span>

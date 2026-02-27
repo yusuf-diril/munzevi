@@ -2624,6 +2624,92 @@
 
 
   // ═══════════════════════════════════════════════════════
+  //  MOBİL NAVİGASYON
+  // ═══════════════════════════════════════════════════════
+
+  function initMobileNav() {
+    var hamburger = document.getElementById('nav-hamburger');
+    var navLinks = document.getElementById('nav-links');
+    var closeBtn = document.getElementById('nav-close');
+    if (!hamburger || !navLinks) return;
+
+    hamburger.addEventListener('click', function () {
+      navLinks.classList.add('nav-open');
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        navLinks.classList.remove('nav-open');
+      });
+    }
+
+    navLinks.querySelectorAll('.nav-item').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('nav-open');
+      });
+    });
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  AKTİF SAYFA GÖSTERGESİ
+  // ═══════════════════════════════════════════════════════
+
+  function initActiveNav() {
+    var path = window.location.pathname.replace(/\/$/, '');
+    document.querySelectorAll('.nav-item[data-path]').forEach(function (link) {
+      if (path === link.getAttribute('data-path')) {
+        link.classList.add('nav-active');
+      }
+    });
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  SCROLL-TO-TOP
+  // ═══════════════════════════════════════════════════════
+
+  function initScrollTop() {
+    if (!document.querySelector('.post-body')) return;
+
+    var btn = document.createElement('button');
+    btn.className = 'scroll-top-btn';
+    btn.textContent = '↑';
+    btn.setAttribute('aria-label', 'Başa dön');
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 800) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    }, { passive: true });
+
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  AĞAÇ TOOLTIP
+  // ═══════════════════════════════════════════════════════
+
+  function initTreeTooltip() {
+    var tooltip = document.getElementById('tree-tooltip');
+    if (!tooltip) return;
+
+    var journey = getJourney();
+    var secrets = [];
+    try { secrets = JSON.parse(localStorage.getItem('munzevi-secret-words') || '[]'); } catch (e) {}
+
+    if (journey.length === 0) {
+      tooltip.textContent = 'henüz bir tohum bile ekilmedi';
+    } else {
+      tooltip.textContent = journey.length + ' yaprak · ' + secrets.length + ' çiçek';
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════
   //  BAŞLAT
   // ═══════════════════════════════════════════════════════
 
@@ -2682,6 +2768,10 @@
     initFlipCard();
     initBurst();
     initTakas();
+    initMobileNav();
+    initActiveNav();
+    initScrollTop();
+    initTreeTooltip();
   });
 
 })();

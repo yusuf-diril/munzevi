@@ -321,7 +321,51 @@ a {
 .nav-item {
   font-size: 1.35rem;
   color: var(--text-dim);
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
   &:hover { color: var(--accent); opacity: 1; }
+  &.nav-active { color: var(--accent); border-bottom-color: var(--accent); opacity: 0.7; }
+}
+
+// hamburger menü (mobil)
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.3rem;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .nav-hamburger { display: block; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 999;
+
+    &.nav-open { display: flex; }
+  }
+  .nav-item { font-size: 1.6rem; }
+  .nav-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
 }
 
 .theme-toggle {
@@ -4263,4 +4307,281 @@ body.quaking .post-body {
   color: var(--accent);
   opacity: 0.5;
   line-height: 1.7;
+}
+
+
+// ──────────────────────────────────────────────────
+//  KISMET TOOLTIP
+// ──────────────────────────────────────────────────
+
+.kismet-btn {
+  position: relative;
+
+  &::after {
+    content: 'rastgele bir mektup';
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'EB Garamond', serif;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  &:hover::after { opacity: 0.6; }
+}
+
+
+// ──────────────────────────────────────────────────
+//  DEFTER ÇİZGİLERİ + PARAGRAF AYIRICI
+// ──────────────────────────────────────────────────
+
+.post-body {
+  background-image: repeating-linear-gradient(
+    transparent 0px,
+    transparent 2.5rem,
+    var(--border) 2.5rem,
+    var(--border) calc(2.5rem + 1px)
+  );
+  background-size: 100% 2.53rem;
+  background-position-y: 0.4rem;
+
+  p + p::before {
+    content: '·';
+    display: block;
+    text-align: center;
+    color: var(--text-dim);
+    opacity: 0.15;
+    font-size: 1.2rem;
+    margin: -0.3rem 0 0.5rem;
+    line-height: 1;
+  }
+}
+
+
+// ──────────────────────────────────────────────────
+//  MEKTUP SONU İMZASI
+// ──────────────────────────────────────────────────
+
+.post-signature {
+  text-align: right;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--text-dim);
+  opacity: 0.3;
+  margin-top: 2rem;
+  padding-right: 1rem;
+  font-style: italic;
+}
+
+
+// ──────────────────────────────────────────────────
+//  RÜZGAR SALINIM ANİMASYONU
+// ──────────────────────────────────────────────────
+
+@keyframes windSway {
+  0%, 100% { transform: rotate(0deg); }
+  25%      { transform: rotate(0.3deg); }
+  75%      { transform: rotate(-0.3deg); }
+}
+
+.wind-quote {
+  animation: windSway 4s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+
+// ──────────────────────────────────────────────────
+//  SUAL DEFTERİ KART TASARIMI
+// ──────────────────────────────────────────────────
+
+.sual-entry {
+  border: 1px dashed var(--border);
+  border-radius: 2px;
+  padding: 2rem 1.5rem !important;
+  margin-bottom: 1rem;
+  border-bottom: 1px dashed var(--border) !important;
+  transition: opacity 0.4s, border-color 0.3s;
+
+  &:hover { border-color: var(--accent); }
+}
+
+
+// ──────────────────────────────────────────────────
+//  MUHATAP MONOGRAM
+// ──────────────────────────────────────────────────
+
+.muhatap-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.muhatap-monogram {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
+  font-size: 6rem;
+  opacity: 0.04;
+  font-family: 'Amiri', serif;
+  color: var(--ink);
+  pointer-events: none;
+  direction: rtl;
+  line-height: 1;
+}
+
+
+// ──────────────────────────────────────────────────
+//  KOLEKSİYON İLERLEME ÇEMBERİ
+// ──────────────────────────────────────────────────
+
+.progress-ring {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.5s ease;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+
+// ──────────────────────────────────────────────────
+//  HALVETHÂNE NEFES REHBERİ
+// ──────────────────────────────────────────────────
+
+.breath-guide {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 185, 154, 0.08);
+  margin: 3rem auto;
+  animation: breathCycle 8s ease-in-out infinite;
+  opacity: 0.15;
+}
+
+@keyframes breathCycle {
+  0%, 100% { transform: scale(0.6); opacity: 0.08; }
+  50%      { transform: scale(1.2); opacity: 0.2; }
+}
+
+
+// ──────────────────────────────────────────────────
+//  TAKVİM YAPRAĞI TASARIMI
+// ──────────────────────────────────────────────────
+
+.takvim-leaf {
+  background: var(--bg-paper);
+  border: 1px solid var(--border);
+  padding: 3rem 2.5rem;
+  max-width: 480px;
+  margin: 0 auto;
+  clip-path: polygon(0 0, 98% 1%, 100% 100%, 2% 99%);
+  box-shadow: 3px 4px 15px var(--shadow);
+}
+
+
+// ──────────────────────────────────────────────────
+//  SCROLL-TO-TOP
+// ──────────────────────────────────────────────────
+
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-paper);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 80;
+  transition: opacity 0.5s, transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  &.visible {
+    opacity: 0.3;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+  }
+}
+
+
+// ──────────────────────────────────────────────────
+//  AĞAÇ TOOLTIP
+// ──────────────────────────────────────────────────
+
+.tree-tooltip {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  opacity: 0;
+  transition: opacity 0.5s;
+  margin-top: 0.3rem;
+}
+
+.tree-container:hover .tree-tooltip {
+  opacity: 0.4;
+}
+
+
+// ──────────────────────────────────────────────────
+//  404 SAYFASI
+// ──────────────────────────────────────────────────
+
+.not-found-page {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.not-found-text {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--text-dim);
+  opacity: 0.4;
+  max-width: 400px;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.not-found-link {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.9rem;
+  color: var(--accent);
+  opacity: 0.4;
+  &:hover { opacity: 0.8; }
+}
+
+
+// ──────────────────────────────────────────────────
+//  DOLUNAY GERİ SAYIM
+// ──────────────────────────────────────────────────
+
+.dolunay-countdown {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  color: var(--text-dim);
+  opacity: 0.3;
+  margin-top: 1.5rem;
 }

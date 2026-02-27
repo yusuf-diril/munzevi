@@ -10,6 +10,7 @@ permalink: /dolunay/
   <div class="dolunay-locked" id="dolunay-locked">
     <p>bu sayfa sadece dolunayda okunabilir.</p>
     <p style="margin-top:1rem;opacity:0.5">ayın dolmasını bekle… bazı sırlar sadece o ışıkta görünür.</p>
+    <p class="dolunay-countdown" id="dolunay-countdown"></p>
   </div>
 
   <div class="dolunay-content" id="dolunay-content" style="display:none">
@@ -50,6 +51,14 @@ permalink: /dolunay/
   if (isFullMoon && locked && content) {
     locked.style.display = 'none';
     content.style.display = '';
+  } else {
+    var cd = document.getElementById('dolunay-countdown');
+    if (cd) {
+      var daysToFull = (4 - phase + 8) % 8;
+      if (daysToFull === 0) daysToFull = 8;
+      var approxDays = Math.round(daysToFull * 3.7);
+      cd.textContent = 'dolunaya yaklaşık ' + approxDays + ' gün';
+    }
   }
 })();
 </script>
