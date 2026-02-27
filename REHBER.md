@@ -85,7 +85,9 @@ munzevicomtr/
 │   ├── ruya.html            # Rüya defteri (gece 00-05 arası)
 │   ├── ayna.html            # Ayna (okuyucu portresi + kişisel mektup)
 │   ├── takvim.html          # Takvim defteri (günün satırı)
-│   └── son.html             # Son sayfa (nihai ödül)
+│   ├── son.html             # Son sayfa (nihai ödül)
+│   ├── sandal.html          # Origami sandal (dilek sayfası)
+│   └── serab.html           # Çöl/serab (aydınlık halvethâne)
 ├── assets/
 │   ├── css/style.scss       # Tüm stiller (~3400 satır SCSS)
 │   ├── js/main.js           # Tüm etkileşimler (~1870 satır JS)
@@ -423,6 +425,12 @@ Okuyucunun poetik portresi. localStorage verilerini okuyarak kişisel bir yansı
 
 Veri yoksa: *"ayna henüz boş. bir mektup oku — defter seni tanımaya başlasın."*
 
+#### Origami Sandal (`/sandal/`)
+Okuyucu bu sayfaya geldiğinde, bir kağıt SVG animasyonuyla yavaşça katlanarak origami sandala dönüşür. Her katlanma adımında mektuplardan bir cümle görünür — sanki cümlelerin üzerine katlanmış gibi. 5 adım sonra sandal tamamlanır, su yüzeyi belirir. Okuyucu sandalın üzerine bir dilek yazar ve Enter'a basar — sandal suya bırakılır, dalgalarla kaybolur. Her ziyarette farklı cümleler, farklı bir sandal.
+
+#### Çöl / Serab (`/serab/`)
+Halvethâne'nin tam tersi. Aydınlık, sıcak, engin boşluk. 500vh uzunluğunda scroll alanı. Güneş, ufuk çizgisi, hiçlik. Aşağı scroll ettikçe bir metin belirir: *"aradığın şey hep uzakta görünür. ama belki de o sende."* Ama yaklaştıkça bulanıklaşır (blur artar), uzaklaştıkça netleşir — gerçek bir serap. Amak-ı Hayal'in "gerçekliğin katmanları" teması.
+
 #### Takvim Defteri (`/takvim/`)
 Yılın her günü mektuplardan farklı bir satır gösterir. 365 günlük edebî takvim — her gün tek bir cümle, o günün satırı. Okuyucunun her gün geri dönmesi için bir sebep.
 
@@ -498,6 +506,23 @@ Takvim defterindeki günün satırı, düz metin yerine düzensiz kenarlı bir k
 
 #### Kısmet Tooltip
 ✦ butonunun üzerine gelindiğinde küçük bir açıklama: *"rastgele bir mektup"*. `::after` pseudo-element ile.
+
+#### Hokka & Divit
+Hero bölümünde "münzevi" yazısının altında küçük bir hokka SVG'si. Mürekkep seviyesi okunan mektup sayısına göre azalır — ilk ziyarette dolu, 37 mektup okunduğunda boş. Hover'da *"mürekkep azalıyor"* veya *"mürekkep tükendi"* yazar.
+
+#### Hüzün Kuşu
+Void modda, 1/15 ihtimalle, 3-11 saniye arası rastgele gecikmeyle ekranın bir köşesinden diğerine bir kuş silüeti süzülür — 7 saniyede. Kanat çırpmıyor, süzülüyor. Hiçbir yerde açıklanmıyor.
+
+#### Kum Saati
+Footer'da ağacın yanında SVG kum saati. Üst hazne okunmamış mektupları, alt hazne okunmuş mektupları temsil eder. Hover'da *"X / 37 kum tanesi düştü"*. Kum tanesi animasyonlu.
+
+#### Hat Tabloları
+Muhataplar sayfasında her kartın üstünde, o muhatapla ilişkili bir Arapça hat yazısı (ayet/dua). Çok soluk (opacity: 0.08), Amiri fontuyla:
+- **Sûveyda**: بِسْمِ ٱلْحُبِّ (aşk adına)
+- **Hira**: إِقْرَأْ بِٱسْمِ رَبِّكَ (Oku, Rabbinin adıyla)
+- **Cavidan**: كُلُّ نَفْسٍ ذَائِقَةُ ٱلْمَوْتِ (Her nefis ölümü tadacaktır)
+- **Acize**: وَخُلِقَ ٱلْإِنسَانُ ضَعِيفًا (İnsan zayıf yaratıldı)
+- **Hemdem**: وَجَعَلْنَا مِنَ ٱلْمَاءِ كُلَّ شَيْءٍ حَيٍّ (Her canlıyı sudan yarattık)
 
 #### Scroll-to-Top
 Mektup sayfalarında 800px aşağı scrolllandığında sağ altta soluk bir ↑ butonu belirir. Tıklayınca yumuşak scroll ile başa döner.
