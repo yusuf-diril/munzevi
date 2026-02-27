@@ -1,0 +1,142 @@
+---
+layout: default
+title: Ayna
+permalink: /ayna/
+---
+
+<section class="ayna-page" id="ayna-page">
+  <div class="ayna-header">
+    <h1 class="ayna-title">ayna</h1>
+    <p class="ayna-subtitle">defterin seni nasıl gördüğü</p>
+  </div>
+
+  <div id="ayna-content"></div>
+
+  <p class="ayna-empty" id="ayna-empty" style="display:none">
+    ayna henüz boş.<br>bir mektup oku — defter seni tanımaya başlasın.
+  </p>
+</section>
+
+<script>
+(function() {
+  var content = document.getElementById('ayna-content');
+  var empty = document.getElementById('ayna-empty');
+  if (!content) return;
+
+  var journey = [];
+  try { journey = JSON.parse(localStorage.getItem('munzevi-journey') || '[]'); } catch(e) {}
+  var stamps = [];
+  try { stamps = JSON.parse(localStorage.getItem('munzevi-stamps') || '[]'); } catch(e) {}
+  var seals = [];
+  try { seals = JSON.parse(localStorage.getItem('munzevi-opened-seals') || '[]'); } catch(e) {}
+  var secrets = [];
+  try { secrets = JSON.parse(localStorage.getItem('munzevi-secret-words') || '[]'); } catch(e) {}
+  var traces = {};
+  try { traces = JSON.parse(localStorage.getItem('munzevi-reading-traces') || '{}'); } catch(e) {}
+  var halvetTime = parseInt(localStorage.getItem('munzevi-halvet-time') || '0', 10);
+  var theme = localStorage.getItem('munzevi-theme') || 'manuscript';
+  var lastRead = localStorage.getItem('munzevi-last-read') || '';
+
+  if (!journey.length && !stamps.length) {
+    if (empty) empty.style.display = '';
+    return;
+  }
+
+  var lines = [];
+
+  if (journey.length > 0) {
+    var first = journey[0];
+    var firstDate = new Date(first.ts);
+    var months = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+    var hour = firstDate.getHours();
+    var timeWord = hour >= 22 || hour < 6 ? 'gece' : hour < 12 ? 'sabah' : hour < 18 ? 'öğleden sonra' : 'akşam';
+    lines.push('ilk mühürü kırdığın an: <span class="ayna-accent">' +
+      firstDate.getDate() + ' ' + months[firstDate.getMonth()] + ', ' + timeWord + ' ' +
+      String(hour).padStart(2,'0') + ':' + String(firstDate.getMinutes()).padStart(2,'0') + '</span>');
+  }
+
+  if (journey.length === 1) {
+    lines.push('henüz tek bir mektup okudun. daha yolun başındasın.');
+  } else if (journey.length <= 5) {
+    lines.push('<span class="ayna-accent">' + journey.length + '</span> mektup okudun — defter seni tanımaya başlıyor.');
+  } else if (journey.length <= 15) {
+    lines.push('<span class="ayna-accent">' + journey.length + '</span> mektup okudun. bu defterin sayfaları sana alışıyor.');
+  } else if (journey.length <= 30) {
+    lines.push('<span class="ayna-accent">' + journey.length + '</span> mektup okudun. artık bir yabancı değilsin.');
+  } else {
+    lines.push('<span class="ayna-accent">' + journey.length + '</span> mektup okudun. bu defter artık senin de defterin.');
+  }
+
+  if (seals.length > 0) {
+    lines.push(seals.length + ' mühür kırdın — her biri bir güvenin işareti.');
+  }
+
+  if (theme === 'void') {
+    lines.push('karanlığı tercih ettin. mum ışığında okuyanlardan birisin.');
+  } else {
+    lines.push('aydınlıkta okudun. krem rengi kağıdın sıcaklığını seçtin.');
+  }
+
+  var nightReads = 0;
+  var totalTime = 0;
+  for (var i = 1; i < journey.length; i++) {
+    var h = new Date(journey[i].ts).getHours();
+    if (h >= 22 || h < 6) nightReads++;
+    if (i > 0) totalTime += Math.min(journey[i].ts - journey[i-1].ts, 3600000);
+  }
+
+  if (nightReads > journey.length * 0.5 && nightReads > 2) {
+    lines.push('mektupların çoğunu <span class="ayna-accent">gece</span> okudun — bir gece kuşusun.');
+  }
+
+  if (totalTime > 0) {
+    var mins = Math.round(totalTime / 60000);
+    if (mins > 60) {
+      var hrs = Math.floor(mins / 60);
+      var rm = mins % 60;
+      lines.push('münzevi ile geçirdiğin sessizlik: <span class="ayna-accent">' + hrs + ' saat ' + rm + ' dakika</span>.');
+    } else if (mins > 5) {
+      lines.push('münzevi ile geçirdiğin sessizlik: <span class="ayna-accent">' + mins + ' dakika</span>.');
+    }
+  }
+
+  var mostVisited = '';
+  var maxVisits = 0;
+  for (var url in traces) {
+    if (traces[url].visits > maxVisits) {
+      maxVisits = traces[url].visits;
+      mostVisited = url;
+    }
+  }
+  if (maxVisits > 1 && mostVisited) {
+    var slug = mostVisited.replace(/^\//, '').replace(/\/$/, '').replace(/-/g, ' ');
+    lines.push('en çok döndüğün mektup: <span class="ayna-accent">' + slug + '</span> — ' + maxVisits + ' kez.');
+  }
+
+  if (secrets.length > 0 && secrets.length < 35) {
+    lines.push(secrets.length + ' gizli kelime buldun. cümle henüz tamamlanmadı\u2026');
+  } else if (secrets.length >= 35) {
+    lines.push('tüm gizli kelimeleri buldun. <span class="ayna-accent">cümle tamamlandı.</span>');
+  }
+
+  if (halvetTime >= 600) {
+    lines.push('halvethâne\u2019de <span class="ayna-accent">' + Math.floor(halvetTime / 60) + ' dakika</span> sessizlikte bekledin. sırdaş oldun.');
+  } else if (halvetTime >= 30) {
+    lines.push('halvethâne\u2019de ' + Math.floor(halvetTime / 60) + ' dakika sessizlikte bekledin.');
+  }
+
+  if (lastRead) {
+    lines.push('son okuduğun mektup: <span class="ayna-accent">' + lastRead + '</span>');
+  }
+
+  lines.push('takımyıldızında <span class="ayna-accent">' + journey.length + ' yıldız</span> bağlandı.');
+
+  for (var l = 0; l < lines.length; l++) {
+    var p = document.createElement('p');
+    p.className = 'ayna-line';
+    p.innerHTML = lines[l];
+    p.style.animation = 'takvimReveal 2s ' + (l * 0.6) + 's ease forwards';
+    content.appendChild(p);
+  }
+})();
+</script>

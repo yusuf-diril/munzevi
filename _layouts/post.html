@@ -59,6 +59,13 @@ layout: default
         </div>
       </div>
 
+      {% if page.author_note %}
+      <div class="author-note" id="author-note" style="display:none">
+        <p class="author-note-label">yazarın notu</p>
+        <p class="author-note-text">{{ page.author_note }}</p>
+      </div>
+      {% endif %}
+
       <p class="stamp-collected-note" id="stamp-collected-note" style="display:none">bu mektubu okudun — pulun koleksiyonuna eklendi.</p>
 
       {% if page.next %}

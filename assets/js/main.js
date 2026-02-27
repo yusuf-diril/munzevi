@@ -1852,6 +1852,125 @@
 
 
   // ═══════════════════════════════════════════════════════
+  //  MÜREKKEP NEHRİ (hero arka plan)
+  // ═══════════════════════════════════════════════════════
+
+  var RIVER_WORDS = [
+    'hüzün','sessizlik','mürekkep','gece','rüya','yıldız','mektup',
+    'sevda','firkat','vuslat','hicran','ayrılık','umut','sabır',
+    'defter','kalem','gözyaşı','ay','rüzgar','kuş','gökyüzü',
+    'nefes','sükût','halvet','münzevi','fısıltı','gölge','ışık',
+    'kelebek','yaprak','deniz','nehir','ateş','toprak',
+    'zaman','hatıra','özlem','kavuşma','yalnızlık','tefekkür',
+    'garâbet','sekîne','vird','sûveyda','diril','uyan','oku',
+    'yaz','sus','bekle','gel','kal','dön','unutma','hatırla'
+  ];
+
+  function initInkRiver() {
+    var canvas = document.getElementById('ink-river');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    var hero = canvas.parentElement;
+
+    function resize() {
+      canvas.width = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var particles = [];
+    for (var i = 0; i < 35; i++) {
+      particles.push({
+        word: RIVER_WORDS[Math.floor(Math.random() * RIVER_WORDS.length)],
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        speed: 0.15 + Math.random() * 0.35,
+        size: 11 + Math.random() * 8,
+        opacity: 0.2 + Math.random() * 0.4
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var isVoid = document.documentElement.getAttribute('data-theme') === 'void';
+
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        ctx.globalAlpha = p.opacity * (isVoid ? 0.12 : 0.06);
+        ctx.fillStyle = isVoid ? '#c9b99a' : '#2c1810';
+        ctx.font = p.size + 'px Caveat, cursive';
+        ctx.fillText(p.word, p.x, p.y);
+        p.x -= p.speed;
+        if (p.x < -80) {
+          p.x = canvas.width + 30;
+          p.y = Math.random() * canvas.height;
+          p.word = RIVER_WORDS[Math.floor(Math.random() * RIVER_WORDS.length)];
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  FISILTI (hayalet ses)
+  // ═══════════════════════════════════════════════════════
+
+  function initWhisper() {
+    if (Math.random() > 1 / 7) return;
+    if (!actx) return;
+
+    setTimeout(function () {
+      try {
+        if (actx.state === 'suspended') actx.resume();
+        var dur = 0.5 + Math.random() * 0.4;
+        var buf = actx.createBuffer(1, actx.sampleRate * dur, actx.sampleRate);
+        var d = buf.getChannelData(0);
+        for (var i = 0; i < d.length; i++) {
+          var t = i / d.length;
+          var env = Math.sin(t * Math.PI);
+          d[i] = (Math.random() * 2 - 1) * 0.012 * env;
+        }
+        var src = actx.createBufferSource();
+        src.buffer = buf;
+        var bp = actx.createBiquadFilter();
+        bp.type = 'bandpass';
+        bp.frequency.value = 1200 + Math.random() * 800;
+        bp.Q.value = 2.5;
+        var gain = actx.createGain();
+        gain.gain.value = 0.02;
+        src.connect(bp).connect(gain).connect(actx.destination);
+        src.start();
+      } catch (e) {}
+    }, 6000 + Math.random() * 18000);
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  SIRDAŞ MODU (yazar notları)
+  // ═══════════════════════════════════════════════════════
+
+  function initSirdas() {
+    var halvetTime = 0;
+    try { halvetTime = parseInt(localStorage.getItem('munzevi-halvet-time') || '0', 10); } catch (e) {}
+    var secretWords = [];
+    try { secretWords = JSON.parse(localStorage.getItem('munzevi-secret-words') || '[]'); } catch (e) {}
+
+    if (halvetTime >= 600 || secretWords.length >= 35) {
+      localStorage.setItem('munzevi-sirdas', '1');
+    }
+
+    if (localStorage.getItem('munzevi-sirdas') === '1') {
+      var note = document.getElementById('author-note');
+      if (note) note.style.display = '';
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════
   //  BAŞLAT
   // ═══════════════════════════════════════════════════════
 
@@ -1892,6 +2011,9 @@
     initLastBreath();
     initConstellation();
     createEnhancedSounds();
+    initInkRiver();
+    initWhisper();
+    initSirdas();
   });
 
 })();

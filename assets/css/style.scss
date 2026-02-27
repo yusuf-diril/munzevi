@@ -1572,6 +1572,19 @@ $seal-colors: (
   border-top: 1px solid var(--border);
 }
 
+.footer-links {
+  margin-top: 0.5rem;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.85rem;
+
+  a {
+    color: var(--text-dim);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    &:hover { opacity: 1; }
+  }
+}
+
 
 // ──────────────────────────────────────────────────
 //  RESPONSIVE
@@ -3443,4 +3456,161 @@ body.no-stars .void-stars { display: none !important; }
 
   &:hover { opacity: 0.35; }
   &.revealed { opacity: 0.12; }
+}
+
+
+// ──────────────────────────────────────────────────
+//  MÜREKKEP NEHRİ (hero arka plan)
+// ──────────────────────────────────────────────────
+
+.ink-river {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+}
+
+[data-theme="void"] .ink-river {
+  opacity: 0.055;
+}
+
+
+// ──────────────────────────────────────────────────
+//  AYNA SAYFASI
+// ──────────────────────────────────────────────────
+
+.ayna-page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.ayna-header {
+  margin-bottom: 4rem;
+}
+
+.ayna-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 2.4rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.ayna-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  font-style: italic;
+  opacity: 0.4;
+}
+
+.ayna-line {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.ayna-accent {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.ayna-empty {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-dim);
+  opacity: 0.4;
+  line-height: 1.8;
+}
+
+
+// ──────────────────────────────────────────────────
+//  TAKVİM DEFTERİ
+// ──────────────────────────────────────────────────
+
+.takvim-page {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.takvim-date {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  opacity: 0.25;
+  letter-spacing: 0.15em;
+  margin-bottom: 3rem;
+}
+
+.takvim-line {
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: var(--text);
+  line-height: 1.8;
+  max-width: 500px;
+  opacity: 0;
+  animation: takvimReveal 4s ease forwards;
+}
+
+@keyframes takvimReveal {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 0.7; transform: translateY(0); }
+}
+
+.takvim-source {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-dim);
+  opacity: 0;
+  margin-top: 2rem;
+  animation: takvimReveal 3s 2s ease forwards;
+}
+
+
+// ──────────────────────────────────────────────────
+//  SIRDAŞ MODU (yazar notları)
+// ──────────────────────────────────────────────────
+
+.author-note {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border-left: 2px solid var(--accent);
+  opacity: 0;
+  animation: sirdashReveal 3s ease forwards;
+}
+
+@keyframes sirdashReveal {
+  from { opacity: 0; }
+  to   { opacity: 0.5; }
+}
+
+.author-note-label {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+
+.author-note-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-dim);
+  line-height: 1.7;
 }

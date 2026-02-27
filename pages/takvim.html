@@ -1,0 +1,35 @@
+---
+layout: default
+title: Takvim Defteri
+permalink: /takvim/
+---
+
+<section class="takvim-page" id="takvim-page">
+  <p class="takvim-date" id="takvim-date"></p>
+  <p class="takvim-line" id="takvim-line"></p>
+  <p class="takvim-source" id="takvim-source"></p>
+</section>
+
+<script>
+(function() {
+  var lines = [
+    {% for post in site.posts %}{% assign sentences = post.content | strip_html | split: '.' %}{% for s in sentences %}{% assign trimmed = s | strip | truncate: 100, '' %}{% if trimmed.size > 25 %}{ t:"{{ trimmed | replace: '"', '\"' | strip_newlines }}", s:"{{ post.title | replace: '"', '\"' }}" },{% endif %}{% endfor %}
+    {% endfor %}
+  ];
+
+  if (!lines.length) return;
+
+  var today = new Date();
+  var dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+  var pick = lines[dayOfYear % lines.length];
+
+  var dateEl = document.getElementById('takvim-date');
+  var lineEl = document.getElementById('takvim-line');
+  var sourceEl = document.getElementById('takvim-source');
+
+  var months = ['ocak','şubat','mart','nisan','mayıs','haziran','temmuz','ağustos','eylül','ekim','kasım','aralık'];
+  if (dateEl) dateEl.textContent = today.getDate() + ' ' + months[today.getMonth()] + ' · günün satırı';
+  if (lineEl) lineEl.textContent = '\u201c' + pick.t.trim() + '.\u201d';
+  if (sourceEl) sourceEl.textContent = '\u2014 ' + pick.s;
+})();
+</script>
