@@ -1182,18 +1182,6 @@ $seal-colors: (
   color: var(--text-dim);
 }
 
-.post-date-hijri {
-  display: block;
-  font-family: 'EB Garamond', serif;
-  font-size: 0.9rem;
-  font-style: italic;
-  color: var(--text-dim);
-  opacity: 0.3;
-  margin-top: 0.2rem;
-  direction: rtl;
-  letter-spacing: 0.03em;
-}
-
 .post-body {
 
   h1, h2, h3, h4 {
