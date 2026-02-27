@@ -2710,6 +2710,54 @@
 
 
   // ═══════════════════════════════════════════════════════
+  //  HOKKA & DİVİT
+  // ═══════════════════════════════════════════════════════
+
+  function initHokka() {
+    var ink = document.getElementById('hokka-ink');
+    var label = document.getElementById('hokka-label');
+    if (!ink) return;
+
+    var journey = getJourney();
+    var total = window.MUNZEVI_TOTAL_STAMPS || 37;
+    var read = Math.min(journey.length, total);
+    var pct = 1 - (read / total);
+
+    var maxH = 20;
+    var h = Math.max(1, Math.round(maxH * pct));
+    var y = 10 + 22 + (maxH - h);
+
+    ink.setAttribute('height', String(h));
+    ink.setAttribute('y', String(y));
+
+    if (label) {
+      if (read === 0) label.textContent = 'hokka dolu';
+      else if (read >= total) label.textContent = 'mürekkep tükendi';
+      else label.textContent = 'mürekkep azalıyor';
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  HÜZÜN KUŞU
+  // ═══════════════════════════════════════════════════════
+
+  function initHuzunKusu() {
+    var bird = document.getElementById('huzun-kusu');
+    if (!bird) return;
+    if (document.documentElement.getAttribute('data-theme') !== 'void') return;
+    if (Math.random() > 1 / 15) return;
+
+    setTimeout(function () {
+      bird.classList.add('flying');
+      setTimeout(function () {
+        bird.classList.remove('flying');
+      }, 7500);
+    }, 3000 + Math.random() * 8000);
+  }
+
+
+  // ═══════════════════════════════════════════════════════
   //  BAŞLAT
   // ═══════════════════════════════════════════════════════
 
@@ -2772,6 +2820,8 @@
     initActiveNav();
     initScrollTop();
     initTreeTooltip();
+    initHokka();
+    initHuzunKusu();
   });
 
 })();

@@ -1,0 +1,32 @@
+---
+layout: default
+title: Serab
+permalink: /serab/
+---
+
+<section class="serab-page" id="serab-page">
+  <div class="serab-sun"></div>
+  <div class="serab-horizon"></div>
+  <p class="serab-hint">aşağı in.</p>
+  <p class="serab-text" id="serab-text">aradığın şey hep uzakta görünür. ama belki de o sende.</p>
+</section>
+
+<script>
+(function() {
+  var text = document.getElementById('serab-text');
+  if (!text) return;
+
+  window.addEventListener('scroll', function() {
+    var scrollY = window.scrollY;
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docH > 0 ? scrollY / docH : 0;
+
+    var distFromMid = Math.abs(pct - 0.7);
+    var blur = distFromMid < 0.1 ? (0.1 - distFromMid) * 40 : 0;
+    var opacity = pct < 0.3 ? 0 : Math.min(0.5, (pct - 0.3) * 1.2);
+
+    text.style.filter = 'blur(' + blur.toFixed(1) + 'px)';
+    text.style.opacity = opacity.toFixed(2);
+  }, { passive: true });
+})();
+</script>
