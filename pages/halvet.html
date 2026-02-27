@@ -30,6 +30,9 @@ permalink: /halvet/
     belki de bu defter senin için yazıldı.
     belki de münzevi sensin.
   </p>
+
+  <!-- ═══ Sonsuz Scroll Paradoksu ═══ -->
+  <div id="halvet-abyss-container"></div>
 </section>
 
 <script>
@@ -77,5 +80,48 @@ permalink: /halvet/
       startTime = Date.now();
     }
   });
+
+  // sonsuz scroll paradoksu
+  var abyssTexts = [
+    'sessizliğin bir sonu yok.',
+    'derinlere indikçe karanlık yoğunlaşır.',
+    'burada zaman durur.',
+    'nefesini tut.',
+    'dinle.',
+    'daha derine.',
+    'hiçliğin ortasında bir titreşim var.',
+    'onu duyuyor musun?',
+    'belki de araman gereken şey, aramayı bırakmaktır.',
+    ''
+  ];
+  var container = document.getElementById('halvet-abyss-container');
+  var generated = 0;
+  var finalAdded = false;
+
+  function checkAbyss() {
+    if (!container || finalAdded) return;
+    var scrollBottom = window.scrollY + window.innerHeight;
+    var docHeight = document.documentElement.scrollHeight;
+
+    if (scrollBottom > docHeight - 200 && generated < abyssTexts.length) {
+      var div = document.createElement('div');
+      div.className = 'halvet-abyss' + (generated === abyssTexts.length - 1 ? ' halvet-abyss-final' : '');
+      div.textContent = abyssTexts[generated];
+      container.appendChild(div);
+      setTimeout(function() { div.classList.add('visible'); }, 100);
+      generated++;
+
+      if (generated >= abyssTexts.length) {
+        finalAdded = true;
+        var fin = document.createElement('div');
+        fin.className = 'halvet-abyss halvet-abyss-final';
+        fin.textContent = 'hâlâ arıyorsun. belki de cevap yukarıdaydı.';
+        container.appendChild(fin);
+        setTimeout(function() { fin.classList.add('visible'); }, 100);
+      }
+    }
+  }
+
+  window.addEventListener('scroll', checkAbyss, { passive: true });
 })();
 </script>

@@ -122,5 +122,23 @@ layout: default
     </div>
   </div>
 
+  <!-- ═══ Yakılmış Mektup Kalıntısı ═══ -->
+  <div class="burned-remains" id="burned-remains" style="display:none">
+    <p class="burned-text">bu mektup yakıldı.<br>külleri bile bir şey anlatıyor.</p>
+    <p class="burned-fragment" id="burned-fragment"></p>
+  </div>
+
+  <!-- ═══ Yakma İlerleme ve Overlay ═══ -->
+  <svg class="burn-progress" id="burn-progress" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(200,80,20,0.3)" stroke-width="2"/>
+    <circle cx="24" cy="24" r="20" fill="none" stroke="#c94014" stroke-width="2.5"
+            stroke-dasharray="126" stroke-dashoffset="126" stroke-linecap="round"
+            transform="rotate(-90 24 24)" id="burn-circle"/>
+  </svg>
+  <div class="burn-overlay" id="burn-overlay"></div>
+
+  <!-- ═══ Deprem Uyarısı ═══ -->
+  <div class="quake-warning" id="quake-warning">yavaş oku. bu mektuplar sana yazıldı.</div>
+
 {% include design-panel.html %}
 </article>

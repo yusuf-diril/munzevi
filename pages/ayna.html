@@ -17,6 +17,11 @@ permalink: /ayna/
   </p>
 
   <div class="ayna-mektup" id="ayna-mektup"></div>
+
+  <div class="dna-container" id="dna-container">
+    <svg class="dna-svg" id="dna-svg" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg"></svg>
+    <p class="dna-label">senin münzevi dna'n</p>
+  </div>
 </section>
 
 <script>
@@ -139,6 +144,64 @@ permalink: /ayna/
     p.innerHTML = lines[l];
     p.style.animation = 'takvimReveal 2s ' + (l * 0.6) + 's ease forwards';
     content.appendChild(p);
+  }
+
+  // DNA oluştur
+  var dnaSvg = document.getElementById('dna-svg');
+  if (dnaSvg && journey.length > 0) {
+    var ns = 'http://www.w3.org/2000/svg';
+    var colors = ['#8b0000','#d4a373','#6b8e4e','#4a1942','#7a6520','#2d4a3a','#6b1020','#5a2d0c'];
+    var themeColor = theme === 'void' ? '#d4a373' : '#8b0000';
+    var W = 280, H = 200, points = 20;
+
+    for (var d = 0; d < points; d++) {
+      var x = 20 + (d / points) * (W - 40);
+      var y1 = H/2 + Math.sin(d * 0.6) * 50;
+      var y2 = H/2 - Math.sin(d * 0.6) * 50;
+      var idx = d % journey.length;
+      var c = colors[(idx + stamps.length) % colors.length];
+
+      var line = document.createElementNS(ns, 'line');
+      line.setAttribute('x1', x); line.setAttribute('y1', y1);
+      line.setAttribute('x2', x); line.setAttribute('y2', y2);
+      line.setAttribute('stroke', c); line.setAttribute('stroke-width', '1');
+      line.setAttribute('opacity', '0.25');
+      dnaSvg.appendChild(line);
+
+      var c1 = document.createElementNS(ns, 'circle');
+      c1.setAttribute('cx', x); c1.setAttribute('cy', y1);
+      c1.setAttribute('r', '3'); c1.setAttribute('fill', c);
+      c1.setAttribute('opacity', '0.6');
+      dnaSvg.appendChild(c1);
+
+      var c2 = document.createElementNS(ns, 'circle');
+      c2.setAttribute('cx', x); c2.setAttribute('cy', y2);
+      c2.setAttribute('r', '3'); c2.setAttribute('fill', themeColor);
+      c2.setAttribute('opacity', '0.5');
+      dnaSvg.appendChild(c2);
+    }
+
+    var path1 = 'M';
+    var path2 = 'M';
+    for (var p2 = 0; p2 < points; p2++) {
+      var px = 20 + (p2 / points) * (W - 40);
+      path1 += (p2 ? ' L' : '') + px + ' ' + (H/2 + Math.sin(p2 * 0.6) * 50);
+      path2 += (p2 ? ' L' : '') + px + ' ' + (H/2 - Math.sin(p2 * 0.6) * 50);
+    }
+    var strand1 = document.createElementNS(ns, 'path');
+    strand1.setAttribute('d', path1); strand1.setAttribute('fill', 'none');
+    strand1.setAttribute('stroke', themeColor); strand1.setAttribute('stroke-width', '1.5');
+    strand1.setAttribute('opacity', '0.3');
+    dnaSvg.appendChild(strand1);
+
+    var strand2 = document.createElementNS(ns, 'path');
+    strand2.setAttribute('d', path2); strand2.setAttribute('fill', 'none');
+    strand2.setAttribute('stroke', colors[stamps.length % colors.length]); strand2.setAttribute('stroke-width', '1.5');
+    strand2.setAttribute('opacity', '0.3');
+    dnaSvg.appendChild(strand2);
+  } else {
+    var dc = document.getElementById('dna-container');
+    if (dc) dc.style.display = 'none';
   }
 })();
 </script>

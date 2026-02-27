@@ -2051,6 +2051,257 @@
 
 
   // ═══════════════════════════════════════════════════════
+  //  MEKTUP YAKMA
+  // ═══════════════════════════════════════════════════════
+
+  function initBurnLetter() {
+    var article = document.querySelector('.post-manuscript');
+    if (!article) return;
+    var layout = article.querySelector('.post-layout');
+    if (!layout) return;
+
+    var url = window.location.pathname;
+    var burnKey = 'munzevi-burned';
+    var burned = [];
+    try { burned = JSON.parse(localStorage.getItem(burnKey) || '[]'); } catch (e) {}
+
+    if (burned.indexOf(url) !== -1) {
+      layout.style.display = 'none';
+      var remains = document.getElementById('burned-remains');
+      if (remains) {
+        remains.style.display = '';
+        var frag = document.getElementById('burned-fragment');
+        var body = article.querySelector('.post-body');
+        if (frag && body) {
+          var text = body.textContent || '';
+          var words = text.split(/\s+/).filter(function (w) { return w.length > 3; });
+          var picks = [];
+          for (var i = 0; i < Math.min(5, words.length); i++) {
+            picks.push(words[Math.floor(Math.random() * words.length)]);
+          }
+          frag.textContent = '...' + picks.join('... ...') + '...';
+        }
+      }
+      return;
+    }
+
+    var progress = document.getElementById('burn-progress');
+    var circle = document.getElementById('burn-circle');
+    var overlay = document.getElementById('burn-overlay');
+    var holdTimer = null;
+    var holdStart = 0;
+    var HOLD_DURATION = 5000;
+
+    function startHold(e) {
+      if (e.button && e.button !== 0) return;
+      holdStart = Date.now();
+      if (progress) progress.classList.add('active');
+      if (overlay) overlay.classList.add('active');
+
+      holdTimer = setInterval(function () {
+        var elapsed = Date.now() - holdStart;
+        var pct = Math.min(1, elapsed / HOLD_DURATION);
+        if (circle) circle.setAttribute('stroke-dashoffset', String(126 * (1 - pct)));
+
+        if (pct >= 1) {
+          clearInterval(holdTimer);
+          burned.push(url);
+          try { localStorage.setItem(burnKey, JSON.stringify(burned)); } catch (ex) {}
+          article.classList.add('burning');
+          setTimeout(function () {
+            layout.style.display = 'none';
+            if (progress) progress.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            var remains = document.getElementById('burned-remains');
+            if (remains) remains.style.display = '';
+          }, 3000);
+        }
+      }, 50);
+    }
+
+    function stopHold() {
+      clearInterval(holdTimer);
+      holdStart = 0;
+      if (circle) circle.setAttribute('stroke-dashoffset', '126');
+      if (progress) progress.classList.remove('active');
+      if (overlay) overlay.classList.remove('active');
+    }
+
+    var postBody = article.querySelector('.post-body');
+    if (postBody) {
+      postBody.addEventListener('mousedown', startHold);
+      postBody.addEventListener('mouseup', stopHold);
+      postBody.addEventListener('mouseleave', stopHold);
+      postBody.addEventListener('touchstart', startHold, { passive: true });
+      postBody.addEventListener('touchend', stopHold);
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  BÜYÜYEN AĞAÇ
+  // ═══════════════════════════════════════════════════════
+
+  function initGrowingTree() {
+    var leaves = document.getElementById('tree-leaves');
+    var flowers = document.getElementById('tree-flowers');
+    var trunk = document.getElementById('tree-trunk');
+    if (!leaves) return;
+
+    var journey = getJourney();
+    var secrets = [];
+    try { secrets = JSON.parse(localStorage.getItem('munzevi-secret-words') || '[]'); } catch (e) {}
+    var halvetTime = parseInt(localStorage.getItem('munzevi-halvet-time') || '0', 10);
+
+    var month = new Date().getMonth();
+    var isWinter = month === 11 || month === 0 || month === 1;
+
+    if (trunk) {
+      var thickness = Math.min(6, 3 + Math.floor(halvetTime / 120));
+      trunk.setAttribute('stroke-width', String(thickness));
+    }
+
+    var leafPositions = [
+      [35,70],[30,62],[25,55],[38,50],[28,45],
+      [65,60],[70,52],[60,48],[68,42],[72,55],
+      [50,55],[45,45],[55,40],[42,35],[58,32],
+      [48,28],[52,22],[40,20],[60,18],[50,12],
+      [33,38],[67,35],[45,58],[55,65],[62,28],
+      [36,25],[64,22],[47,15],[53,8],[50,5],
+      [38,60],[42,52],[58,48],[55,55],[48,38],
+      [62,45],[35,32]
+    ];
+
+    var ns = 'http://www.w3.org/2000/svg';
+    for (var i = 0; i < Math.min(journey.length, leafPositions.length); i++) {
+      var leaf = document.createElementNS(ns, 'circle');
+      leaf.setAttribute('cx', String(leafPositions[i][0]));
+      leaf.setAttribute('cy', String(leafPositions[i][1]));
+      leaf.setAttribute('r', '4');
+      leaf.setAttribute('class', 'tree-leaf');
+      leaf.style.animationDelay = (i * 0.08) + 's';
+      if (isWinter) leaf.style.opacity = '0.15';
+      leaves.appendChild(leaf);
+    }
+
+    for (var j = 0; j < Math.min(secrets.length, 15); j++) {
+      var pos = leafPositions[j % leafPositions.length];
+      var flower = document.createElementNS(ns, 'circle');
+      flower.setAttribute('cx', String(pos[0] + 3));
+      flower.setAttribute('cy', String(pos[1] - 3));
+      flower.setAttribute('r', '2.5');
+      flower.setAttribute('class', 'tree-flower');
+      flower.style.animationDelay = (j * 0.12 + 0.5) + 's';
+      if (isWinter) flower.style.opacity = '0.1';
+      flowers.appendChild(flower);
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  HAYALET MEKTUP
+  // ═══════════════════════════════════════════════════════
+
+  function initGhostLetter() {
+    var slider = document.getElementById('manuscript-slider');
+    if (!slider) return;
+
+    var today = new Date();
+    var dayOfMonth = today.getDate();
+    var seed = today.getFullYear() * 372 + today.getMonth() * 31 + dayOfMonth;
+    var ghostDay = (hashStr('ghost' + today.getMonth() + today.getFullYear()) % 28) + 1;
+    if (dayOfMonth !== ghostDay) return;
+
+    var ghostKey = 'munzevi-ghost-seen';
+    var seenMonth = localStorage.getItem(ghostKey);
+    var currentMonth = today.getFullYear() + '-' + today.getMonth();
+    if (seenMonth === currentMonth) return;
+
+    var ghostSentences = [
+      'bazen en güçlü mektup, yazılmayan mektuptur.',
+      'bu satırlar hiç var olmadı — ama sen onları okudun.',
+      'bazı mektuplar gönderilmeden kaybolur. bu, onlardan biri.',
+      'mürekkep bazen kağıda değmeden kurur.',
+      'bu mektup bir rüyadan ibaret. uyanınca unutacaksın.',
+      'yazılmamış mektuplar, yazılmışlardan daha ağır gelir.',
+      'bu sayfada bir zamanlar bir şey vardı. şimdi sadece yokluğu var.',
+      'her defterin bir boş sayfası olmalı. burası, o sayfa.'
+    ];
+
+    var ghost = document.createElement('article');
+    ghost.className = 'ms-page ghost-letter';
+    ghost.setAttribute('data-page', '?');
+    ghost.innerHTML =
+      '<div class="ms-page-inner" style="text-align:center">' +
+        '<h2 class="ms-page-title" style="opacity:0.3;font-style:italic">bu mektup hiç yazılmadı</h2>' +
+        '<div class="ms-wax-seal" style="background:transparent;box-shadow:none;border:1px dashed rgba(201,185,154,0.15);animation:none;cursor:pointer" id="ghost-seal">' +
+          '<span class="seal-letter" style="opacity:0.2">∅</span>' +
+        '</div>' +
+        '<div style="display:none;margin-top:2rem" id="ghost-content">' +
+          '<p class="ghost-letter-text">' + ghostSentences[seed % ghostSentences.length] + '</p>' +
+        '</div>' +
+      '</div>';
+
+    var firstPage = slider.querySelector('.ms-page');
+    if (firstPage) slider.insertBefore(ghost, firstPage);
+
+    var seal = document.getElementById('ghost-seal');
+    var content = document.getElementById('ghost-content');
+    if (seal && content) {
+      seal.addEventListener('click', function () {
+        content.style.display = '';
+        seal.style.display = 'none';
+        try { localStorage.setItem(ghostKey, currentMonth); } catch (e) {}
+        setTimeout(function () {
+          ghost.style.transition = 'opacity 3s ease';
+          ghost.style.opacity = '0';
+          setTimeout(function () {
+            if (ghost.parentNode) ghost.parentNode.removeChild(ghost);
+          }, 3500);
+        }, 4000);
+      });
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  DEPREM (hızlı scroll uyarısı)
+  // ═══════════════════════════════════════════════════════
+
+  function initQuake() {
+    if (!document.querySelector('.post-body')) return;
+
+    var lastScroll = window.scrollY;
+    var lastTime = Date.now();
+    var warned = false;
+
+    window.addEventListener('scroll', function () {
+      var now = Date.now();
+      var dt = now - lastTime;
+      if (dt < 50) return;
+      var dy = Math.abs(window.scrollY - lastScroll);
+      var speed = dy / dt;
+      lastScroll = window.scrollY;
+      lastTime = now;
+
+      if (speed > 8 && !warned) {
+        warned = true;
+        document.body.classList.add('quaking');
+        var warning = document.getElementById('quake-warning');
+        setTimeout(function () {
+          document.body.classList.remove('quaking');
+          if (warning) warning.classList.add('visible');
+        }, 400);
+        setTimeout(function () {
+          if (warning) warning.classList.remove('visible');
+        }, 4000);
+        setTimeout(function () { warned = false; }, 15000);
+      }
+    }, { passive: true });
+  }
+
+
+  // ═══════════════════════════════════════════════════════
   //  MÜREKKEP NEHRİ (hero arka plan)
   // ═══════════════════════════════════════════════════════
 
@@ -2219,6 +2470,10 @@
     initHasret();
     initSonSayfa();
     initAynaMektup();
+    initBurnLetter();
+    initGrowingTree();
+    initGhostLetter();
+    initQuake();
   });
 
 })();

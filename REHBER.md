@@ -41,6 +41,9 @@ Her okuyucunun deneyimi farklı. Okuma sırası bir takımyıldız oluşturuyor 
 ### Canlı Defter
 Sitenin arka planı nefes alıyor — mikroskobik renk kaymasıyla, 0.8 saniyelik döngüde. Kimse fark etmez ama herkes hisseder: bu sayfa canlı. 30 gün gelmezsen defter seni özler, döndüğünde *"uzun süredir gelmedin... mürekkep kurumaya başlamıştı"* der. Bir mektup var ki sadece bir kez okunabilir — ikinci ziyarette *"mürekkebi soldu"*. Dijital dünyada her şey tekrarlanabilir. Bu mektup tekrarlanamaz.
 
+### Deli Fikirler
+Bir mektubu 5 saniye tıklı tutarsan kağıt kenarlarından yanmaya başlar — geri alınamaz. Slider'da ayda bir kez hayalet bir mektup belirir, mühürünü kırarsan *"bazen en güçlü mektup, yazılmayan mektuptur"* der ve kaybolur. Hızlı scroll yapan okuyucuyu sayfa sarsarak uyarır: *"yavaş oku. bu mektuplar sana yazıldı."* Footer'da okuyucunun büyüttüğü küçük bir ağaç yaşıyor — her mektup bir yaprak, her gizli kelime bir çiçek. Halvethâne'de aşağı scroll ettikçe sayfa hiç bitmiyor, ta ki *"hâlâ arıyorsun. belki de cevap yukarıdaydı"* yazana kadar. Ayna sayfasında okuyucunun verilerinden benzersiz bir DNA çift heliks'i oluşuyor.
+
 ### İki Dünya
 Manuscript ve Void sadece renk değişimi değil. Karanlık modda kelimelerin üzerine gelince *sadece karanlıkta görünen* dip notlar belirir — yazarın itirafları, titreyen eli, o geceyi. Aydınlıkta bu notlar yoktur. Karanlık, daha fazlasını gösterir. İki tema, iki farklı içerik katmanı.
 
@@ -307,6 +310,24 @@ Okuyucu **30 günden fazla** siteye gelmezse, döndüğünde defter onu farklı 
 Ayna sayfasının alt kısmında, okuyucunun verilerinden derlenen kişisel bir mektup. İstatistik değil — yazarın üslubuyla yazılmış, okuyucuya hitap eden gerçek bir mektup. Her okuyucu farklı bir mektup alır çünkü her okuyucunun verisi farklı:
 
 > *"bu mektubu gece okuyorsun. ilk geldiğinde 14 ocak'tı. o günden beri 12 mühür kırdın. en çok 'sevmek de yorulur' mektubuna döndün — demek ki o satırlar sana bir şey fısıldadı..."*
+
+#### Mektup Yakma
+Okuyucu bir mektubun üzerine **5 saniye boyunca tıklı tutarsa**, kağıt kenarlarından yanmaya başlar (`clip-path` + `sepia` + `brightness` animasyonu). Yanan mektup localStorage'da işaretlenir. Tekrar ziyarette: sadece küller var — yanmış kağıt dokusu ve okunamayan birkaç kelime fragmanı. *"bu mektup yakıldı. külleri bile bir şey anlatıyor."* **Geri alınamaz.** Sağ altta dairesel ilerleme göstergesi yanar.
+
+#### Büyüyen Ağaç
+Footer'da küçük bir SVG ağaç. Her okunan mektup bir **yaprak**, her bulunan gizli kelime bir **çiçek**, halvethâne'de geçirilen her dakika **gövdeyi kalınlaştırır**. Mevsimle uyumlu: kışın yapraklar solar (ama gövde kalır). Okuyucunun büyüttüğü, canlı bir ağaç — hiçbir okuyucunun ağacı aynı değil.
+
+#### Hayalet Mektup
+Ayda bir kez, hesaplanmış rastgele bir günde, var olmayan bir mektup slider'da belirir. Başlığı: *"bu mektup hiç yazılmadı"*. Mühürü kırılınca tek bir cümle görünür — her seferinde farklı. 4 saniye sonra mektup fade-out ile kaybolur. localStorage'da ayda bir kez gösterilir. 8 farklı "yazılmamış" cümle havuzundan seçilir.
+
+#### Deprem (Hızlı Scroll Uyarısı)
+Okuyucu çok hızlı scroll yapınca (sanki umursamadan geçiyormuş gibi), sayfa 0.4 saniye **sarsılır** ve metin bulanıklaşır. Ardından soluk bir uyarı belirir: *"yavaş oku. bu mektuplar sana yazıldı."* 15 saniye cooldown süresi — sürekli tetiklenmez. Defter, dikkatsiz okuyucuyu uyarıyor.
+
+#### Okuyucu DNA'sı
+Ayna sayfasında, okuyucunun tüm verisinden (okuma sırası, tema tercihi, stamp sayısı) benzersiz bir **çift helix SVG** oluşturulur. Her okuyucunun DNA'sı farklı renklerde ve desenlerde. Renk paleti mühür renklerinden türetilir, helix formu okuma verisinin matematiksel dönüşümü.
+
+#### Sonsuz Scroll Paradoksu
+Halvethâne'de aşağı scroll ettikçe sayfa **hiç bitmiyor**. Her viewport boyutunda yeni bir katman, yeni bir cümle belirir: *"sessizliğin bir sonu yok."* → *"derinlere indikçe karanlık yoğunlaşır."* → *"nefesini tut."* → *"dinle."* → ... 10. katmandan sonra metin kaybolur, sadece siyahlık kalır. En dipte, neredeyse görünmez: *"hâlâ arıyorsun. belki de cevap yukarıdaydı."*
 
 #### Dip Not (Karanlığın Notları)
 Void modda, belirli kelimelerin üzerine gelince **sadece karanlıkta görünen** dip notlar belirir. Manuscript modda bu notlar yoktur — karanlık, daha fazlasını gösterir. İki temanın sadece görsel değil **içerik** farkı olması. Mektuplardaki kullanım:

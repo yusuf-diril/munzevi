@@ -3839,3 +3839,231 @@ body.has-pulse {
   margin-top: 1.5rem;
   text-align: right;
 }
+
+
+// ──────────────────────────────────────────────────
+//  MEKTUP YAKMA
+// ──────────────────────────────────────────────────
+
+.burn-progress {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+
+  circle { transition: stroke-dashoffset 0.1s linear; }
+  &.active { opacity: 1; }
+}
+
+@keyframes burnEdge {
+  0%   { clip-path: inset(0 0 0 0); filter: sepia(0) brightness(1); }
+  30%  { clip-path: inset(2% 1% 2% 1%); filter: sepia(0.3) brightness(0.95); }
+  60%  { clip-path: inset(8% 5% 6% 4%); filter: sepia(0.6) brightness(0.8); }
+  85%  { clip-path: inset(20% 15% 18% 12%); filter: sepia(0.9) brightness(0.5); }
+  100% { clip-path: inset(45% 40% 42% 38%); filter: sepia(1) brightness(0.2); opacity: 0; }
+}
+
+.burning .tezhip-frame {
+  animation: burnEdge 3s ease-in forwards;
+}
+
+.burn-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 80%, rgba(200, 80, 20, 0.08), transparent 60%);
+  pointer-events: none;
+  z-index: 199;
+  opacity: 0;
+  transition: opacity 1s;
+
+  &.active { opacity: 1; }
+}
+
+.burned-remains {
+  text-align: center;
+  padding: 4rem 2rem;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.burned-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--text-dim);
+  opacity: 0.3;
+  max-width: 400px;
+  line-height: 1.8;
+}
+
+.burned-fragment {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  opacity: 0.12;
+  margin-top: 2rem;
+  filter: blur(0.5px);
+}
+
+
+// ──────────────────────────────────────────────────
+//  BÜYÜYEN AĞAÇ
+// ──────────────────────────────────────────────────
+
+.tree-container {
+  text-align: center;
+  padding: 1rem 0;
+  opacity: 0.4;
+  transition: opacity 0.5s;
+
+  &:hover { opacity: 0.7; }
+}
+
+.tree-svg {
+  max-width: 120px;
+  height: auto;
+}
+
+.tree-leaf {
+  fill: #6b8e4e;
+  opacity: 0;
+  animation: leafGrow 1s ease forwards;
+}
+
+.tree-flower {
+  fill: #d4a373;
+  opacity: 0;
+  animation: leafGrow 1.5s ease forwards;
+}
+
+@keyframes leafGrow {
+  from { opacity: 0; transform: scale(0); }
+  to   { opacity: 0.7; transform: scale(1); }
+}
+
+
+// ──────────────────────────────────────────────────
+//  HAYALET MEKTUP
+// ──────────────────────────────────────────────────
+
+.ghost-letter {
+  position: relative;
+
+  .ms-page-inner {
+    opacity: 0;
+    animation: ghostAppear 3s ease forwards;
+  }
+}
+
+@keyframes ghostAppear {
+  0%   { opacity: 0; filter: blur(4px); }
+  50%  { opacity: 0.4; filter: blur(0); }
+  100% { opacity: 0.3; filter: blur(0); }
+}
+
+.ghost-letter-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1.8;
+}
+
+
+// ──────────────────────────────────────────────────
+//  OKUYUCU DNA'SI
+// ──────────────────────────────────────────────────
+
+.dna-container {
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.dna-svg {
+  max-width: 280px;
+  height: 200px;
+}
+
+.dna-label {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  opacity: 0.3;
+  margin-top: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+
+// ──────────────────────────────────────────────────
+//  DEPREM (hızlı scroll uyarısı)
+// ──────────────────────────────────────────────────
+
+@keyframes quakeShake {
+  0%, 100% { transform: translateX(0); }
+  20%  { transform: translateX(-3px) rotate(-0.3deg); }
+  40%  { transform: translateX(3px) rotate(0.3deg); }
+  60%  { transform: translateX(-2px) rotate(-0.2deg); }
+  80%  { transform: translateX(2px) rotate(0.1deg); }
+}
+
+body.quaking .site-main {
+  animation: quakeShake 0.4s ease;
+}
+
+body.quaking .post-body {
+  filter: blur(1.5px);
+  transition: filter 0.3s;
+}
+
+.quake-warning {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--accent);
+  opacity: 0;
+  z-index: 200;
+  pointer-events: none;
+  transition: opacity 1.5s ease;
+  white-space: nowrap;
+
+  &.visible { opacity: 0.5; }
+}
+
+
+// ──────────────────────────────────────────────────
+//  SONSUZ SCROLL PARADOKSU
+// ──────────────────────────────────────────────────
+
+.halvet-abyss {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  color: #c9b99a;
+  text-align: center;
+  padding: 8rem 2rem;
+  line-height: 1.8;
+  opacity: 0;
+  transition: opacity 4s ease;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.visible { opacity: 0.2; }
+}
+
+.halvet-abyss-final {
+  opacity: 0.06;
+  font-size: 0.9rem;
+}
