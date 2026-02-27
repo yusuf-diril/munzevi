@@ -338,6 +338,22 @@ Ayna sayfasında, okuyucunun tüm verisinden (okuma sırası, tema tercihi, stam
 #### Sonsuz Scroll Paradoksu
 Halvethâne'de aşağı scroll ettikçe sayfa **hiç bitmiyor**. Her viewport boyutunda yeni bir katman, yeni bir cümle belirir: *"sessizliğin bir sonu yok."* → *"derinlere indikçe karanlık yoğunlaşır."* → *"nefesini tut."* → *"dinle."* → ... 10. katmandan sonra metin kaybolur, sadece siyahlık kalır. En dipte, neredeyse görünmez: *"hâlâ arıyorsun. belki de cevap yukarıdaydı."*
 
+#### Kağıdın Arkası (3D Flip)
+Fiziksel bir kağıdı çevirdiğinde arka yüzünü görürsün — dijitalde de öyle. `back_content:` ve/veya `back_image:` front matter'ı olan mektuplarda sağ altta "çevir ↻" butonu belirir. Tıklayınca kağıt 3D perspektif animasyonuyla döner. Arkasında: mektubun ilk taslağı, silinmiş cümleler, sketch tarzı çizimler — her mektuba özel. `rotateY(180deg)` + `backface-visibility` ile gerçekçi kağıt çevirme hissi.
+
+#### Mektup Takas Noktası
+Okuyucu bir mektupta metin seçtiğinde, o cümle sessizce "takas havuzuna" eklenir (localStorage). Anasayfadaki "rüzgara bırakılan sayfa" bölümünde, havuzdaki cümlelerden biri görünür: *"birisi bu cümleyi senin için bıraktı"*. Anonim bir hediye — bırakan kişi asla bilinmez. Her okuyucu hem bırakan hem alan olur.
+
+#### Mektup Biriktirme Patlaması
+Okuyucu aynı oturumda (sayfa kapatmadan) **10 mektup** üst üste okursa, 10. mektubun sonunda tüm okunmuş mektuplardan cümleler ekrana yağar — parçacıklar gibi, her cümle farklı pozisyonda belirip yavaşça aşağı kayar. 16 saniye sonra kaybolur. 10 mektubun özeti — sanki tüm mektuplar bir anda hatırlanmış.
+
+#### Son Söz Hakkı (Kişisel Veda)
+Tab kapatıldığında gösterilen veda mesajı, tanışıklık derecesine göre değişir:
+- **10+ mektup okumuş**: *"gitme."*
+- **20+ mektup okumuş**: *"her gittiğinde bir mektup daha soluyor."*
+- **Sırdaş olmuş**: *"bir sırdaş daha gidiyor. defter bunu hatırlayacak."*
+- **Yeni okuyucu**: *"defter kapanıyor…"* (varsayılan)
+
 #### Dip Not (Karanlığın Notları)
 Void modda, belirli kelimelerin üzerine gelince **sadece karanlıkta görünen** dip notlar belirir. Manuscript modda bu notlar yoktur — karanlık, daha fazlasını gösterir. İki temanın sadece görsel değil **içerik** farkı olması. Mektuplardaki kullanım:
 
@@ -461,6 +477,8 @@ Tüm kullanıcı verileri tarayıcıda (`localStorage`) saklanır:
 | `munzevi-sirdas` | "1" | Sırdaş modu aktif flag'i |
 | `munzevi-once-read` | JSON dizi | Bir kez okunmuş mektup URL'leri |
 | `munzevi-last-visit` | timestamp | Son ziyaret zamanı (hasret için) |
+| `munzevi-burned` | JSON dizi | Yakılmış mektup URL'leri |
+| `munzevi-takas-pool` | JSON dizi | Takas havuzundaki cümleler (max 20) |
 
 ---
 
@@ -575,6 +593,8 @@ kenarlik: "kenarlik-3.png"  # sağ kenarlık süslemesi
 emotional: true             # gözyaşı izleri efekti
 author_note: "yazarın notu" # sırdaş modunda görünen kişisel not
 once_only: true             # sadece bir kez okunabilir
+back_content: "arka yüz"   # kağıdın arkasındaki metin
+back_image: "dosya.png"    # kağıdın arkasındaki çizim (assets/img/)
 ```
 
 **Karanlığın notları** (void modda görünen dip notlar):

@@ -1242,6 +1242,16 @@
     document.addEventListener('visibilitychange', function () {
       if (document.visibilityState === 'hidden' && !triggered) {
         triggered = true;
+
+        var journey = getJourney();
+        var isSirdas = localStorage.getItem('munzevi-sirdas') === '1';
+        var msg = 'defter kapanıyor\u2026';
+
+        if (isSirdas) msg = 'bir sırdaş daha gidiyor. defter bunu hatırlayacak.';
+        else if (journey.length >= 20) msg = 'her gittiğinde bir mektup daha soluyor.';
+        else if (journey.length >= 10) msg = 'gitme.';
+
+        veil.style.setProperty('--closing-msg', '"' + msg + '"');
         veil.classList.add('closing');
         setTimeout(function () {
           veil.classList.remove('closing');
@@ -2509,6 +2519,111 @@
 
 
   // ═══════════════════════════════════════════════════════
+  //  KAĞIDIN ARKASI (3D flip)
+  // ═══════════════════════════════════════════════════════
+
+  function initFlipCard() {
+    var btn = document.getElementById('flip-btn');
+    var inner = document.getElementById('post-flip-inner');
+    if (!btn || !inner) return;
+
+    btn.addEventListener('click', function () {
+      inner.classList.toggle('flipped');
+      btn.textContent = inner.classList.contains('flipped') ? 'geri dön ↺' : 'çevir ↻';
+    });
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  MEKTUP BİRİKTİRME PATLAMASI
+  // ═══════════════════════════════════════════════════════
+
+  function initBurst() {
+    if (!document.querySelector('.post-body')) return;
+
+    var sessionKey = 'munzevi-session-reads';
+    var count = 0;
+    try { count = parseInt(sessionStorage.getItem(sessionKey) || '0', 10); } catch (e) {}
+    count++;
+    try { sessionStorage.setItem(sessionKey, String(count)); } catch (e) {}
+
+    if (count !== 10) return;
+
+    var excerpts = [];
+    try {
+      var traces = JSON.parse(localStorage.getItem('munzevi-reading-traces') || '{}');
+      for (var url in traces) {
+        var slug = url.replace(/^\//, '').replace(/\/$/, '').replace(/-/g, ' ');
+        if (slug.length > 5) excerpts.push(slug);
+      }
+    } catch (e) {}
+
+    if (excerpts.length < 3) {
+      excerpts = WHISPERS.slice(0, 10);
+    }
+
+    var overlay = document.createElement('div');
+    overlay.className = 'burst-overlay';
+    document.body.appendChild(overlay);
+
+    for (var i = 0; i < Math.min(excerpts.length, 15); i++) {
+      var p = document.createElement('div');
+      p.className = 'burst-particle';
+      p.textContent = excerpts[i].length > 50 ? excerpts[i].substring(0, 48) + '…' : excerpts[i];
+      p.style.left = (5 + Math.random() * 85) + '%';
+      p.style.top = (-5 - Math.random() * 15) + '%';
+      p.style.animationDelay = (i * 0.4) + 's';
+      p.style.animationDuration = (6 + Math.random() * 4) + 's';
+      p.style.fontSize = (0.9 + Math.random() * 0.5) + 'rem';
+      overlay.appendChild(p);
+    }
+
+    setTimeout(function () {
+      if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    }, 16000);
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  MEKTUP TAKAS NOKTASI
+  // ═══════════════════════════════════════════════════════
+
+  function initTakas() {
+    var takasKey = 'munzevi-takas-pool';
+    var pool = [];
+    try { pool = JSON.parse(localStorage.getItem(takasKey) || '[]'); } catch (e) {}
+
+    var windQuote = document.getElementById('wind-quote');
+    if (windQuote && pool.length > 0) {
+      var pick = pool[Math.floor(Math.random() * pool.length)];
+      var gift = document.createElement('div');
+      gift.className = 'takas-gift';
+      gift.innerHTML = '<p class="takas-label">birisi bu cümleyi senin için bıraktı</p>' +
+        '<p class="takas-quote">\u201c' + pick + '\u201d</p>';
+      windQuote.parentNode.insertBefore(gift, windQuote.nextSibling);
+    }
+
+    var postBody = document.querySelector('.post-body');
+    if (!postBody) return;
+
+    document.addEventListener('mouseup', function () {
+      var sel = window.getSelection();
+      if (!sel || !sel.toString()) return;
+      var text = sel.toString().trim();
+      if (text.length < 10 || text.length > 200) return;
+
+      if (!sel.anchorNode || !postBody.contains(sel.anchorNode)) return;
+
+      if (pool.indexOf(text) === -1) {
+        pool.push(text);
+        if (pool.length > 20) pool.shift();
+        try { localStorage.setItem(takasKey, JSON.stringify(pool)); } catch (e) {}
+      }
+    });
+  }
+
+
+  // ═══════════════════════════════════════════════════════
   //  BAŞLAT
   // ═══════════════════════════════════════════════════════
 
@@ -2564,6 +2679,9 @@
     initQuake();
     initImpatience();
     initScrollResist();
+    initFlipCard();
+    initBurst();
+    initTakas();
   });
 
 })();

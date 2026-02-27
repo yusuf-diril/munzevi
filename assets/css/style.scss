@@ -2331,7 +2331,7 @@ body.weather-snow .weather-layer.active {
     pointer-events: all;
 
     &::after {
-      content: 'defter kapanıyor\2026';
+      content: var(--closing-msg, 'defter kapanıyor\2026');
       font-family: 'Caveat', cursive;
       font-size: 1.6rem;
       color: #c9b99a;
@@ -4121,4 +4121,146 @@ body.quaking .post-body {
 .halvet-abyss-final {
   opacity: 0.06;
   font-size: 0.9rem;
+}
+
+
+// ──────────────────────────────────────────────────
+//  KAĞIDIN ARKASI (3D flip)
+// ──────────────────────────────────────────────────
+
+.post-flip-container {
+  perspective: 1200px;
+}
+
+.post-flip-inner {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.post-flip-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.post-flip-front {
+  backface-visibility: hidden;
+}
+
+.post-flip-back {
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  position: absolute;
+  inset: 0;
+  display: none;
+  background: var(--bg-paper);
+  padding: 3rem 2rem;
+  text-align: center;
+  overflow-y: auto;
+
+  .flipped & { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+}
+
+.back-content-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--text-dim);
+  opacity: 0.6;
+  max-width: 450px;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.back-content-image {
+  max-width: 80%;
+  height: auto;
+  opacity: 0.15;
+  filter: contrast(1.2);
+  margin-bottom: 1.5rem;
+}
+
+[data-theme="void"] .back-content-image {
+  opacity: 0.08;
+  filter: contrast(1.5) invert(1);
+}
+
+.flip-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 6rem;
+  background: var(--bg-paper);
+  border: 1px dashed var(--border);
+  color: var(--text-dim);
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  opacity: 0.3;
+  z-index: 100;
+  transition: opacity 0.3s, transform 0.3s;
+  border-radius: 3px;
+
+  &:hover { opacity: 0.7; transform: scale(1.05); }
+}
+
+
+// ──────────────────────────────────────────────────
+//  MEKTUP PATLAMASI
+// ──────────────────────────────────────────────────
+
+.burst-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.burst-particle {
+  position: absolute;
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--text);
+  opacity: 0;
+  white-space: nowrap;
+  animation: burstFall 8s ease-in forwards;
+}
+
+@keyframes burstFall {
+  0%   { opacity: 0; transform: translateY(-20px); }
+  10%  { opacity: 0.4; }
+  80%  { opacity: 0.3; }
+  100% { opacity: 0; transform: translateY(100vh); }
+}
+
+
+// ──────────────────────────────────────────────────
+//  MEKTUP TAKAS NOKTASI
+// ──────────────────────────────────────────────────
+
+.takas-gift {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--border);
+  opacity: 0;
+  animation: takvimReveal 3s ease forwards;
+}
+
+.takas-label {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  opacity: 0.3;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.takas-quote {
+  font-family: 'Caveat', cursive;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--accent);
+  opacity: 0.5;
+  line-height: 1.7;
 }

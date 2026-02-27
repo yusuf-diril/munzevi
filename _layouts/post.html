@@ -40,6 +40,9 @@ layout: default
   {% endif %}
 
   <!-- ═══ İKİ SÜTUNLU LAYOUT: pul (sol) + yazı (sağ) ═══ -->
+  <div class="post-flip-container">
+  <div class="post-flip-inner" id="post-flip-inner">
+  <div class="post-flip-front">
   <div class="post-layout">
 
     <!-- SOL: Pul pozisyon referansı -->
@@ -121,6 +124,24 @@ layout: default
 
     </div>
   </div>
+
+  </div>
+  </div><!-- post-flip-front -->
+
+  {% if page.back_content or page.back_image %}
+  <div class="post-flip-back">
+    {% if page.back_image %}
+    <img src="{{ '/assets/img/' | relative_url }}{{ page.back_image }}" alt="" class="back-content-image">
+    {% endif %}
+    {% if page.back_content %}
+    <p class="back-content-text">{{ page.back_content }}</p>
+    {% endif %}
+  </div>
+  <button class="flip-btn" id="flip-btn">çevir ↻</button>
+  {% endif %}
+
+  </div><!-- post-flip-inner -->
+  </div><!-- post-flip-container -->
 
   <!-- ═══ Yakılmış Mektup Kalıntısı ═══ -->
   <div class="burned-remains" id="burned-remains" style="display:none">
