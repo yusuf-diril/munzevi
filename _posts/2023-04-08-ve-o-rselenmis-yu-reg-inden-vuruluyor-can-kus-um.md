@@ -3,7 +3,6 @@ layout: post
 title: "ve örselenmiş yüreğinden vuruluyor can kuşum.."
 date: 2023-04-08
 stamp_image: "stamp-ebed"
-is_nocturnal: true
 ---
 
 # ve örselenmiş yüreğinden vuruluyor can kuşum..

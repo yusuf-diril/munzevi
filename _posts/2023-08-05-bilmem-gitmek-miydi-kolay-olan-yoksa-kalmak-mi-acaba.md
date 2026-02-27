@@ -3,7 +3,6 @@ layout: post
 title: "bilmem, gitmek miydi kolay olan yoksa kalmak mı acaba..?"
 date: 2023-08-05
 stamp_image: "stamp-parchment"
-is_nocturnal: true
 ---
 
 # bilmem, gitmek miydi kolay olan yoksa kalmak mı acaba..?

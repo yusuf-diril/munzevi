@@ -3,7 +3,6 @@ layout: post
 title: "Vakit, geceyi çoktan devirdi.. Tükettiğimiz ömür sermayesinden geriye ne kaldı dersin?"
 date: 2023-09-16
 stamp_image: "stamp-seal"
-is_nocturnal: true
 ---
 
 # Vakit, geceyi çoktan devirdi.. Tükettiğimiz ömür sermayesinden geriye ne kaldı dersin?

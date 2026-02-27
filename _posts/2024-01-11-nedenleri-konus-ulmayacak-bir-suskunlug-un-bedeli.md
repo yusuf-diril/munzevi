@@ -3,7 +3,6 @@ layout: post
 title: "nedenleri konuşulmayacak bir suskunluğun bedeli.."
 date: 2024-01-11
 stamp_image: "stamp-gul"
-is_nocturnal: true
 ---
 
 # nedenleri konuşulmayacak bir suskunluğun bedeli..

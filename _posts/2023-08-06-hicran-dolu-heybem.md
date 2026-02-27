@@ -3,7 +3,6 @@ layout: post
 title: "hicran dolu heybem.."
 date: 2023-08-06
 stamp_image: "stamp-ay"
-is_nocturnal: true
 ---
 
 # hicran dolu heybem..

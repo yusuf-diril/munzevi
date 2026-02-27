@@ -3,7 +3,6 @@ layout: post
 title: "uyumak istiyorum cavidan, uyanmamacasına..!"
 date: 2023-03-14
 stamp_image: "stamp-kapi"
-is_nocturnal: true
 ---
 
 # uyumak istiyorum cavidan, uyanmamacasına..!

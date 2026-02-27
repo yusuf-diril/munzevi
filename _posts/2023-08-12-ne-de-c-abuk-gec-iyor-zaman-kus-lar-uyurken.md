@@ -3,7 +3,6 @@ layout: post
 title: "ne de çabuk geçiyor zaman kuşlar uyurken.."
 date: 2023-08-12
 stamp_image: "stamp-yagmur"
-is_nocturnal: true
 ---
 
 # ne de çabuk geçiyor zaman kuşlar uyurken..

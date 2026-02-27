@@ -3,7 +3,6 @@ layout: post
 title: "hirâ ile hayata dair incinmeler!"
 date: 2023-03-11
 stamp_image: "stamp-gonul"
-is_nocturnal: true
 ---
 
 # hirâ ile hayata dair incinmeler!

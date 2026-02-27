@@ -3,7 +3,6 @@ layout: post
 title: "sevmek de yorulur.."
 date: 2023-11-21
 stamp_image: "stamp-mektup"
-is_nocturnal: true
 ---
 
 # sevmek de yorulur..

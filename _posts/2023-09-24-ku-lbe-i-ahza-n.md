@@ -3,7 +3,6 @@ layout: post
 title: "külbe-i ahzân"
 date: 2023-09-24
 stamp_image: "stamp-deniz"
-is_nocturnal: true
 ---
 
 # külbe-i ahzân
