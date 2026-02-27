@@ -16,6 +16,33 @@ Site iki dünya arasında nefes alır:
 
 ---
 
+## Neden Benzersiz
+
+Bu projeyi benzersiz kılan şey tek tek özellikler değil, **hepsinin tutarlı bir metafor etrafında bir araya gelmesi**. "Yaşayan el yazması" sadece bir slogan değil — sitenin her pikselinde yaşıyor.
+
+### Yokluğu Tasarlamak
+Çoğu site ses ekler ki *duyulsun*. münzevi ses ekliyor ki *duyulup duyulmadığından emin olunmasın*. Fısıltı — her 7 sayfa yüklemesinde 1 kez, neredeyse duyulamayan bir nefes. Okuyucu *"ben mi hayal ettim?"* der. Çoğu site *eylemi* ödüllendirir. münzevi *eylemsizliği* ödüllendiriyor: halvethâne'de 10 dakika sessizce bekleyen kişi sırdaş olur ve yazarın gizli notlarını görür.
+
+### Zamanla Yaşayan Sayfa
+Mektuplar yaşlanıyor — mürekkep soluyor, kahve lekeleri beliriyor, yaşına göre daha çok leke birikiyor. Duygusal mektuplarda gözyaşı izleri mürekkebi bulanıklaştırıyor. Gerçek bir mektubun yıllar içinde geçirdiği fiziksel dönüşüm, dijitalde yaşıyor.
+
+### Gökyüzüyle Bağ
+Dolunay'a bağlı gizli içerik — bilinen hiçbir edebiyat sitesinde gerçek astronomik olaya bağlı content gating yok. Ay evresi emojisi gerçek hesaplamayla güncelleniyor. Mevsimler renk tonlarını değiştiriyor. Hava durumu atmosferi etkiliyor. Site, dışarıdaki dünyaya duyarlı.
+
+### Gece'nin Edebiyatı
+3 mektup sadece gece okunabiliyor — *"bu şiir gün ışığında okunamaz."* Rüya defteri sadece gece yarısından sonra var oluyor, gündüz kaybolyor. Void modda mum ışığı fare imlecini takip ediyor — karanlıkta bir mum tutarak okuyan el. Mektup tarihlerinde miladi takvim yerine Hicri takvim, Osmanlı ay isimleriyle.
+
+### Kişisel İz
+Her okuyucunun deneyimi farklı. Okuma sırası bir takımyıldız oluşturuyor — herkesin yıldız haritası benzersiz. Okuma izi sol kenarda mürekkep çizgisi olarak kalıyor, tekrar ziyarette daha soluk ama hâlâ orada. Ayna sayfası, defterin okuyucuyu nasıl gördüğünü şiirsel bir dille anlatıyor: *"karanlığı tercih ettin. mum ışığında okuyanlardan birisin."*
+
+### Gizli Katmanlar
+35 gizli kelime mektuplara serpiştirilmiş — metin seçildiğinde ortaya çıkıyor, hepsi bir araya gelince cümle oluşturuyor: *"her yüreğin derininde bir münzevi yaşar sessizce yazar..."* Sayfanın en dibine inen *"halvethâne"* kapısını buluyor. Mürekkep damlalarına tıklayan gizli alıntılarla karşılaşıyor. Hiçbir şey açıklanmıyor — keşfeden buluyor.
+
+### Sonuç
+Bu bir web sitesi değil. Gerçekten bir defter — mürekkebi yaşlanan, mühürleri kırılan, geceye saklanan, ayın evresine göre sır veren, sessizlikte bekleyeni ödüllendiren, her okuyucuya farklı bir yıldız haritası çizen bir defter.
+
+---
+
 ## Yapı
 
 ```
