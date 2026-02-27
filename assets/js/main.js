@@ -1898,7 +1898,7 @@
 
       for (var i = 0; i < particles.length; i++) {
         var p = particles[i];
-        ctx.globalAlpha = p.opacity * (isVoid ? 0.12 : 0.06);
+        ctx.globalAlpha = p.opacity * (isVoid ? 0.08 : 0.04);
         ctx.fillStyle = isVoid ? '#c9b99a' : '#2c1810';
         ctx.font = p.size + 'px Caveat, cursive';
         ctx.fillText(p.word, p.x, p.y);

@@ -3470,11 +3470,11 @@ body.no-stars .void-stars { display: none !important; }
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.035;
 }
 
-[data-theme="void"] .ink-river {
-  opacity: 0.055;
+.hero-inner {
+  position: relative;
+  z-index: 1;
 }
 
 

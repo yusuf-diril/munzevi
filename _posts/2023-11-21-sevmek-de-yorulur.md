@@ -3,6 +3,7 @@ layout: post
 title: "sevmek de yorulur.."
 date: 2023-11-21
 stamp_image: "stamp-mektup"
+author_note: "bu mektubu bir kasım gecesi yazdım. dışarıda yağmur yağıyordu ve içeride bir şey kırılıyordu. sevmekten yorulduğumu ilk kez o gece itiraf ettim — kendime bile değil, sadece bu kağıda."
 ---
 
 # sevmek de yorulur..
