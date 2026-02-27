@@ -46,7 +46,9 @@ munzevicomtr/
 │   ├── sir.html             # Defterin sırrı (35 kelime bulmacası)
 │   ├── halvet.html          # Halvethâne (sessizlik ödülü)
 │   ├── dolunay.html         # Dolunay sırrı (ayda 2-3 gün)
-│   └── ruya.html            # Rüya defteri (gece 00-05 arası)
+│   ├── ruya.html            # Rüya defteri (gece 00-05 arası)
+│   ├── ayna.html            # Ayna (okuyucu portresi)
+│   └── takvim.html          # Takvim defteri (günün satırı)
 ├── assets/
 │   ├── css/style.scss       # Tüm stiller (~3400 satır SCSS)
 │   ├── js/main.js           # Tüm etkileşimler (~1870 satır JS)
@@ -71,7 +73,7 @@ Her mektup bir `_posts/` dosyasıdır. Front matter özellikleri:
 | `kenarlik` | Kenarlık görseli | Sağ kenarda tezhip süslemesi |
 | `emotional` | Duygusal mektup | Gözyaşı izleri efekti tetiklenir |
 
-**13 mektup** sadece gece okunabilir (`is_nocturnal`).
+**3 mektup** sadece gece okunabilir (`is_nocturnal`).
 **1 mektup** mühürlüdür — tüm defterin kilidini açar.
 **1 mektup** henüz yoldadır — belirli bir tarihte ulaşır.
 
@@ -153,7 +155,7 @@ Her mektubun altında okuyucuların not bırakabileceği alan. Notlar hafif dön
 ### Zamana Bağlı Özellikler
 
 #### Gece Şiirleri
-13 mektup `is_nocturnal: true` ile işaretli. Saat 06:00-23:00 arası erişildiğinde:
+3 mektup `is_nocturnal: true` ile işaretli. Saat 06:00-23:00 arası erişildiğinde:
 - Karanlık perde belirir: *"Bu şiir gün ışığında okunamaz."*
 - İçerik bulanıklaştırılır
 - Gece yarısından sonra perde kalkar
@@ -229,6 +231,19 @@ Dahili link tıklamalarında:
 
 Harici linkler, `target="_blank"`, Ctrl/Cmd+click atlanır.
 
+#### Mürekkep Nehri
+Anasayfanın hero bölümünün arka planında canvas üzerinde 35 kelime parçacığı soluk ve yavaşça sola doğru akıyor. Kelimeler projenin ruhundan: *hüzün, sessizlik, mürekkep, gece, rüya, yıldız, mektup, sevda, firkat, vuslat...* Manuscript modda çok soluk, void modda daha belirgin. Bir kelime nehri kıyısında duran okuyucu hissi.
+
+#### Sırdaş Modu
+Halvethâne'de 10 dakika sessizlikte bekleyen veya 35 gizli kelimeyi bulan okuyucu **sırdaş** olur. Bu modda, mektuplarda yazarın kişisel notları belirir — soluk, italik, sol kenarlıklı: o mektubun gerçek hikayesi, neden yazıldığı, o gece ne hissedildiği.
+
+Front matter'da `author_note:` alanı ile yönetilir:
+```yaml
+author_note: "bu mektubu bir kasım gecesi yazdım. dışarıda yağmur yağıyordu..."
+```
+
+Herkesin göremediği, sadece sabredenlerin eriştiği bir katman.
+
 ---
 
 ### Ses Tasarımı
@@ -240,6 +255,10 @@ Tüm sesler **Web Audio API** ile programatik olarak üretilir (dosya yok):
 | Kağıt hışırtısı | Slider navigasyon | 0.18s, bandpass filtreli noise |
 | Mühür kırılma | Mühür tıklama | Keskin transient + rezonans |
 | Tema geçişi | Tema toggle | Düşük frekans sine sweep (80→300Hz) |
+| Fısıltı | Rastgele (1/7 ihtimal) | Neredeyse duyulamayan hayalet nefes sesi |
+
+#### Fısıltı (Hayalet Ses)
+Her 7 sayfa yüklemesinde 1 kez, 6-24 saniye arası rastgele bir gecikmeyle çok kısık bir "nefes" sesi çalar. Web Audio API ile üretilmiş bandpass filtreli noise — volume sadece 0.02. Okuyucu duyduğundan emin olamaz. *"Ben mi hayal ettim?"* hissi. Sitenin en uncanny anı.
 
 ---
 
@@ -247,11 +266,12 @@ Tüm sesler **Web Audio API** ile programatik olarak üretilir (dosya yok):
 
 #### Anasayfa (`index.html`)
 1. **Awakening**: Siyah ekran 3 saniyede açılır
-2. **Hero**: "münzevi" harfleri tek tek belirir (2.4s)
-3. **Whisper**: Günün kavramı veya rastgele mısra
-4. **Rüzgara bırakılan sayfa**: Günlük featured alıntı
-5. **Defter slider'ı**: Yatay kaydırmalı mektup kartları
-6. **Uçak yolu**: Slider navigasyonu, animasyonlu uçak
+2. **Mürekkep Nehri**: Hero arka planında soluk kelimeler akar (canvas)
+3. **Hero**: "münzevi" harfleri tek tek belirir (2.4s)
+4. **Whisper**: Günün kavramı veya rastgele mısra
+5. **Rüzgara bırakılan sayfa**: Günlük featured alıntı
+6. **Defter slider'ı**: Yatay kaydırmalı mektup kartları
+7. **Uçak yolu**: Slider navigasyonu, animasyonlu uçak
 
 #### Kavram Virdi (`/kavramlar/`)
 9 kavram, her biri:
@@ -275,6 +295,19 @@ Mektuplardaki 5 muhatap:
 
 #### Defterin Sırrı (`/sir/`)
 35 gizli kelimenin takip sayfası. Kelimeler mektuplarda gizli mürekkeple yazılı. Bulunan kelimeler cümledeki yerini doldurur.
+
+#### Ayna (`/ayna/`)
+Okuyucunun poetik portresi. localStorage verilerini okuyarak kişisel bir yansıma oluşturur:
+- *"ilk mühürü kırdığın an: 14 Ocak, gece 02:17"*
+- *"17 mektup okudun. bu defterin sayfaları sana alışıyor."*
+- *"karanlığı tercih ettin. mum ışığında okuyanlardan birisin."*
+- *"münzevi ile geçirdiğin sessizlik: 3 saat 42 dakika."*
+- *"en çok döndüğün mektup: sevmek de yorulur.. — 5 kez."*
+
+Veri yoksa: *"ayna henüz boş. bir mektup oku — defter seni tanımaya başlasın."*
+
+#### Takvim Defteri (`/takvim/`)
+Yılın her günü mektuplardan farklı bir satır gösterir. 365 günlük edebî takvim — her gün tek bir cümle, o günün satırı. Okuyucunun her gün geri dönmesi için bir sebep.
 
 ---
 
@@ -324,6 +357,7 @@ Tüm kullanıcı verileri tarayıcıda (`localStorage`) saklanır:
 | `munzevi-typewriter-speed` | sayı (ms) | Daktilo hızı |
 | `munzevi-fx-{efekt}` | off | Efekt devre dışı bırakma |
 | `munzevi-halvet-time` | sayı (saniye) | Halvethâne birikimli süre |
+| `munzevi-sirdas` | "1" | Sırdaş modu aktif flag'i |
 
 ---
 
@@ -371,6 +405,7 @@ Mühür Kır → Mektup Oku → Pul Kazan
     ├──→ Ay'a tıkla → Dolunay sırrını bekle
     ├──→ Kavramları keşfet
     ├──→ Mürekkep damlalarına tıkla
+    ├──→ Takvim defterini her gün ziyaret et
     │
     ▼
 Koleksiyon: Pullar + Ayak İzleri + Takımyıldızın
@@ -382,10 +417,16 @@ Defterin Sırrı: 35 kelimeyi bul, cümleyi tamamla
 Mühürlü Mektup: Yeterli pul topla, son mektubu aç
     │
     ▼
-Halvethâne: Sessizlikte bekle → Katmanlar açılır
+Halvethâne: Sessizlikte bekle → Katmanlar açılır → Sırdaş ol
+    │
+    ▼
+Sırdaş Modu: Mektuplarda yazarın gizli notlarını gör
     │
     ▼
 Rüya Defteri: Gece yarısı gel, surreal montajı oku
+    │
+    ▼
+Ayna: Defterin seni nasıl gördüğüne bak
     │
     ▼
 Abyss: Sayfanın en dibine in → "halvethâne" kapısı
@@ -426,6 +467,7 @@ sealed: true                # mühürlü (pul gerektiren)
 arrives: "2024-06-01"       # yolda olan mektup
 kenarlik: "kenarlik-3.png"  # sağ kenarlık süslemesi
 emotional: true             # gözyaşı izleri efekti
+author_note: "yazarın notu" # sırdaş modunda görünen kişisel not
 ```
 
 ---
