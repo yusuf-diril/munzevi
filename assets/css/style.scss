@@ -4007,6 +4007,61 @@ body.has-pulse {
 //  DEPREM (hızlı scroll uyarısı)
 // ──────────────────────────────────────────────────
 
+// ──────────────────────────────────────────────────
+//  SABRSIZLIK CEZASI
+// ──────────────────────────────────────────────────
+
+.impatience-warning {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 6, 0.85);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.impatience-text {
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  color: #c9b99a;
+  opacity: 0.5;
+  max-width: 400px;
+  line-height: 1.8;
+}
+
+
+// ──────────────────────────────────────────────────
+//  SCROLL DİRENCİ (visual cue)
+// ──────────────────────────────────────────────────
+
+.scroll-resist-hint {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  opacity: 0;
+  z-index: 100;
+  pointer-events: none;
+  transition: opacity 2s ease;
+  white-space: nowrap;
+
+  &.visible { opacity: 0.3; }
+}
+
+
 @keyframes quakeShake {
   0%, 100% { transform: translateX(0); }
   20%  { transform: translateX(-3px) rotate(-0.3deg); }

@@ -323,6 +323,15 @@ Ayda bir kez, hesaplanmış rastgele bir günde, var olmayan bir mektup slider'd
 #### Deprem (Hızlı Scroll Uyarısı)
 Okuyucu çok hızlı scroll yapınca (sanki umursamadan geçiyormuş gibi), sayfa 0.4 saniye **sarsılır** ve metin bulanıklaşır. Ardından soluk bir uyarı belirir: *"yavaş oku. bu mektuplar sana yazıldı."* 15 saniye cooldown süresi — sürekli tetiklenmez. Defter, dikkatsiz okuyucuyu uyarıyor.
 
+#### Sabırsızlık Cezası
+Slider'da mühür kırmadan **5+ mektup** hızlıca geçilirse, ekran bir an için kararır ve ortada soluk bir metin belirir: *"durmadan geçiyorsun. hiçbirini açmadın."* 3 saniye sonra kaybolur. Bir mühür kırıldığında sayaç sıfırlanır. Defter, göz atılan ama okunmayan mektuplar için üzülüyor.
+
+#### Gece Uyarısı
+Saat **03:00-05:00** arasında anasayfanın whisper bölümünde kavram veya alıntı yerine tek bir soru belirir: *"bu saatte burada ne arıyorsun?"* Sorgulamıyor — gerçekten merak ediyor.
+
+#### Scroll Direnci
+Okuyucu bir mektubun son paragrafına doğru scroll ederken, scroll **hafifçe yavaşlar** — JS ile scroll pozisyonuna ince bir direnç eklenir. İlk tetiklendiğinde soluk bir not belirir: *"biraz daha kal…"* Sanki defter "bitirme" diyor. Çok ince — fiziksel bir his.
+
 #### Okuyucu DNA'sı
 Ayna sayfasında, okuyucunun tüm verisinden (okuma sırası, tema tercihi, stamp sayısı) benzersiz bir **çift helix SVG** oluşturulur. Her okuyucunun DNA'sı farklı renklerde ve desenlerde. Renk paleti mühür renklerinden türetilir, helix formu okuma verisinin matematiksel dönüşümü.
 

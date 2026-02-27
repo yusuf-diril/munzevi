@@ -566,6 +566,14 @@
     var el = document.getElementById('hero-whisper');
     if (!el) return;
 
+    var hour = new Date().getHours();
+    if (hour >= 3 && hour < 5) {
+      el.textContent = 'bu saatte burada ne arıyorsun?';
+      el.style.opacity = '0';
+      el.style.animation = 'heroFade 3s 3s ease forwards';
+      return;
+    }
+
     var kavramlar = window.MUNZEVI_KAVRAMLAR || [];
     var today = new Date();
     var dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
@@ -2302,6 +2310,86 @@
 
 
   // ═══════════════════════════════════════════════════════
+  //  SABRSIZLIK CEZASI
+  // ═══════════════════════════════════════════════════════
+
+  function initImpatience() {
+    var slider = document.getElementById('manuscript-slider');
+    if (!slider) return;
+
+    var skipCount = 0;
+    var lastNav = 0;
+    var warned = false;
+
+    var overlay = document.createElement('div');
+    overlay.className = 'impatience-warning';
+    overlay.innerHTML = '<p class="impatience-text">durmadan geçiyorsun.<br>hiçbirini açmadın.</p>';
+    document.body.appendChild(overlay);
+
+    slider.addEventListener('scroll', function () {
+      var now = Date.now();
+      if (now - lastNav < 400) return;
+      lastNav = now;
+      skipCount++;
+
+      if (skipCount >= 5 && !warned) {
+        warned = true;
+        overlay.classList.add('visible');
+        setTimeout(function () {
+          overlay.classList.remove('visible');
+        }, 3000);
+        setTimeout(function () { skipCount = 0; warned = false; }, 20000);
+      }
+    }, { passive: true });
+
+    slider.querySelectorAll('.ms-wax-seal').forEach(function (seal) {
+      seal.addEventListener('click', function () { skipCount = 0; });
+    });
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  SCROLL DİRENCİ
+  // ═══════════════════════════════════════════════════════
+
+  function initScrollResist() {
+    var postBody = document.querySelector('.post-body');
+    if (!postBody) return;
+
+    var hint = document.createElement('div');
+    hint.className = 'scroll-resist-hint';
+    hint.textContent = 'biraz daha kal\u2026';
+    document.body.appendChild(hint);
+
+    var resisting = false;
+    var hintShown = false;
+
+    window.addEventListener('wheel', function (e) {
+      if (e.deltaY <= 0) return;
+
+      var paragraphs = postBody.querySelectorAll('p');
+      if (!paragraphs.length) return;
+      var lastP = paragraphs[paragraphs.length - 1];
+      var rect = lastP.getBoundingClientRect();
+
+      if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+        if (!resisting) {
+          resisting = true;
+          if (!hintShown) {
+            hintShown = true;
+            hint.classList.add('visible');
+            setTimeout(function () { hint.classList.remove('visible'); }, 4000);
+          }
+        }
+        window.scrollBy(0, -e.deltaY * 0.4);
+      } else {
+        resisting = false;
+      }
+    }, { passive: true });
+  }
+
+
+  // ═══════════════════════════════════════════════════════
   //  MÜREKKEP NEHRİ (hero arka plan)
   // ═══════════════════════════════════════════════════════
 
@@ -2474,6 +2562,8 @@
     initGrowingTree();
     initGhostLetter();
     initQuake();
+    initImpatience();
+    initScrollResist();
   });
 
 })();
