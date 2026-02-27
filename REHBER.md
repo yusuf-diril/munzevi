@@ -38,8 +38,14 @@ Her okuyucunun deneyimi farklı. Okuma sırası bir takımyıldız oluşturuyor 
 ### Gizli Katmanlar
 35 gizli kelime mektuplara serpiştirilmiş — metin seçildiğinde ortaya çıkıyor, hepsi bir araya gelince cümle oluşturuyor: *"her yüreğin derininde bir münzevi yaşar sessizce yazar..."* Sayfanın en dibine inen *"halvethâne"* kapısını buluyor. Mürekkep damlalarına tıklayan gizli alıntılarla karşılaşıyor. Hiçbir şey açıklanmıyor — keşfeden buluyor.
 
+### Canlı Defter
+Sitenin arka planı nefes alıyor — mikroskobik renk kaymasıyla, 0.8 saniyelik döngüde. Kimse fark etmez ama herkes hisseder: bu sayfa canlı. 30 gün gelmezsen defter seni özler, döndüğünde *"uzun süredir gelmedin... mürekkep kurumaya başlamıştı"* der. Bir mektup var ki sadece bir kez okunabilir — ikinci ziyarette *"mürekkebi soldu"*. Dijital dünyada her şey tekrarlanabilir. Bu mektup tekrarlanamaz.
+
+### İki Dünya
+Manuscript ve Void sadece renk değişimi değil. Karanlık modda kelimelerin üzerine gelince *sadece karanlıkta görünen* dip notlar belirir — yazarın itirafları, titreyen eli, o geceyi. Aydınlıkta bu notlar yoktur. Karanlık, daha fazlasını gösterir. İki tema, iki farklı içerik katmanı.
+
 ### Sonuç
-Bu bir web sitesi değil. Gerçekten bir defter — mürekkebi yaşlanan, mühürleri kırılan, geceye saklanan, ayın evresine göre sır veren, sessizlikte bekleyeni ödüllendiren, her okuyucuya farklı bir yıldız haritası çizen bir defter.
+Bu bir web sitesi değil. Gerçekten bir defter — kalbi atan, mürekkebi yaşlanan, mühürleri kırılan, geceye saklanan, ayın evresine göre sır veren, sessizlikte bekleyeni ödüllendiren, 30 gün gelmeyeni özleyen, her okuyucuya farklı bir yıldız haritası çizen, sonunda *"münzevi aslında sensin"* diyen bir defter.
 
 ---
 
@@ -74,8 +80,9 @@ munzevicomtr/
 │   ├── halvet.html          # Halvethâne (sessizlik ödülü)
 │   ├── dolunay.html         # Dolunay sırrı (ayda 2-3 gün)
 │   ├── ruya.html            # Rüya defteri (gece 00-05 arası)
-│   ├── ayna.html            # Ayna (okuyucu portresi)
-│   └── takvim.html          # Takvim defteri (günün satırı)
+│   ├── ayna.html            # Ayna (okuyucu portresi + kişisel mektup)
+│   ├── takvim.html          # Takvim defteri (günün satırı)
+│   └── son.html             # Son sayfa (nihai ödül)
 ├── assets/
 │   ├── css/style.scss       # Tüm stiller (~3400 satır SCSS)
 │   ├── js/main.js           # Tüm etkileşimler (~1870 satır JS)
@@ -100,6 +107,8 @@ Her mektup bir `_posts/` dosyasıdır. Front matter özellikleri:
 | `kenarlik` | Kenarlık görseli | Sağ kenarda tezhip süslemesi |
 | `emotional` | Duygusal mektup | Gözyaşı izleri efekti tetiklenir |
 | `author_note` | Yazarın notu | Sırdaş modunda görünen kişisel not |
+| `once_only` | Unutulan mektup | Sadece bir kez okunabilir, sonra mürekkebi solar |
+| `void_notes` | Karanlık notları | Void modda belirli kelimelerde görünen dip notlar |
 
 **3 mektup** sadece gece okunabilir (`is_nocturnal`).
 **1 mektup** mühürlüdür — tüm defterin kilidini açar.
@@ -275,6 +284,37 @@ author_note: "bu mektubu bir kasım gecesi yazdım. dışarıda yağmur yağıyo
 
 Herkesin göremediği, sadece sabredenlerin eriştiği bir katman.
 
+#### Nabız (Defterin Kalp Atışı)
+Sitenin arka planı çok hafif, neredeyse algılanamayan bir ritimle "atıyor". `background-color` her 0.8 saniyede bir mikroskobik bir kayma yapıyor. Göremezsin ama **hissedersin**. Bilinçaltı düzeyinde "bu sayfa canlı" hissi yaratır. Hiçbir kullanıcı bunu bilinçli olarak fark etmez — ama defter onsuz "ölü" hissedilir.
+
+#### Unutulan Mektup (Tek Seferlik Okuma)
+`once_only: true` ile işaretli mektup **sadece bir kez** okunabilir. İlk açışta tam metin görünür. Sayfayı kapattığın an localStorage'a kaydedilir. İkinci ziyarette mektubun yerine tek bir cümle yazar: *"bu mektup bir kez okunabilirdi. mürekkebi soldu."* Dijital dünyada her şey tekrarlanabilir — ama bu mektup tekrarlanamaz. Gerçek hayattaki gibi: bazı anlar bir kez yaşanır.
+
+#### Hasret Mektubu (Defterin Özlemi)
+Okuyucu **30 günden fazla** siteye gelmezse, döndüğünde defter onu farklı karşılar. Anasayfada awakening'den sonra karanlık bir overlay belirir:
+
+> *"uzun süredir gelmedin..."*
+> *"mürekkep kurumaya başlamıştı."*
+
+8 saniye sonra kaybolur, normal akışa döner. Günde bir kez gösterilir. Defter, okuyucuyu özlüyor.
+
+#### Son Sayfa (Nihai Ödül)
+`/son/` — defterin son sayfası. Erişmek için **her şeyi** yapmış olmak gerekir: tüm mektupları oku, 35 gizli kelimeyi bul, sırdaş ol, halvethâne'de 10 dakika bekle. Tüm koşullar sağlandığında footer'da neredeyse görünmez bir bağlantı belirir (opacity: 0.06). Sayfanın içeriği: siyah arka plan, beyaz metin, hiçbir süsleme yok — yazarın okuyucuya doğrudan seslenişi:
+
+> *"bu sayfayı gören çok az kişi var. belki de sadece sensin... çünkü münzevi, aslında sensin."*
+
+#### Ayna Mektubu
+Ayna sayfasının alt kısmında, okuyucunun verilerinden derlenen kişisel bir mektup. İstatistik değil — yazarın üslubuyla yazılmış, okuyucuya hitap eden gerçek bir mektup. Her okuyucu farklı bir mektup alır çünkü her okuyucunun verisi farklı:
+
+> *"bu mektubu gece okuyorsun. ilk geldiğinde 14 ocak'tı. o günden beri 12 mühür kırdın. en çok 'sevmek de yorulur' mektubuna döndün — demek ki o satırlar sana bir şey fısıldadı..."*
+
+#### Dip Not (Karanlığın Notları)
+Void modda, belirli kelimelerin üzerine gelince **sadece karanlıkta görünen** dip notlar belirir. Manuscript modda bu notlar yoktur — karanlık, daha fazlasını gösterir. İki temanın sadece görsel değil **içerik** farkı olması. Mektuplardaki kullanım:
+
+```html
+<span class="void-note">hüzün<span class="void-note-tip">bu kelimeyi yazarken elim titredi</span></span>
+```
+
 ---
 
 ### Ses Tasarımı
@@ -389,6 +429,8 @@ Tüm kullanıcı verileri tarayıcıda (`localStorage`) saklanır:
 | `munzevi-fx-{efekt}` | off | Efekt devre dışı bırakma |
 | `munzevi-halvet-time` | sayı (saniye) | Halvethâne birikimli süre |
 | `munzevi-sirdas` | "1" | Sırdaş modu aktif flag'i |
+| `munzevi-once-read` | JSON dizi | Bir kez okunmuş mektup URL'leri |
+| `munzevi-last-visit` | timestamp | Son ziyaret zamanı (hasret için) |
 
 ---
 
@@ -457,10 +499,13 @@ Sırdaş Modu: Mektuplarda yazarın gizli notlarını gör
 Rüya Defteri: Gece yarısı gel, surreal montajı oku
     │
     ▼
-Ayna: Defterin seni nasıl gördüğüne bak
+Ayna: Defterin seni nasıl gördüğüne bak + kişisel mektubunu oku
     │
     ▼
-Abyss: Sayfanın en dibine in → "halvethâne" kapısı
+Son Sayfa: Her şeyi tamamla → footer'da gizli bağlantı → "/son/"
+    │
+    ▼
+"çünkü münzevi, aslında sensin."
 ```
 
 ---
@@ -499,6 +544,12 @@ arrives: "2024-06-01"       # yolda olan mektup
 kenarlik: "kenarlik-3.png"  # sağ kenarlık süslemesi
 emotional: true             # gözyaşı izleri efekti
 author_note: "yazarın notu" # sırdaş modunda görünen kişisel not
+once_only: true             # sadece bir kez okunabilir
+```
+
+**Karanlığın notları** (void modda görünen dip notlar):
+```html
+<span class="void-note">kelime<span class="void-note-tip">sadece karanlıkta görünen not</span></span>
 ```
 
 ---

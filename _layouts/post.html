@@ -5,7 +5,15 @@ layout: default
 <article class="post-manuscript"
          data-stamp-id="{{ page.stamp_image | default: '' }}"
          data-post-date="{{ page.date | date: '%Y-%m-%d' }}"
-         {% if page.is_nocturnal %}data-nocturnal="true"{% endif %}>
+         {% if page.is_nocturnal %}data-nocturnal="true"{% endif %}
+         {% if page.emotional %}data-emotional="true"{% endif %}
+         {% if page.once_only %}data-once-only="true"{% endif %}>
+
+  {% if page.once_only %}
+  <div class="once-only-veil" id="once-only-veil" style="display:none">
+    <p class="once-only-text">bu mektup bir kez okunabilirdi.<br>mürekkebi soldu.</p>
+  </div>
+  {% endif %}
 
   <!-- ═══ Gece Şiiri Perdesi ═══ -->
   <div class="nocturnal-veil" id="nocturnal-veil" aria-hidden="true">

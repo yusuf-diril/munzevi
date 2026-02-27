@@ -1891,6 +1891,166 @@
 
 
   // ═══════════════════════════════════════════════════════
+  //  NABIZ (defterin kalp atışı)
+  // ═══════════════════════════════════════════════════════
+
+  function initPulse() {
+    document.body.classList.add('has-pulse');
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  UNUTULAN MEKTUP (once_only)
+  // ═══════════════════════════════════════════════════════
+
+  function initOnceOnly() {
+    var article = document.querySelector('[data-once-only="true"]');
+    if (!article) return;
+
+    var key = 'munzevi-once-read';
+    var read = [];
+    try { read = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
+    var url = window.location.pathname;
+
+    var veil = document.getElementById('once-only-veil');
+
+    if (read.indexOf(url) !== -1) {
+      if (veil) veil.style.display = '';
+      var layout = article.querySelector('.post-layout');
+      if (layout) layout.style.display = 'none';
+    } else {
+      read.push(url);
+      try { localStorage.setItem(key, JSON.stringify(read)); } catch (e) {}
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  HASRET MEKTUBU (defterin özlemi)
+  // ═══════════════════════════════════════════════════════
+
+  function initHasret() {
+    var overlay = document.getElementById('hasret-overlay');
+    if (!overlay) return;
+
+    var lastKey = 'munzevi-last-visit';
+    var lastVisit = 0;
+    try { lastVisit = parseInt(localStorage.getItem(lastKey) || '0', 10); } catch (e) {}
+    var now = Date.now();
+    try { localStorage.setItem(lastKey, String(now)); } catch (e) {}
+
+    if (lastVisit === 0) return;
+
+    var daysSince = (now - lastVisit) / 86400000;
+    if (daysSince < 30) return;
+
+    var hasretShown = 'munzevi-hasret-shown';
+    if (localStorage.getItem(hasretShown) === String(Math.floor(now / 86400000))) return;
+    try { localStorage.setItem(hasretShown, String(Math.floor(now / 86400000))); } catch (e) {}
+
+    overlay.style.display = '';
+
+    setTimeout(function () {
+      var l1 = document.getElementById('hasret-line-1');
+      if (l1) l1.classList.add('visible');
+    }, 1500);
+
+    setTimeout(function () {
+      var l2 = document.getElementById('hasret-line-2');
+      if (l2) l2.classList.add('visible');
+    }, 4000);
+
+    setTimeout(function () {
+      overlay.classList.add('fading');
+      setTimeout(function () { overlay.style.display = 'none'; }, 2500);
+    }, 8000);
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  SON SAYFA (nihai ödül — footer link)
+  // ═══════════════════════════════════════════════════════
+
+  function initSonSayfa() {
+    var el = document.getElementById('footer-son');
+    if (!el) return;
+
+    var journey = getJourney();
+    var secrets = [];
+    try { secrets = JSON.parse(localStorage.getItem('munzevi-secret-words') || '[]'); } catch (e) {}
+    var halvetTime = parseInt(localStorage.getItem('munzevi-halvet-time') || '0', 10);
+    var isSirdas = localStorage.getItem('munzevi-sirdas') === '1';
+
+    var totalPosts = window.MUNZEVI_TOTAL_STAMPS || 37;
+    var allRead = journey.length >= totalPosts - 2;
+    var allSecrets = secrets.length >= 35;
+
+    if (allRead && allSecrets && isSirdas && halvetTime >= 600) {
+      el.classList.add('unlocked');
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════
+  //  AYNA MEKTUBU (kişisel mektup)
+  // ═══════════════════════════════════════════════════════
+
+  function initAynaMektup() {
+    var container = document.getElementById('ayna-mektup');
+    if (!container) return;
+
+    var journey = getJourney();
+    var stamps = getCollectedStamps();
+    var traces = {};
+    try { traces = JSON.parse(localStorage.getItem('munzevi-reading-traces') || '{}'); } catch (e) {}
+    var halvetTime = parseInt(localStorage.getItem('munzevi-halvet-time') || '0', 10);
+    var theme = localStorage.getItem('munzevi-theme') || 'manuscript';
+    var lastRead = localStorage.getItem('munzevi-last-read') || '';
+
+    if (journey.length < 3) {
+      container.style.display = 'none';
+      return;
+    }
+
+    var hour = new Date().getHours();
+    var timeWord = (hour >= 22 || hour < 6) ? 'gece' : (hour < 12) ? 'sabah' : (hour < 18) ? 'öğleden sonra' : 'akşam';
+
+    var firstDate = new Date(journey[0].ts);
+    var months = ['ocak','şubat','mart','nisan','mayıs','haziran','temmuz','ağustos','eylül','ekim','kasım','aralık'];
+    var firstStr = firstDate.getDate() + ' ' + months[firstDate.getMonth()];
+
+    var mostVisited = '';
+    var maxV = 0;
+    for (var url in traces) {
+      if (traces[url].visits > maxV) { maxV = traces[url].visits; mostVisited = url; }
+    }
+    var favSlug = mostVisited ? mostVisited.replace(/^\//, '').replace(/\/$/, '').replace(/-/g, ' ') : '';
+
+    var themeStr = theme === 'void'
+      ? 'karanlığı tercih ettin — mum ışığında okuyanlardan birisin'
+      : 'aydınlıkta okudun — krem rengi kağıdın sıcaklığını seçtin';
+
+    var letter = 'bu mektubu <span class="ayna-mektup-accent">' + timeWord + '</span> okuyorsun. ';
+    letter += 'ilk geldiğinde <span class="ayna-mektup-accent">' + firstStr + '</span>\'di. ';
+    letter += 'o günden beri <span class="ayna-mektup-accent">' + stamps.length + '</span> mühür kırdın. ';
+
+    if (favSlug) {
+      letter += 'en çok \'<span class="ayna-mektup-accent">' + favSlug + '</span>\' mektubuna döndün — demek ki o satırlar sana bir şey fısıldadı. ';
+    }
+
+    letter += themeStr + '. ';
+
+    if (halvetTime >= 60) {
+      letter += '<span class="ayna-mektup-accent">' + Math.floor(halvetTime / 60) + '</span> dakika sessizlikte bekledin. ';
+    }
+
+    letter += '<br><br>biliyor musun, bu defter de seni bekliyor.';
+
+    container.innerHTML = '<p>' + letter + '</p><p class="ayna-mektup-sign">— münzevî, sana</p>';
+  }
+
+
+  // ═══════════════════════════════════════════════════════
   //  MÜREKKEP NEHRİ (hero arka plan)
   // ═══════════════════════════════════════════════════════
 
@@ -2054,6 +2214,11 @@
     initInkRiver();
     initWhisper();
     initSirdas();
+    initPulse();
+    initOnceOnly();
+    initHasret();
+    initSonSayfa();
+    initAynaMektup();
   });
 
 })();

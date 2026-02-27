@@ -1,0 +1,54 @@
+---
+layout: default
+title: Son Sayfa
+permalink: /son/
+---
+
+<section class="son-page" id="son-page">
+  <div class="son-locked" id="son-locked" style="display:none">
+    <p>bu sayfa henüz sana açılmadı.</p>
+    <p style="margin-top:1rem;opacity:0.5">defterin tüm sırlarını keşfetmen gerekiyor.</p>
+  </div>
+
+  <div class="son-text" id="son-text" style="display:none">
+    bu sayfayı gören çok az kişi var.<br>
+    belki de sadece sensin.<br><br>
+    bütün mühürleri kırdın,<br>
+    bütün kelimeleri buldun,<br>
+    karanlıkta bekledin,<br>
+    dolunay'da geldin.<br><br>
+    artık bir sır daha vereyim sana:<br><br>
+    bu defter bitmedi.<br>
+    ben hâlâ yazıyorum.<br>
+    ve sen hâlâ okuyorsun.<br><br>
+    bu döngü hiç bitmeyecek.<br><br>
+    çünkü münzevi, aslında sensin.
+  </div>
+</section>
+
+<script>
+(function() {
+  var locked = document.getElementById('son-locked');
+  var text = document.getElementById('son-text');
+  if (!locked || !text) return;
+
+  var stamps = [], journey = [], secrets = [], seals = [];
+  try { stamps = JSON.parse(localStorage.getItem('munzevi-stamps') || '[]'); } catch(e) {}
+  try { journey = JSON.parse(localStorage.getItem('munzevi-journey') || '[]'); } catch(e) {}
+  try { secrets = JSON.parse(localStorage.getItem('munzevi-secret-words') || '[]'); } catch(e) {}
+  try { seals = JSON.parse(localStorage.getItem('munzevi-opened-seals') || '[]'); } catch(e) {}
+  var halvetTime = parseInt(localStorage.getItem('munzevi-halvet-time') || '0', 10);
+  var isSirdas = localStorage.getItem('munzevi-sirdas') === '1';
+
+  var totalPosts = window.MUNZEVI_TOTAL_STAMPS || 37;
+  var allRead = journey.length >= totalPosts - 2;
+  var allSecrets = secrets.length >= 35;
+  var enoughHalvet = halvetTime >= 600;
+
+  if (allRead && allSecrets && isSirdas && enoughHalvet) {
+    text.style.display = '';
+  } else {
+    locked.style.display = '';
+  }
+})();
+</script>
