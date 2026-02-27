@@ -4593,9 +4593,9 @@ body.quaking .post-body {
 
 .hokka-container {
   position: relative;
-  margin: 1.5rem auto 0;
-  width: 40px;
-  height: 50px;
+  margin: 1rem auto 0;
+  width: 24px;
+  height: 30px;
   opacity: 0;
   animation: heroFade 2s 4.5s ease forwards;
 }
@@ -4608,14 +4608,15 @@ body.quaking .post-body {
 
 .hokka-label {
   font-family: 'EB Garamond', serif;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
   color: var(--text-dim);
   opacity: 0;
   text-align: center;
-  margin-top: 0.3rem;
+  margin-top: 0.25rem;
   transition: opacity 0.5s;
 
-  .hokka-container:hover & { opacity: 0.3; }
+  .hokka-container:hover & { opacity: 0.35; }
 }
 
 
@@ -4814,29 +4815,30 @@ body.quaking .post-body {
 
 .hourglass-container {
   text-align: center;
-  padding: 0.5rem 0;
-  opacity: 0.3;
+  padding: 0.25rem 0;
+  opacity: 0.25;
   transition: opacity 0.5s;
 
-  &:hover { opacity: 0.6; }
+  &:hover { opacity: 0.5; }
 }
 
-.hourglass-svg { width: 30px; height: 50px; }
+.hourglass-svg { width: 18px; height: 30px; }
 
 .hourglass-tooltip {
   font-family: 'EB Garamond', serif;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
   color: var(--text-dim);
   opacity: 0;
   transition: opacity 0.5s;
-  margin-top: 0.2rem;
+  margin-top: 0.15rem;
 
   .hourglass-container:hover & { opacity: 0.4; }
 }
 
 @keyframes sandFall {
   0%   { transform: translateY(0); opacity: 0.4; }
-  100% { transform: translateY(14px); opacity: 0; }
+  100% { transform: translateY(8px); opacity: 0; }
 }
 
 .sand-grain {
