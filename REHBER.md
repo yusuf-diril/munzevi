@@ -72,6 +72,7 @@ Her mektup bir `_posts/` dosyasıdır. Front matter özellikleri:
 | `arrives` | Yolda olan mektup | Belirtilen tarihe kadar geri sayım |
 | `kenarlik` | Kenarlık görseli | Sağ kenarda tezhip süslemesi |
 | `emotional` | Duygusal mektup | Gözyaşı izleri efekti tetiklenir |
+| `author_note` | Yazarın notu | Sırdaş modunda görünen kişisel not |
 
 **3 mektup** sadece gece okunabilir (`is_nocturnal`).
 **1 mektup** mühürlüdür — tüm defterin kilidini açar.
@@ -191,6 +192,9 @@ Yazı sayfalarında paragraflar viewport'a girdiğinde karakter karakter belirir
 **Ayarlar** (tasarım paneli):
 - Açık/kapalı toggle
 - Hız slider'ı (10-100ms arası, varsayılan 35ms)
+
+#### Hicri Takvim
+Mektup başlığının altında miladi tarih yerine Hicri takvim tarihi gösterilir. Gregoryen-Hicri dönüşümü Julian gün hesaplamasıyla yapılır. Ay isimleri Osmanlı Türkçesi kullanımıyla: Muharrem, Safer, Rebîülevvel, Rebîülâhir, Cemâziyelevvel, Cemâziyelâhir, Receb, Şaban, Ramazan, Şevval, Zilkade, Zilhicce. Inline script ile `post.html` içinde bağımsız çalışır.
 
 #### İmza Döngüsü
 Header'daki site adı 3.2 saniyede bir fade geçişle döner:
