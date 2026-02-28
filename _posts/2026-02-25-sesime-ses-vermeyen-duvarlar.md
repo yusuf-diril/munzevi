@@ -8,7 +8,9 @@ emotional: true
 once_only: true
 ---
 
-<span class="drop-cap">B</span>iliyor olsaydım keşke..
+<span class="drop-cap">V</span>akit, geceyi çoktan devirdi.. Tükettiğimiz ömür sermayesinden geriye ne kaldı dersin?
+
+Biliyor olsaydım keşke..
 
 Bugün, karanlıklar içinde sığındım odamın en kuytu köşesine. Dışarıda mevsimler dönüyor, yapraklar birbiri ardına intihar ediyor toprağa.. Lakin benim içimdeki mevsim, hep o zemheri, hep o ayaz.. Hani bir yaprak dalından kopar da, rüzgârın insafına kalır ya.. İşte öyle savruluyor niyetlerimiz.. Nafile, düşülen yerin toprağına karışmaktır mukadderat belki de.
 

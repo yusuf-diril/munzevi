@@ -1,30 +1,30 @@
 <header class="site-header">
-  <nav class="site-nav">
+  <nav class="site-nav" role="navigation">
     <a href="{{ '/' | relative_url }}" class="site-brand" id="site-brand"
        data-signature-variations='["münzevî","hiçten, kimseye..","yusuf diril"]'>münzevî</a>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menü">☰</button>
-    <div class="nav-links" id="nav-links">
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav-links" type="button">☰</button>
+
+    <div class="nav-links" id="nav-links" role="menu">
       <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Menüyü kapat" type="button">✕</button>
-      <div class="nav-menu-list">
-        <div class="nav-primary">
-          <a href="{{ '/kavramlar' | relative_url }}" class="nav-item" data-path="/kavramlar">kavram virdi</a>
-          <span class="nav-sep" aria-hidden="true">|</span>
-          <a href="{{ '/muhataplar' | relative_url }}" class="nav-item" data-path="/muhataplar">muhataplar</a>
-          <span class="nav-sep" aria-hidden="true">|</span>
-          <a href="{{ '/koleksiyon' | relative_url }}" class="nav-item" data-path="/koleksiyon">koleksiyon</a>
-          <span class="nav-sep" aria-hidden="true">|</span>
-          <a href="{{ '/ayna/' | relative_url }}" class="nav-item" data-path="/ayna">ayna</a>
-          <span class="nav-sep" aria-hidden="true">|</span>
-          <a href="{{ '/sir' | relative_url }}" class="nav-item" data-path="/sir">sır</a>
-        </div>
+      <div class="nav-menu-list" role="none">
+        <a href="{{ '/kavramlar' | relative_url }}" class="nav-item" data-path="/kavramlar" role="menuitem">kavram virdi</a>
         <span class="nav-sep" aria-hidden="true">|</span>
-        <div class="nav-actions">
-          <button class="kismet-btn" id="kismet-btn" aria-label="Kısmet — rastgele bir mektup" title="kısmet">✦</button>
-          <button class="theme-toggle" id="theme-toggle" aria-label="Tema değiştir">
-            <span class="toggle-icon toggle-manuscript">&#9788;</span>
-            <span class="toggle-icon toggle-void">&#9790;</span>
+        <a href="{{ '/muhataplar' | relative_url }}" class="nav-item" data-path="/muhataplar" role="menuitem">muhataplar</a>
+        <span class="nav-sep" aria-hidden="true">|</span>
+        <a href="{{ '/koleksiyon' | relative_url }}" class="nav-item" data-path="/koleksiyon" role="menuitem">koleksiyon</a>
+        <span class="nav-sep" aria-hidden="true">|</span>
+        <a href="{{ '/ayna/' | relative_url }}" class="nav-item" data-path="/ayna" role="menuitem">ayna</a>
+        <span class="nav-sep" aria-hidden="true">|</span>
+        <a href="{{ '/sir' | relative_url }}" class="nav-item" data-path="/sir" role="menuitem">sır</a>
+        <span class="nav-sep" aria-hidden="true">|</span>
+        <span class="nav-actions" role="none">
+          <button class="kismet-btn" id="kismet-btn" aria-label="Kısmet — rastgele bir mektup" title="kısmet" type="button">✦</button>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Tema değiştir" type="button">
+            <span class="toggle-icon toggle-manuscript" aria-hidden="true">&#9788;</span>
+            <span class="toggle-icon toggle-void" aria-hidden="true">&#9790;</span>
           </button>
-        </div>
+        </span>
       </div>
     </div>
   </nav>

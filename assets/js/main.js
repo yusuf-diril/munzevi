@@ -2635,26 +2635,27 @@
   function initMobileNav() {
     var hamburger = document.getElementById('nav-hamburger');
     var navLinks = document.getElementById('nav-links');
-    var closeBtn = document.getElementById('nav-close');
-    var overlayCloseBtn = document.getElementById('nav-overlay-close');
+    var overlayClose = document.getElementById('nav-overlay-close');
     if (!hamburger || !navLinks) return;
 
-    hamburger.addEventListener('click', function () {
+    function openNav() {
       navLinks.classList.add('nav-open');
       document.body.classList.add('nav-overlay-open');
-    });
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
 
     function closeNav() {
       navLinks.classList.remove('nav-open');
       document.body.classList.remove('nav-overlay-open');
+      hamburger.setAttribute('aria-expanded', 'false');
     }
 
-    if (overlayCloseBtn) {
-      overlayCloseBtn.addEventListener('click', closeNav);
-    }
-    if (closeBtn) {
-      closeBtn.addEventListener('click', closeNav);
-    }
+    hamburger.addEventListener('click', function () {
+      if (navLinks.classList.contains('nav-open')) closeNav();
+      else openNav();
+    });
+
+    if (overlayClose) overlayClose.addEventListener('click', closeNav);
 
     navLinks.querySelectorAll('.nav-item').forEach(function (link) {
       link.addEventListener('click', closeNav);
