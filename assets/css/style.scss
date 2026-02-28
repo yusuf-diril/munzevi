@@ -319,8 +319,8 @@ a {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0.5rem 0;
-  max-width: 1100px;
+  gap: 0.75rem 0;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -337,7 +337,7 @@ a {
   align-items: center;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 0.75rem 1.5rem;
+  gap: 0.75rem 1.25rem;
 }
 
 .nav-menu-list {
@@ -345,7 +345,23 @@ a {
   align-items: center;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 0.5rem 1.5rem;
+  gap: 0.5rem 1.25rem;
+}
+
+.nav-primary,
+.nav-secondary {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.nav-sep {
+  color: var(--text-dim);
+  opacity: 0.5;
+  font-size: 1.1rem;
+  user-select: none;
+  pointer-events: none;
+  padding: 0 0.15rem;
 }
 
 .nav-actions {
@@ -359,15 +375,23 @@ a {
   font-family: inherit;
 }
 
+@media (min-width: 769px) {
+  .nav-close { display: none !important; }
+  .nav-secondary .nav-item {
+    font-size: 1.15rem;
+    opacity: 0.92;
+  }
+}
+
 .nav-item {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: var(--text-dim);
   padding-bottom: 2px;
   border-bottom: 2px solid transparent;
-  transition: color 0.3s, border-color 0.3s;
+  transition: color 0.25s, border-color 0.25s;
   white-space: nowrap;
   &:hover { color: var(--accent); opacity: 1; }
-  &.nav-active { color: var(--accent); border-bottom-color: var(--accent); opacity: 0.7; }
+  &.nav-active { color: var(--accent); border-bottom-color: var(--accent); opacity: 0.85; }
 }
 
 // hamburger menü (mobil)
@@ -423,6 +447,16 @@ a {
     width: 100%;
     max-width: 20rem;
     text-align: center;
+  }
+
+  .nav-sep { display: none; }
+  .nav-primary,
+  .nav-secondary {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    max-width: 20rem;
+    margin: 0 auto;
   }
 
   .nav-item {
