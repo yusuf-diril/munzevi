@@ -1308,13 +1308,18 @@
       var list = JSON.parse(raw);
       if (!Array.isArray(list) || list.length < 2) return;
       var index = 0;
+      var duration = 400;
       function next() {
         brand.style.opacity = '0';
         setTimeout(function () {
-          index = (index + 1) % list.length;
-          brand.textContent = list[index];
-          brand.style.opacity = '1';
-        }, 350);
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              index = (index + 1) % list.length;
+              brand.textContent = list[index];
+              brand.style.opacity = '1';
+            });
+          });
+        }, duration);
       }
       setInterval(next, 3200);
     } catch (e) {}
