@@ -2636,22 +2636,28 @@
     var hamburger = document.getElementById('nav-hamburger');
     var navLinks = document.getElementById('nav-links');
     var closeBtn = document.getElementById('nav-close');
+    var overlayCloseBtn = document.getElementById('nav-overlay-close');
     if (!hamburger || !navLinks) return;
 
     hamburger.addEventListener('click', function () {
       navLinks.classList.add('nav-open');
+      document.body.classList.add('nav-overlay-open');
     });
 
+    function closeNav() {
+      navLinks.classList.remove('nav-open');
+      document.body.classList.remove('nav-overlay-open');
+    }
+
+    if (overlayCloseBtn) {
+      overlayCloseBtn.addEventListener('click', closeNav);
+    }
     if (closeBtn) {
-      closeBtn.addEventListener('click', function () {
-        navLinks.classList.remove('nav-open');
-      });
+      closeBtn.addEventListener('click', closeNav);
     }
 
     navLinks.querySelectorAll('.nav-item').forEach(function (link) {
-      link.addEventListener('click', function () {
-        navLinks.classList.remove('nav-open');
-      });
+      link.addEventListener('click', closeNav);
     });
   }
 
