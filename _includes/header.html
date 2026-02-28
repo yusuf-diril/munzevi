@@ -5,12 +5,15 @@
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menü">☰</button>
     <div class="nav-links" id="nav-links">
       <div class="nav-menu-list">
-        <button class="nav-close" id="nav-close" aria-label="Menüyü kapat">Kapat</button>
         <div class="nav-primary">
           <a href="{{ '/kavramlar' | relative_url }}" class="nav-item" data-path="/kavramlar">kavram virdi</a>
+          <span class="nav-sep" aria-hidden="true">|</span>
           <a href="{{ '/muhataplar' | relative_url }}" class="nav-item" data-path="/muhataplar">muhataplar</a>
+          <span class="nav-sep" aria-hidden="true">|</span>
           <a href="{{ '/koleksiyon' | relative_url }}" class="nav-item" data-path="/koleksiyon">koleksiyon</a>
+          <span class="nav-sep" aria-hidden="true">|</span>
           <a href="{{ '/ayna/' | relative_url }}" class="nav-item" data-path="/ayna">ayna</a>
+          <span class="nav-sep" aria-hidden="true">|</span>
           <a href="{{ '/sir' | relative_url }}" class="nav-item" data-path="/sir">sır</a>
         </div>
       </div>
