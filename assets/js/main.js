@@ -1397,16 +1397,13 @@
     }
 
     var nextToType = 0;
-    var pending = {};
-    var wrapped = {};
+    var started = false;
 
     function startParagraph(index) {
       var p = paragraphs[index];
       if (!p || p.classList.contains('typing')) return;
-      if (!wrapped[index]) {
-        wrapCharsInElement(p, 0);
-        wrapped[index] = true;
-      }
+
+      wrapCharsInElement(p, 0);
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
           p.classList.add('typing');
@@ -1414,28 +1411,21 @@
           var duration = (chars.length * speed) + 150;
           setTimeout(function () {
             nextToType = index + 1;
-            if (pending[nextToType]) startParagraph(nextToType);
+            if (nextToType < paragraphs.length) startParagraph(nextToType);
           }, duration);
         });
       });
     }
 
     var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var p = entry.target;
-        var index = parseInt(p.getAttribute('data-typing-index'), 10);
-        if (isNaN(index)) return;
-        pending[index] = true;
-        if (index === nextToType) startParagraph(index);
-        observer.unobserve(p);
-      });
-    }, { rootMargin: '0px 0px -60px 0px', threshold: 0 });
+      if (!started && entries[0] && entries[0].isIntersecting) {
+        started = true;
+        observer.disconnect();
+        startParagraph(0);
+      }
+    }, { rootMargin: '0px 0px 0px 0px', threshold: 0.1 });
 
-    for (var i = 0; i < paragraphs.length; i++) {
-      paragraphs[i].setAttribute('data-typing-index', i);
-      observer.observe(paragraphs[i]);
-    }
+    observer.observe(postBody);
   }
 
 

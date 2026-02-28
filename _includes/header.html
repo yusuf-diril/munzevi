@@ -6,7 +6,6 @@
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav-links" type="button">☰</button>
 
     <div class="nav-links" id="nav-links" role="menu">
-      <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Menüyü kapat" type="button">✕</button>
       <div class="nav-overlay-header">
         <a href="{{ '/' | relative_url }}" class="nav-overlay-brand">münzevî</a>
         <a href="{{ '/' | relative_url }}" class="nav-item nav-overlay-home" data-path="/" role="menuitem">anasayfa</a>
@@ -30,6 +29,7 @@
           </button>
         </span>
       </div>
+      <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Menüyü kapat" type="button"><span class="nav-overlay-close-text">Kapat</span> <span class="nav-overlay-close-icon" aria-hidden="true">✕</span></button>
     </div>
   </nav>
 </header>

@@ -436,23 +436,32 @@ a {
   }
 
   .nav-links.nav-open .nav-overlay-close {
-    display: block !important;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 0;
-    font-size: 1.4rem;
-    line-height: 1;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 20rem;
+    margin: 2rem auto 0;
+    padding: 1rem 1.5rem;
+    min-height: 48px;
+    font-size: 1.15rem;
+    font-family: inherit;
+    letter-spacing: 0.04em;
     color: var(--text-dim);
-    background: none;
+    background: var(--border);
     border: none;
-    border-radius: 50%;
+    border-radius: 8px;
     cursor: pointer;
-    transition: color 0.2s, background-color 0.2s;
-    &:hover { color: var(--text); background-color: var(--border); }
+    transition: background-color 0.2s, color 0.2s;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    &:hover { background: var(--text-dim); color: var(--bg); }
+    &:active { opacity: 0.9; }
   }
+
+  .nav-overlay-close-text { font-weight: 500; }
+  .nav-overlay-close-icon { font-size: 1.25em; opacity: 0.9; }
 
   .nav-overlay-header {
     display: flex;
@@ -3310,6 +3319,13 @@ body.page-enter .page-transition {
 //  TYPEWRITER (daktilo efekti)
 // ──────────────────────────────────────────────────
 
+.post-body p {
+  display: none;
+}
+.post-body p.typing {
+  display: block;
+}
+
 .post-body .char-reveal {
   display: inline;
   opacity: 0;
@@ -3325,6 +3341,9 @@ body.page-enter .page-transition {
   to { opacity: 1; }
 }
 
+body.typewriter-off .post-body p {
+  display: block;
+}
 body.typewriter-off .post-body .char-reveal {
   opacity: 1 !important;
   animation: none !important;
