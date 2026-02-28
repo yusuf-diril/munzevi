@@ -4,13 +4,15 @@ title: "kör düğümle bağladığımız umutlarımız.."
 date: 2023-04-29
 stamp_image: "stamp-selam"
 is_nocturnal: false
+author_note: "—"
+emotional: true
 ---
 
-# kör düğümle bağladığımız umutlarımız..
-
-> <<span class="drop-cap">s</span>pan class="refrain">gönlümde olduktan sonra
+<span class="refrain"><span class="drop-cap">G</span>önlümde olduktan sonra
 
 ne denli uzak  <span class="secret-ink" data-secret="kelime">kelime</span>  olabilirsin ki bana!</span>
+
+{% include tezhip-ara.html %}
 
 >
 

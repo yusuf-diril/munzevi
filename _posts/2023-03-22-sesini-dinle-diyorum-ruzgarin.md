@@ -4,11 +4,13 @@ title: "sesini dinle diyorum rüzgarın.."
 date: 2023-03-22
 stamp_image: "stamp-kalem"
 is_nocturnal: false
+author_note: "—"
+emotional: true
 ---
 
-# sesini dinle diyorum rüzgarın..
-
 <span class="drop-cap">H</span>arabeye yüz tutmuş evlerimizin küçük odacıklarına mahkum olduğumuz zamanlardı; minik bir deniz kabuğuyla dalgaların kıyılara ahenkle vuruşunu hissettiğimiz hayali yolculuklarımız vardı. Henüz bilmiyorduk hakikat denen mefhumu! Kulağımıza yasladığımızda deniz kabuklarını, okyanustan geldiğine inandığımız uğultulu sesleri dinlerdik büyülenmişçesine. Oysa şimdilerde <span class="scribble">dünya</span><span class="correction">alem</span> gözüyle okyanusların dibindeyiz ve yüreğimizde de bir o kadar deruni soru işaretleri…? **Uzak diyarlardan sürükleyip getirdiği hikayesini hisset istiyorum rüzgarın.** Keşke hep bilmemiş olsaydık diyorum, hakikatten uzak bir çocuk gibi bilseydik öylece yetinmeyi..!
+
+{% include tezhip-ara.html %}
 
 ## avuçları(n)daki sermayem erimekte!
 

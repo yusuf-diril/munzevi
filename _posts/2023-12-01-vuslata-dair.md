@@ -4,13 +4,11 @@ title: "vuslat'a dair.."
 date: 2023-12-01
 stamp_image: "stamp-muhabbet"
 is_nocturnal: false
+author_note: "—"
+emotional: true
 ---
 
-# vuslat'a dair..
-
 *<span class="drop-cap">A</span>sli değerlerimize olan firkatimizin devası, vuslat ile hasıl olur zannındayım Hira.*
-
-*Asli değerlerimize olan firkatimizin devası, vuslat ile hasıl olur zannındayım Hira.*
 
 Maddesel anlamda hissettiği varlığına karşın neden ruhunun derinliklerini keşfeylemek istemez insan şu alemde? Ellerinin arasından kayarcasına akıp giden zamanın başıboşluğuna bırakıverir kendini şuursuzca.. Yaşamın karmaşasına temaşa eyler ve dokunduğu an bi parça olur ondan gaflete dalarak. Oysa bu hayatın yakıcılığında hem-fikirdik kal-û bela’da. Acımışlığı tatmıştık, tâ daha gözlerimizi açmadan bu dünyaya..
 

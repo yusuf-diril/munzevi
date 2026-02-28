@@ -3,8 +3,10 @@ layout: post
 title: "uyumak istiyorum cavidan, uyanmamacasına..!"
 date: 2023-03-14
 stamp_image: "stamp-kapi"
+author_note: "—"
+emotional: true
 ---
 
-# uyumak istiyorum cavidan, uyanmamacasına..!
-
 <span class="drop-cap">A</span>cının olgunlaştırdığı kimseleriz biz Cavidan, mayalanmış hamurumuz acıyla. Misket bombalarının gökyüzünde bıraktığı izin kanlı feryadında mana. Kaybettim yolumu, zihnimde tebarüz eden libas hangi ritmin istihzasında..? Acısı dinmeyen bir matemin haykırışındayım Cavidan. Gözlerimi yumduğumda renkli hayallerde bulmam gerekirken, koskoca bir hiçlikte buluyorum kendimi. Kapkaranlık bir boşlukta süzülüyor gibi. Sanki hiç varolmamışım.. Uyumak istiyorum Cavidan, uyanmamacasına! Biliyorsun, uyuyunca geçmeyen şeyler var. Bir kör pencere boyunca uzayıp giden mesafeler mesela.. Ve belki de hayat, dokunuşunda bu koca dünyanın gizemi olan anlamları keşfetmekten ibaret.. Gözlerim firari, kalbim mahrur, her yankı bir hüzün, her ses bir sevince.. Bir devrin sonunda zamansız yağmura tutulmuş kuyunun mahzeninde.. Ah, bu yağmur nasıl da özlemle başlar, nasıl da hüznün en saf haliyle dökülür toprağa. Ne çok diyar gördü, ne çok rüzgarın izinde koştu bu can.. Bu can kafeste uçan bir kuştu! Zamanı kovalayan bir akrep, yelkovan yine zamanın kırgın kollarında. Bu, yalnızlığın hangi demi Cavidan?
+
+{% include tezhip-ara.html %}

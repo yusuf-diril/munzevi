@@ -4,9 +4,9 @@ title: "üftâde ile yıldızların gölgesinde.."
 date: 2023-08-09
 stamp_image: "stamp-ayn"
 is_nocturnal: true
+author_note: "—"
+emotional: true
 ---
-
-# üftâde ile yıldızların gölgesinde..
 
 **<span class="drop-cap">M</span>uhacerat / Harâbe-Zâr / Fikr-i Seyyah**
 
@@ -56,5 +56,3 @@ başka bir el tarafından beklenti içinde olmak ise beyhudedir ancak.</span>
 <span class="refrain">Sancısını çektiğin, kurtarsın ateşler pençesinden seni..</span>
 
 ‘Amin’ ler dolsun evrendeki boşluklar <span class="faded-ink">kınalı</span> dervişim. İnşallah! Rahmet <span class="faded-ink">olsun,</span> mübarek olsun, yâr olsun, yâren olsun. Hicretler hep var olsun.. Duydum ki ölüme râm olmuşum, sanki evvelden yaşıyormuşum! Kanlı bir hançer kaç kez daha deldi geçti kalbimi hatırlamıyorum.. Yaralarımın sarılmasını beklemekten vazgeçtim hem, büsbütün ölmeyi yeğliyorum bir an evvel bu kainattan göçercesine.. Bu kez imdad etmiyorum derviş bırak vereyim canımı olduğum yerde, hareketsiz avuçlarım içinde sunarak yaralı kalbimi aleme, yâr olmamış yâre.. En güzel veda büsbütün hicret etmektir zira, yetmez bir tek yüreklerde ölmüş olmak.. Büsbütün ölmek, dönmemecesine..
-
-![0237e33f-566f-4e2f-b0fc-05154f6fa23b.jpeg](Attachments/8CB155DE-02E3-43B3-9909-3623714E7E80.jpeg)

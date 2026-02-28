@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Gökyüzüne Kaçtı Uykum, Anne..."
-date: 2023-01-12
+date: 2025-11-12
 stamp_image: "stamp-star"
 is_nocturnal: true
+author_note: "—"
+emotional: true
 ---
-
-# Gökyüzüne Kaçtı Uykum, Anne...
 
 **<span class="drop-cap">s</span>eni gökteki her yıldız kadar seven, dayın.**
 

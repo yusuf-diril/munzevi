@@ -1,11 +1,13 @@
 ---
 layout: post
-title: "Vakit, geceyi çoktan devirdi.. Tükettiğimiz ömür sermayesinden geriye ne kaldı dersin?"
-date: 2023-09-16
+title: "sesime ses vermeyen duvarların sağır eden sükûnetine.."
+date: 2026-02-25
 stamp_image: "stamp-seal"
+author_note: "—"
+emotional: true
+once_only: true
 ---
 
-# Vakit, geceyi çoktan devirdi.. Tükettiğimiz ömür sermayesinden geriye ne kaldı dersin?
 <span class="drop-cap">B</span>iliyor olsaydım keşke..
 
 Bugün, karanlıklar içinde sığındım odamın en kuytu köşesine. Dışarıda mevsimler dönüyor, yapraklar birbiri ardına intihar ediyor toprağa.. Lakin benim içimdeki mevsim, hep o zemheri, hep o ayaz.. Hani bir yaprak dalından kopar da, rüzgârın insafına kalır ya.. İşte öyle savruluyor niyetlerimiz.. Nafile, düşülen yerin toprağına karışmaktır mukadderat belki de.

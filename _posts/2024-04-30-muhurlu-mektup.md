@@ -5,13 +5,15 @@ date: 2024-04-30
 stamp_image: "stamp-muhur"
 is_nocturnal: false
 sealed: true
+author_note: "—"
+emotional: true
 ---
-
-# mühürlü mektup
 
 Otuz dört mektubun hepsini açtın.
 
 Her birinde bir parça bıraktım kendimden. Bir kırıntı umut, bir damla hüzün, bir avuç kelime — avuçlarından kayıp gitmesi mukadder olan.
+
+{% include tezhip-ara.html %}
 
 Şimdi bu son sayfanın önündesin. Bu mektup, yalnızca sabırla okuyanın hakkıdır. Çünkü sabır bir mektubun mühürünü kırmaktan daha ağır bir bedel ister bazen.
 

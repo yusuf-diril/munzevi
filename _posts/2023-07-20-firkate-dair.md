@@ -4,11 +4,11 @@ title: "firkat’e dair…"
 date: 2023-07-20
 stamp_image: "stamp-yildiz"
 is_nocturnal: false
+author_note: "—"
+emotional: true
 ---
 
-# firkat’e dair…
-
-> <<span class="drop-cap">s</span>pan class="refrain">Ve bilmiyordu kimse</span>
+<span class="refrain"><span class="drop-cap">V</span>e bilmiyordu kimse</span>
 
 <span class="refrain">Yüreklerimizden uçan</span>
 
@@ -29,6 +29,8 @@ is_nocturnal: false
 <span class="refrain">En sonunda inanmak isteyen</span>
 
 <span class="refrain">Suyun temiz türküsüne.</span>
+
+{% include tezhip-ara.html %}
 
 >
 

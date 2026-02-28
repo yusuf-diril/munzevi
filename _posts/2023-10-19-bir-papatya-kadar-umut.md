@@ -4,12 +4,14 @@ title: "bir papatya kadar umut.."
 date: 2023-10-19
 stamp_image: "stamp-vuslat"
 is_nocturnal: false
+author_note: "—"
+emotional: true
 ---
-
-# bir papatya kadar umut..
 
 **<span class="drop-cap">G</span>ölgesinde bir <span class="faded-ink">hüzün</span> kuşu olarak <span class="faded-ink">varlığımı</span> sürdürdüğüm Papatyam'a..**
 
 Şubat'ın soğuk rüzgarları bir akşam ezanının ardından eşsiz müjdeyi doğurmuştu.. Küçücük ellerini tuttuğumda, sanki bir mucizeye dokunuyor, tüm kainatı avuçlarımda hissediyordum. Tıpkı berrak bir kar tanesi gibi narin, minik bir papatya bembeyaz yapraklarıyla karanlığı aydınlatmış, kalbime baharın ilk ılık <span class="secret-ink" data-secret="bekleyen">bekleyen</span> esintisi dolmuştu. O günden <span class="faded-ink">beri,</span> her hecede ona olan sevgimi fısıldayarak küçük bir tomurcuktan, güneşe <span class="faded-ink">uzanan</span> bir papatyaya dönüşmesini izledim usulca.. Onunla birlikteyken dünya daha güzel, daha renkli bir yer gibiydi. Masumiyetinin gölgesinde ruhumun derinliklerinde bir cennet bahçesi filizlendi..
 
 Sen, Papatyam.. Sen büyüdükçe ben de seninle birlikte büyüdüm. İlk adımlarını atarken, ilk kelimelerini söylerken her daim yanındaydım. Kollarımda ezgiler mırıldanarak uyuturken seni, cennet kokunu içime doldurdum. Gözlerindeki parıltıyı, yüzündeki tebessümü ve kalbindeki saf sevgiyi her daim en derinden hissettim. Kimi zaman kanadı kırık, ruhu yorgun bu hüzün kuşuna sevginle yeniden kanat çırpmayı öğrettin. Koca yüreğinle hüzünlerimizi de paylaştık tıpkı sevinçlerimiz gibi.. Bil ki; kalbimin en nadide köşesinde saklı bir hazine, ruhumun en değerli bir parçasısın sen Papatyam.. İyi ki doğdun, iyi ki varsın biricik yeğenim...
+
+{% include tezhip-ara.html %}

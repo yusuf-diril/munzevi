@@ -4,9 +4,9 @@ title: "Saâdet-i Dareyn"
 date: 2023-11-25
 stamp_image: "stamp-quill"
 is_nocturnal: false
+author_note: "—"
+emotional: true
 ---
-
-# Saâdet-i Dareyn
 
 <span class="drop-cap">H</span>er adım vuslata atılan bir niyet, ebediyete açılan bir kapıdır. İki cân, iki ruh, birbirine yöneldiğinde, zamanın sınırlarını aşan bir yolculuk başlar. Vuslat, sadece bir kavuşma değil, bir ömrün birbirine adanmışlıkla ilmek ilmek dokunmasıdır..
 

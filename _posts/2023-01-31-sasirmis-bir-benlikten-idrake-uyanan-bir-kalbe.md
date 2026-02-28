@@ -4,9 +4,9 @@ title: "şaşırmış bir benlikten, idrake uyanan bir kalbe..."
 date: 2023-01-31
 stamp_image: "stamp-anahtar"
 is_nocturnal: false
+author_note: "—"
+emotional: true
 ---
-
-# şaşırmış bir benlikten, idrake uyanan bir kalbe...
 
 <span class="drop-cap">D</span>üşünüyorum da… Ne zaman bu kadar sathî yaşamaya başladık? Görünene böylesine müptelâ, derin olana ise bu denli yabacı oluşumuzun vakti ne zamandı? Sanki insanlık olarak kendi gölgemize sevdalanmış, ışığın kaynağına değil de, yere düşen şeklimize hayranlık besliyoruz. Kendi sûretini aşamayan bir sevdânın içinde savrulup debeleniyor, derinliği değil de yansımayı arıyoruz.
 

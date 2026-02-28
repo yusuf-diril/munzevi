@@ -3,8 +3,10 @@ layout: post
 title: "ne de çabuk geçiyor zaman kuşlar uyurken.."
 date: 2023-08-12
 stamp_image: "stamp-yagmur"
+author_note: "—"
+emotional: true
 ---
 
-# ne de çabuk geçiyor zaman kuşlar uyurken..
-
 <span class="drop-cap">S</span>en Ey Acize! Söyleyecek bir şeylerin olmalı değil mi..? Ne de çabuk geçiyor zaman kuşlar uyurken.. Sen varsın gecede ve ben kendimden biri değilim.. Hem ben vaktin hecesine esir olmuş bir kekeme, gölgelerin ardında saklı kalmış hiçliğin kör düğümündeyim. Yarım kalmış yalnızlığım meçhul nazarındaki soykırıma uğrarken, sahi duydun mu sustuklarımı Acize..! Aynanın karşısında bulduğumda kendimi, yüzleşmek zorunda hissettiğim karmaşık düşünce havzasının patikalarında yol alıyorum. Her adımda düşüncelerin ve hislerin labirentine dalıyor, gölge oyunlarından ibaret bir gerçeklikle karşı karşıya kalıyorum. Bugün olması gerekenden daha uzun sürdü kendimle yüzleşmem Acize.. Gözlerimin sürüncemesinde beliren hangi tercih ve vazgeçişisin yansımasıdır? Çaresizliği kabullenmek son çaremiz midir hem? Her bir düşünce bir diğerine eklemlenerek ip yumağı gibi düğümleniyor adeta.. İç dünyamın tozlu raflarında, eski bir kitabın sayfalarında dolaşan ve gün yüzüne çıkmayı bekleyen düşünceler bulunuyor. Sade ve yalın bir varoluş öyküsü yazmak istiyorken sessizce bir yokoluşu yaşıyor olmak.. Acize....
+
+{% include tezhip-ara.html %}

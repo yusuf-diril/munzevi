@@ -1,14 +1,16 @@
 ---
 layout: post
 title: "henüz adı konmamış bir mektup"
-date: 2026-02-25
+date: 2024-04-12
 stamp_image: "stamp-moon"
 is_nocturnal: false
-arrives: "2026-02-28"
+arrives: "2026-04-12"
+author_note: "—"
+emotional: true
 ---
 
-# henüz adı konmamış bir mektup
-
 Bu mektup henüz yazılıyor. Mürekkebi kurumadı. Sabret.
+
+{% include tezhip-ara.html %}
 
 *münzevi*

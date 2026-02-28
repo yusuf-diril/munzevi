@@ -4,9 +4,9 @@ title: "feza’ya dair…"
 date: 2023-02-12
 stamp_image: "stamp-feza"
 is_nocturnal: false
+author_note: "—"
+emotional: true
 ---
-
-# feza’ya dair…
 
 <span class="drop-cap">İ</span>pek böceği tırtıllarını bilir misin Hira? Hani onlar ki aynı biz gibi iki farklı sonla karşılaşmak zorunda kalırlar. Kozalarından çıkabilenler kelebek olarak hürriyete kanat çırparken, ötekiler atıldıkları kaynar suyun göğe yükselen buharında acı kaderlerine terk edilirler.
 
