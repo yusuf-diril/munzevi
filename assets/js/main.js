@@ -578,7 +578,11 @@
     var today = new Date();
     var dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
 
-    var filtered = kavramlar.filter(function (k) { return k.id !== 'munzevi'; });
+    var filtered = kavramlar.filter(function (k) {
+      var id = (k.id || '').toLowerCase().replace(/ü/g, 'u');
+      var word = (k.word || '').toLowerCase().replace(/ü/g, 'u');
+      return id !== 'munzevi' && word !== 'munzevi';
+    });
     var list = filtered.length > 0 ? filtered : kavramlar;
 
     if (list.length > 0) {
