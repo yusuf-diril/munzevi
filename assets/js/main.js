@@ -2849,7 +2849,6 @@
     initHasret();
     initSonSayfa();
     initAynaMektup();
-    initBurnLetter();
     initGrowingTree();
     initGhostLetter();
     initQuake();

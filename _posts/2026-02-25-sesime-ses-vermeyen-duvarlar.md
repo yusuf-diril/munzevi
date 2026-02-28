@@ -5,7 +5,6 @@ date: 2026-02-25
 stamp_image: "stamp-seal"
 author_note: "—"
 emotional: true
-once_only: true
 ---
 
 <span class="drop-cap">V</span>akit, geceyi çoktan devirdi.. Tükettiğimiz ömür sermayesinden geriye ne kaldı dersin?
