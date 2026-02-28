@@ -578,8 +578,11 @@
     var today = new Date();
     var dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
 
-    if (kavramlar.length > 0) {
-      var k = kavramlar[dayOfYear % kavramlar.length];
+    var filtered = kavramlar.filter(function (k) { return k.id !== 'munzevi'; });
+    var list = filtered.length > 0 ? filtered : kavramlar;
+
+    if (list.length > 0) {
+      var k = list[dayOfYear % list.length];
       el.innerHTML = '<a href="/kavramlar/#' + k.id + '" style="color:inherit;text-decoration:none">' +
         '<em>' + k.word + '</em> \u2014 ' + k.essence + '</a>';
     } else {
