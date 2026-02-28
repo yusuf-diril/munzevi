@@ -348,20 +348,10 @@ a {
   gap: 0.5rem 1.25rem;
 }
 
-.nav-primary,
-.nav-secondary {
+.nav-primary {
   display: flex;
   align-items: center;
   gap: 1.25rem;
-}
-
-.nav-sep {
-  color: var(--text-dim);
-  opacity: 0.5;
-  font-size: 1.1rem;
-  user-select: none;
-  pointer-events: none;
-  padding: 0 0.15rem;
 }
 
 .nav-actions {
@@ -377,10 +367,6 @@ a {
 
 @media (min-width: 769px) {
   .nav-close { display: none !important; }
-  .nav-secondary .nav-item {
-    font-size: 1.15rem;
-    opacity: 0.92;
-  }
 }
 
 .nav-item {
@@ -449,9 +435,7 @@ a {
     text-align: center;
   }
 
-  .nav-sep { display: none; }
-  .nav-primary,
-  .nav-secondary {
+  .nav-primary {
     flex-direction: column;
     gap: 0;
     width: 100%;
