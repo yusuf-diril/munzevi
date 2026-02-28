@@ -70,6 +70,10 @@ body {
   color: var(--accent);
 }
 
+// Tasarım paneli (şimdilik kapalı — tekrar açmak için bu bloku kaldır)
+.dp-toggle,
+.dp-panel { display: none !important; }
+
 
 // ──────────────────────────────────────────────────
 //  TEMEL TİPOGRAFİ
