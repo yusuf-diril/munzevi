@@ -2847,11 +2847,10 @@
     initGhostLetter();
     initQuake();
     initImpatience();
-    initScrollResist();
-    initFlipCard();
     initBurst();
     initTakas();
     initMobileNav();
+    initFlipCard();
     initActiveNav();
     initScrollTop();
     initTreeTooltip();
