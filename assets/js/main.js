@@ -2660,6 +2660,10 @@
     navLinks.querySelectorAll('.nav-item').forEach(function (link) {
       link.addEventListener('click', closeNav);
     });
+    var overlayHome = navLinks.querySelector('.nav-overlay-home');
+    var overlayBrand = navLinks.querySelector('.nav-overlay-brand');
+    if (overlayHome) overlayHome.addEventListener('click', closeNav);
+    if (overlayBrand) overlayBrand.addEventListener('click', closeNav);
   }
 
 

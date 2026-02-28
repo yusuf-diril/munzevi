@@ -349,6 +349,8 @@ a {
 
 .nav-overlay-close { display: none !important; }
 
+.nav-overlay-header { display: none; }
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -450,6 +452,38 @@ a {
     cursor: pointer;
     transition: color 0.2s, background-color 0.2s;
     &:hover { color: var(--text); background-color: var(--border); }
+  }
+
+  .nav-overlay-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 20rem;
+    margin: 0 auto 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-overlay-brand {
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+    &:hover { opacity: 0.85; }
+  }
+
+  .nav-overlay-home {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: color 0.2s;
+    &:hover { color: var(--accent); }
   }
 
   .nav-menu-list {
